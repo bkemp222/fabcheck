@@ -1,9 +1,9 @@
 "use client";
 
-import { useProject } from "@/hooks/use-project";
+import { PackagePreview } from "@/components/fabcheck/package-preview";
 import { Sidebar } from "@/components/fabcheck/sidebar";
 import { Workspace } from "@/components/fabcheck/workspace";
-import { PackagePreview } from "@/components/fabcheck/package-preview";
+import { useProject } from "@/hooks/use-project";
 
 export function WorkspaceShell() {
   const {
@@ -28,8 +28,8 @@ export function WorkspaceShell() {
   } = useProject();
 
   return (
-<main className="min-h-screen bg-[#141212] text-white">
-    <div className="flex items-center justify-between border-b border-white/10 bg-[#0d0d0d] px-4 py-4 md:hidden">
+    <main className="min-h-screen bg-[#141212] text-white">
+      <div className="flex items-center justify-between border-b border-white/10 bg-[#0d0d0d] px-4 py-4 md:hidden">
   <img
     src="/images/branding/fabcheck-logo.svg"
     alt="FabCheck"
@@ -40,21 +40,33 @@ export function WorkspaceShell() {
     {activeView}
   </p>
 </div>
-  <div
-    className={
-      isMarkupMode || isPrintMode
-        ? "grid min-h-screen grid-cols-1 md:grid-cols-[240px_1fr]"
-        : "grid min-h-screen grid-cols-1 md:grid-cols-[240px_1fr_340px]"
-    }
-  >
-    <div className="hidden md:block">
-        <Sidebar
-          progress={progress}
-          activeView={activeView}
-          setActiveView={setActiveView}
-          assetCount={project.assets.length}
-          setIsMarkupMode={setIsMarkupMode}
+      <div className="flex items-center justify-between border-b border-white/10 bg-[#0d0d0d] px-4 py-4 md:hidden">
+        <img
+          src="/images/branding/fabcheck-logo.svg"
+          alt="FabCheck"
+          className="h-auto w-36"
         />
+
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-400">
+          {activeView}
+        </p>
+      </div>
+
+      <div
+className={
+  isMarkupMode || isPrintMode
+    ? "grid min-h-screen grid-cols-1 md:grid-cols-[240px_1fr]"
+    : "grid min-h-screen grid-cols-1 md:grid-cols-[240px_1fr_340px]"
+}
+      >
+        <div className="hidden md:block">
+          <Sidebar
+            progress={progress}
+            activeView={activeView}
+            setActiveView={setActiveView}
+            assetCount={project.assets.length}
+            setIsMarkupMode={setIsMarkupMode}
+          />
         </div>
 
         <Workspace
@@ -75,14 +87,14 @@ export function WorkspaceShell() {
           deleteCallout={deleteCallout}
           progress={progress}
           isPrintMode={isPrintMode}
-setIsPrintMode={setIsPrintMode}
+          setIsPrintMode={setIsPrintMode}
         />
 
         {!isMarkupMode && !isPrintMode && (
-  <div className="hidden md:block">
-    <PackagePreview project={project} />
-  </div>
-)}
+          <div className="hidden md:block">
+            <PackagePreview project={project} />
+          </div>
+        )}
       </div>
     </main>
   );
