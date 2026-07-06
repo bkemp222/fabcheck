@@ -40,18 +40,6 @@ export function WorkspaceShell() {
     {activeView}
   </p>
 </div>
-      <div className="flex items-center justify-between border-b border-white/10 bg-[#0d0d0d] px-4 py-4 md:hidden">
-        <img
-          src="/images/branding/fabcheck-logo.svg"
-          alt="FabCheck"
-          className="h-auto w-36"
-        />
-
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-400">
-          {activeView}
-        </p>
-      </div>
-
       <div
 className={
   isMarkupMode || isPrintMode
