@@ -28,7 +28,7 @@ export function WorkspaceShell() {
   } = useProject();
 
   return (
-    <main className="min-h-screen bg-[#141212] text-white">
+    <main className="min-h-screen bg-[#141212] pb-20 text-white md:pb-0">
       <div className="flex items-center justify-between border-b border-white/10 bg-[#0d0d0d] px-4 py-4 md:hidden">
   <img
     src="/images/branding/fabcheck-logo.svg"
@@ -96,6 +96,46 @@ className={
           </div>
         )}
       </div>
+      <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 border-t border-white/10 bg-[#0d0d0d] md:hidden">
+  <button
+    type="button"
+    onClick={() => {
+      setIsMarkupMode(false);
+      setActiveView("overview");
+    }}
+    className={`py-4 text-xs font-black uppercase tracking-[0.15em] ${
+      activeView === "overview" ? "text-orange-400" : "text-white/50"
+    }`}
+  >
+    Overview
+  </button>
+
+  <button
+    type="button"
+    onClick={() => {
+      setIsMarkupMode(false);
+      setActiveView("assets");
+    }}
+    className={`py-4 text-xs font-black uppercase tracking-[0.15em] ${
+      activeView === "assets" ? "text-orange-400" : "text-white/50"
+    }`}
+  >
+    Assets
+  </button>
+
+  <button
+    type="button"
+    onClick={() => {
+      setIsMarkupMode(false);
+      setActiveView("review");
+    }}
+    className={`py-4 text-xs font-black uppercase tracking-[0.15em] ${
+      activeView === "review" ? "text-orange-400" : "text-white/50"
+    }`}
+  >
+    Review
+  </button>
+</div>
     </main>
   );
 }
