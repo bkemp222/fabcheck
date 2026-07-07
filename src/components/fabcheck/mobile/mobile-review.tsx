@@ -42,7 +42,7 @@ export function MobileReview({ project }: MobileReviewProps) {
           );
           window.open("/launch/print", "_blank");
         }}
-        className="w-full rounded-full bg-orange-500 py-4 text-lg font-black uppercase italic text-black"
+        className="w-full rounded-full bg-[#faa431] py-4 text-lg font-black uppercase italic text-black"
       >
         Create Package
       </button>
