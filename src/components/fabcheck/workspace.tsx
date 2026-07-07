@@ -93,6 +93,11 @@ isMobileAssetDetailOpen={isMobileAssetDetailOpen}
 setIsMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
 selectedAssetId={selectedAssetId}
 setIsMarkupMode={setIsMarkupMode}
+addCallout={addCallout}
+selectedCalloutId={selectedCalloutId}
+setSelectedCalloutId={setSelectedCalloutId}
+updateCallout={updateCallout}
+isMarkupMode={isMarkupMode}
 />
 <div className="hidden md:block">
       {activeView === "overview" && (
