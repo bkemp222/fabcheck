@@ -5,7 +5,7 @@ import { MobileHeader } from "./mobile-header";
 
 type MobileAssetsProps = {
   project: Project;
-  addAssets: (files: File[]) => string[];
+ addAssets: (files: File[]) => Promise<string[]>;
   setSelectedAssetId: (id: string) => void;
   setMobileAssetDetailOpen: (value: boolean) => void;
   setIsMarkupMode: (value: boolean) => void;
@@ -20,9 +20,9 @@ export function MobileAssets({
   setIsMarkupMode,
   goToProjectInfo,
 }: MobileAssetsProps) {
-  function handleFiles(fileList: FileList | null) {
+ async function handleFiles(fileList: FileList | null) {
     if (!fileList) return;
-    const newAssetIds = addAssets(Array.from(fileList));
+    const newAssetIds = await addAssets(Array.from(fileList));
 
 if (newAssetIds.length > 0) {
   setSelectedAssetId(newAssetIds[0]);
