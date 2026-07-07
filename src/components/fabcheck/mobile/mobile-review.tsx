@@ -1,6 +1,7 @@
 "use client";
 
 import type { Project } from "@/types/project";
+import { MobileHeader } from "./mobile-header";
 
 type MobileReviewProps = {
   project: Project;
@@ -14,15 +15,7 @@ export function MobileReview({ project }: MobileReviewProps) {
 
   return (
     <div className="space-y-6 p-5 pb-28">
-      <div>
-        <p className="text-xs font-black uppercase tracking-[0.25em] text-orange-500">
-          FabCheck
-        </p>
-
-        <h1 className="mt-1 text-4xl font-black italic uppercase">
-          Review
-        </h1>
-      </div>
+<MobileHeader title="Review" subtitle="FabCheck" />
 
       <div className="rounded-3xl bg-white p-5 shadow-sm">
         <p className="text-xs font-black uppercase tracking-[0.25em] text-zinc-400">

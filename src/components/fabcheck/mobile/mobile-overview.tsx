@@ -1,6 +1,7 @@
 "use client";
 
 import { Project } from "@/types/project";
+import { MobileHeader } from "./mobile-header";
 
 type MobileOverviewProps = {
   project: Project;
@@ -19,15 +20,7 @@ export function MobileOverview({
   return (
     <div className="space-y-6 p-5">
 
-      <div>
-        <p className="text-xs font-black uppercase tracking-[0.25em] text-orange-500">
-          FabCheck
-        </p>
-
-        <h1 className="mt-1 text-4xl font-black italic">
-          Project Info
-        </h1>
-      </div>
+<MobileHeader title="Project Info" subtitle="FabCheck" />
 
       <div className="rounded-3xl bg-white p-5 shadow-sm space-y-5">
 

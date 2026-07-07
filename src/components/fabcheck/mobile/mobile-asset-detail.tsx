@@ -1,6 +1,7 @@
 "use client";
 
 import type { ProjectAsset } from "@/types/project";
+import { MobileHeader } from "./mobile-header";
 
 type MobileAssetDetailProps = {
 asset: ProjectAsset;
