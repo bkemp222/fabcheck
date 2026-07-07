@@ -127,7 +127,6 @@ export function MobileMarkup({
             }
             className="min-h-28 w-full resize-none rounded-2xl border border-white/10 bg-black/40 p-4 text-white outline-none focus:border-orange-400"
             placeholder="Type fabrication note..."
-            autoFocus
           />
 
           <button
