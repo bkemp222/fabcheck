@@ -4,6 +4,7 @@ import { PackagePreview } from "@/components/fabcheck/package-preview";
 import { Sidebar } from "@/components/fabcheck/sidebar";
 import { Workspace } from "@/components/fabcheck/workspace";
 import { useProject } from "@/hooks/use-project";
+import { MobileNav } from "@/components/fabcheck/mobile/mobile-nav";
 
 export function WorkspaceShell() {
   const {
@@ -84,46 +85,11 @@ className={
           </div>
         )}
       </div>
-      <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 border-t border-white/10 bg-[#0d0d0d] md:hidden">
-  <button
-    type="button"
-    onClick={() => {
-      setIsMarkupMode(false);
-      setActiveView("overview");
-    }}
-    className={`py-4 text-xs font-black uppercase tracking-[0.15em] ${
-      activeView === "overview" ? "text-orange-400" : "text-white/50"
-    }`}
-  >
-    Overview
-  </button>
-
-  <button
-    type="button"
-    onClick={() => {
-      setIsMarkupMode(false);
-      setActiveView("assets");
-    }}
-    className={`py-4 text-xs font-black uppercase tracking-[0.15em] ${
-      activeView === "assets" ? "text-orange-400" : "text-white/50"
-    }`}
-  >
-    Assets
-  </button>
-
-  <button
-    type="button"
-    onClick={() => {
-      setIsMarkupMode(false);
-      setActiveView("review");
-    }}
-    className={`py-4 text-xs font-black uppercase tracking-[0.15em] ${
-      activeView === "review" ? "text-orange-400" : "text-white/50"
-    }`}
-  >
-    Review
-  </button>
-</div>
+<MobileNav
+  activeView={activeView}
+  setActiveView={setActiveView}
+  setIsMarkupMode={setIsMarkupMode}
+/>
     </main>
   );
 }
