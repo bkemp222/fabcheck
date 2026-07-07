@@ -5,6 +5,7 @@ import { MobileOverview } from "./mobile-overview";
 import { MobileAssets } from "./mobile-assets";
 import { MobileAssetDetail } from "./mobile-asset-detail";
 import { MobileMarkup } from "./mobile-markup";
+import { MobileReview } from "./mobile-review";
 
 type MobileWorkspaceProps = {
   project: Project;
@@ -109,44 +110,7 @@ if (activeView === "assets" && isMobileAssetDetailOpen && selectedAsset) {
         />
       )}
 
-      {activeView === "review" && (
-        <div className="space-y-6 p-5">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.25em] text-orange-500">
-              FabCheck
-            </p>
-            <h1 className="mt-1 text-4xl font-black italic uppercase">
-              Review
-            </h1>
-          </div>
-
-          <div className="rounded-3xl bg-white p-5 shadow-sm">
-            <p className="text-xs font-black uppercase tracking-[0.25em] text-zinc-400">
-              Assets
-            </p>
-            <p className="mt-2 text-3xl font-black">
-              {project.assets.length}
-            </p>
-          </div>
-
-          <div className="rounded-3xl bg-white p-5 shadow-sm">
-            <p className="text-xs font-black uppercase tracking-[0.25em] text-zinc-400">
-              Project
-            </p>
-            <p className="mt-2 text-xl font-black">
-              {project.name || "Untitled Package"}
-            </p>
-            <p className="mt-1 text-zinc-500">
-              {project.company || "No company added"}
-            </p>
-          </div>
-
-          <p className="text-sm text-zinc-500">
-            Mobile review actions are next. Desktop review and PDF generation
-            still work normally.
-          </p>
-        </div>
-      )}
+      {activeView === "review" && <MobileReview project={project} />}
     </div>
   );
 }
