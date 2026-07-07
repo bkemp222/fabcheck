@@ -146,7 +146,7 @@ async function generatePdf(project: any) {
   try {
     const base64Data = asset.url.split(",")[1];
     const imageBytes = Buffer.from(base64Data, "base64");
-    
+
     const image =
       asset.type === "image/png"
         ? await pdfDoc.embedPng(imageBytes)
@@ -163,6 +163,26 @@ async function generatePdf(project: any) {
       width: scaled.width,
       height: scaled.height,
     });
+
+    asset.callouts.forEach((callout: any, index: number) => {
+  const pinX = margin + (callout.x / 100) * scaled.width;
+  const pinY = y - scaled.height + scaled.height - (callout.y / 100) * scaled.height;
+
+  page.drawCircle({
+    x: pinX,
+    y: pinY,
+    size: 12,
+    color: rgb(1, 0.54, 0),
+  });
+
+  page.drawText(String(index + 1), {
+    x: pinX - 3.5,
+    y: pinY - 4,
+    size: 10,
+    font: bold,
+    color: rgb(0, 0, 0),
+  });
+});
 
     y -= scaled.height + 24;
   } catch (error) {
