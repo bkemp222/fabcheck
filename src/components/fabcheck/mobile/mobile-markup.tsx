@@ -51,13 +51,17 @@ export function MobileMarkup({
         </button>
 
       </div>
-<div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50">
-          Tap image to add pin
-        </p>
-        </div>
 
       <div className="flex flex-1 items-center justify-center overflow-auto p-4">
+        <div className="mb-4 text-center">
+  <p className="text-sm font-bold text-white">
+    Tap anywhere on the concept to add a callout.
+  </p>
+
+  <p className="mt-1 text-xs text-white/60">
+    Additional instructions here.
+  </p>
+</div>
         <div className="relative inline-block" onClick={handleImageClick}>
           <img
             src={asset.url}
