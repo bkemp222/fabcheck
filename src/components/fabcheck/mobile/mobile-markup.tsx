@@ -64,30 +64,7 @@ export function MobileMarkup({
           {asset.callouts.map((callout, index) => {
             const isSelected = callout.id === selectedCalloutId;
 
-            return (
-              <button
-                key={callout.id}
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedCalloutId(callout.id);
-                }}
-                className={`absolute flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-sm font-black text-black shadow-md transition ${
-                  isSelected ? "scale-125 bg-white" : "bg-orange-400"
-                }`}
-                style={{
-                  left: `${callout.x}%`,
-                  top: `${callout.y}%`,
-                }}
-              >
-                {index + 1}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-{selectedCallout && (
+            {selectedCallout && (
   <div
     className="absolute z-50 w-64 -translate-x-1/2 rounded-2xl border border-white/10 bg-[#141212] p-4 shadow-2xl"
     style={{
@@ -117,6 +94,31 @@ export function MobileMarkup({
     </button>
   </div>
 )}
+
+            return (
+              <button
+                key={callout.id}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedCalloutId(callout.id);
+                }}
+                className={`absolute flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-sm font-black text-black shadow-md transition ${
+                  isSelected ? "scale-125 bg-white" : "bg-orange-400"
+                }`}
+                style={{
+                  left: `${callout.x}%`,
+                  top: `${callout.y}%`,
+                }}
+              >
+                {index + 1}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+
     </div>
   );
 }
