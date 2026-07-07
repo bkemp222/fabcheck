@@ -14,7 +14,8 @@ export function MobileAssetDetail({
   editMarkup,
 }: MobileAssetDetailProps) {
   return (
-    <div className="animate-[fadeIn_.25s_ease] space-y-6 p-5 pb-28">
+    <div className="fixed inset-0 z-40 overflow-y-auto bg-[#F5F2EC] animate-[fadeIn_.25s_ease] pb-28">
+  <div className="mx-auto max-w-md space-y-6 p-5">
 
       <button
         onClick={goBack}
@@ -95,6 +96,7 @@ export function MobileAssetDetail({
         Edit Markup
       </button>
 
+    </div>
     </div>
   );
 }
