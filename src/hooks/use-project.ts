@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { mockProject } from "@/data/mock-project";
 import type { ActiveView, Project, ProjectAsset } from "@/types/project";
+import imageCompression from "browser-image-compression";
 
 export function useProject() {
   const [project, setProject] = useState<Project>(mockProject);
@@ -25,7 +26,14 @@ async function addAssets(files: File[]) {
   const newAssets: ProjectAsset[] = await Promise.all(
     files.map(
       (file, index) =>
-        new Promise<ProjectAsset>((resolve) => {
+        new Promise<ProjectAsset>(async (resolve) => {
+          const processedFile = file.type.startsWith("image/")
+  ? await imageCompression(file, {
+      maxSizeMB: 0.8,
+      maxWidthOrHeight: 1600,
+      useWebWorker: true,
+    })
+  : file;
           const reader = new FileReader();
 
           reader.onload = () => {
@@ -39,7 +47,7 @@ async function addAssets(files: File[]) {
             });
           };
 
-          reader.readAsDataURL(file);
+         reader.readAsDataURL(processedFile);
         })
     )
   );
