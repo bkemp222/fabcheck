@@ -47,12 +47,33 @@ export function MobileReview({ project }: MobileReviewProps) {
   Print / Save PDF
 </button>
 
-      <button
-        type="button"
-        className="w-full rounded-full bg-black py-4 text-lg font-black uppercase italic text-white"
-      >
-        Submit FabCheck
-      </button>
+<button
+  type="button"
+  onClick={async () => {
+    try {
+      const response = await fetch("/api/submit-package", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(project),
+      });
+
+      if (!response.ok) {
+        alert("Failed to submit package.");
+        return;
+      }
+
+      alert("Package submitted successfully!");
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong submitting the package.");
+    }
+  }}
+  className="w-full rounded-full bg-black py-4 text-lg font-black uppercase italic text-white"
+>
+  Submit Package
+</button>
     </div>
   );
 }
