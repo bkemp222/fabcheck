@@ -78,7 +78,7 @@ export function MobileOverview({
 
       <button
         onClick={goToAssets}
-        className="w-full rounded-full bg-orange-500 py-4 text-lg font-black uppercase tracking-wide text-black"
+        className="w-full rounded-full bg-[#faa431] py-4 text-md font-black uppercase tracking-wide text-black"
       >
         Continue →
       </button>
@@ -105,7 +105,7 @@ function Input({
       <input
         value={value || ""}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-4 text-lg font-semibold outline-none transition focus:border-orange-500"
+        className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-4 text-lg font-semibold outline-none transition focus:border-[#faa431]"
       />
     </div>
   );
