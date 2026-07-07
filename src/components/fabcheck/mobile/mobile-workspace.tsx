@@ -102,12 +102,13 @@ if (activeView === "assets" && isMobileAssetDetailOpen && selectedAsset) {
       )}
 
       {activeView === "assets" && (
-        <MobileAssets
-          project={project}
-          addAssets={addAssets}
-          setSelectedAssetId={setSelectedAssetId}
-          setMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
-        />
+<MobileAssets
+  project={project}
+  addAssets={addAssets}
+  setSelectedAssetId={setSelectedAssetId}
+  setMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
+  setIsMarkupMode={setIsMarkupMode}
+/>
       )}
 
       {activeView === "review" && <MobileReview project={project} />}
