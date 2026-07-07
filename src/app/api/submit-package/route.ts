@@ -144,8 +144,9 @@ async function generatePdf(project: any) {
 
     if (asset.url && asset.type?.startsWith("image/")) {
   try {
-    const imageBytes = await fetch(asset.url).then((res) => res.arrayBuffer());
-
+    const base64Data = asset.url.split(",")[1];
+    const imageBytes = Buffer.from(base64Data, "base64");
+    
     const image =
       asset.type === "image/png"
         ? await pdfDoc.embedPng(imageBytes)
