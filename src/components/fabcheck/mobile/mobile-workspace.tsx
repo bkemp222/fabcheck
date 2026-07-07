@@ -43,7 +43,10 @@ export function MobileWorkspace({
         <MobileAssetDetail
           asset={selectedAsset}
           goBack={() => setIsMobileAssetDetailOpen(false)}
-          editMarkup={() => setIsMarkupMode(true)}
+          editMarkup={() => {
+  setSelectedAssetId(selectedAsset.id);
+  setIsMarkupMode(true);
+}}
         />
       </div>
     );

@@ -33,17 +33,26 @@ export function MobileAssetDetail({
         </h1>
       </div>
 
-      {asset.type.startsWith("image/") && (
-        <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
+{asset.type.startsWith("image/") && (
+  <div className="overflow-hidden rounded-3xl bg-white p-3 shadow-sm">
+    <div className="relative inline-block w-full">
+      <img src={asset.url} alt={asset.name} className="block w-full" />
 
-          <img
-            src={asset.url}
-            alt={asset.name}
-            className="w-full"
-          />
-
+      {asset.callouts.map((callout, index) => (
+        <div
+          key={callout.id}
+          className="absolute flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-orange-500 text-sm font-black text-black shadow-md"
+          style={{
+            left: `${callout.x}%`,
+            top: `${callout.y}%`,
+          }}
+        >
+          {index + 1}
         </div>
-      )}
+      ))}
+    </div>
+  </div>
+)}
 
       <div className="rounded-3xl bg-white p-5 shadow-sm">
 
