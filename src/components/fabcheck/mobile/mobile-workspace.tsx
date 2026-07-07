@@ -15,7 +15,7 @@ type MobileWorkspaceProps = {
     value: Project[K]
   ) => void;
   goToAssets: () => void;
-  addAssets: (files: File[]) => void;
+  addAssets: (files: File[]) => string[];
   selectedAssetId: string | null;
   setSelectedAssetId: (id: string) => void;
   isMobileAssetDetailOpen: boolean;
