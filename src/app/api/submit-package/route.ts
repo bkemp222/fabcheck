@@ -244,6 +244,7 @@ export async function POST(request: Request) {
     }
 
     const project = await request.json();
+    console.log(project.assets[0]?.url?.substring(0, 40));
 
     const totalCallouts = project.assets.reduce(
       (total: number, asset: any) => total + asset.callouts.length,
