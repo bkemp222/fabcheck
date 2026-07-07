@@ -81,6 +81,8 @@ setIsPrintMode,
       <MobileWorkspace
   project={project}
   activeView={activeView}
+  updateProject={updateProject}
+  goToAssets={() => setActiveView("assets")}
 />
 <div className="hidden md:block">
       {activeView === "overview" && (

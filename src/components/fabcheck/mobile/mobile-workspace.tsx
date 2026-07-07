@@ -6,7 +6,10 @@ import { MobileOverview } from "./mobile-overview";
 type MobileWorkspaceProps = {
   project: Project;
   activeView: "overview" | "assets" | "review";
-  updateProject: (updates: Partial<Project>) => void;
+  updateProject: <K extends keyof Project>(
+  key: K,
+  value: Project[K]
+) => void;
 goToAssets: () => void;
   
 };
