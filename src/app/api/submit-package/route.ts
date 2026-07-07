@@ -79,12 +79,12 @@ export async function POST(request: Request) {
         <p><strong>Callouts:</strong> ${totalCallouts}</p>
         <p>PDF package attached.</p>
       `,
-      attachments: [
-        {
-          filename: `FabCheck-${project.name || "Package"}.pdf`,
-          content: pdfBuffer,
-        },
-      ],
+attachments: [
+  {
+    filename: `FabCheck-${project.name || "Package"}.pdf`,
+    content: pdfBuffer.toString("base64"),
+  },
+],
     });
 
     return NextResponse.json({ ok: true });
