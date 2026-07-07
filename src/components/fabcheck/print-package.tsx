@@ -12,6 +12,32 @@ export function PrintPackage({
   setIsPrintMode,
 }: PrintPackageProps) {
   return (
+      <>
+    <div className="min-h-screen bg-[#F5F2EC] p-5 text-black md:hidden">
+      <div className="rounded-3xl bg-white p-6 shadow-sm">
+        <img
+          src="/images/branding/fabcheck-logo.svg"
+          alt="FabCheck"
+          className="mx-auto mb-6 h-auto w-48"
+        />
+
+        <h1 className="text-3xl font-black italic uppercase">
+          FabCheck Package
+        </h1>
+
+        <p className="mt-3 text-zinc-500">
+          This package is formatted for PDF export. Use the button below to print or save it.
+        </p>
+
+        <button
+          type="button"
+          onClick={() => window.print()}
+          className="mt-6 w-full rounded-full bg-orange-400 py-4 text-lg font-black uppercase italic text-black"
+        >
+          Print / Save PDF
+        </button>
+      </div>
+    </div>
     <main className="print-package mx-auto hidden max-w-6xl bg-white p-10 text-black md:block">
       <div className="no-print mb-8 flex items-center justify-between rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
         <button
@@ -152,6 +178,6 @@ export function PrintPackage({
         )}
       </section>
     </main>
-    
+    </>
   );
 }
