@@ -20,54 +20,31 @@ export function MobileWorkspace({
   updateProject,
   goToAssets,
 }: MobileWorkspaceProps) {
-  return (
-    <div className="md:hidden">
-<MobileOverview
-    project={project}
-    updateProject={updateProject}
-    goToAssets={goToAssets}
-/>
+return (
+  <div className="md:hidden">
+    {activeView === "overview" && (
+      <MobileOverview
+        project={project}
+        updateProject={updateProject}
+        goToAssets={goToAssets}
+      />
+    )}
 
-      {activeView === "assets" && (
-        <div className="space-y-4 p-5">
-          <h1 className="text-3xl font-black italic uppercase">
-            Assets
-          </h1>
+    {activeView === "assets" && (
+      <div className="space-y-4 p-5">
+        <h1 className="text-3xl font-black italic uppercase">Assets</h1>
+        {/* asset content here */}
+      </div>
+    )}
 
-          {project.assets.map((asset) => (
-            <div
-              key={asset.id}
-              className="rounded-3xl bg-white p-5 shadow-sm"
-            >
-              <h2 className="font-black">{asset.name}</h2>
-
-              <p className="mt-2 text-sm text-zinc-500">
-                {asset.callouts.length} Callouts
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {activeView === "review" && (
-        <div className="space-y-6 p-5">
-          <h1 className="text-3xl font-black italic uppercase">
-            Review
-          </h1>
-
-          <div className="rounded-3xl bg-white p-5 shadow-sm">
-            <p className="font-black">
-              {project.assets.length} Assets
-            </p>
-
-            <p className="mt-2 text-zinc-500">
-              Ready to generate your FabCheck package.
-            </p>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+    {activeView === "review" && (
+      <div className="space-y-6 p-5">
+        <h1 className="text-3xl font-black italic uppercase">Review</h1>
+        {/* review content here */}
+      </div>
+    )}
+  </div>
+);
 }
 
 function Info({
