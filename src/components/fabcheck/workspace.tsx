@@ -83,6 +83,8 @@ setIsPrintMode,
   activeView={activeView}
   updateProject={updateProject}
   goToAssets={() => setActiveView("assets")}
+  addAssets={addAssets}
+setSelectedAssetId={setSelectedAssetId}
 />
 <div className="hidden md:block">
       {activeView === "overview" && (

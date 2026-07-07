@@ -2,6 +2,7 @@
 
 import { Project } from "@/types/project";
 import { MobileOverview } from "./mobile-overview";
+import { MobileAssets } from "./mobile-assets";
 
 type MobileWorkspaceProps = {
   project: Project;
@@ -11,6 +12,8 @@ type MobileWorkspaceProps = {
   value: Project[K]
 ) => void;
 goToAssets: () => void;
+addAssets: (files: File[]) => void;
+setSelectedAssetId: (id: string) => void;
   
 };
 
@@ -19,6 +22,8 @@ export function MobileWorkspace({
   activeView,
   updateProject,
   goToAssets,
+  addAssets,
+setSelectedAssetId,
 }: MobileWorkspaceProps) {
 return (
   <div className="md:hidden">
@@ -30,12 +35,13 @@ return (
       />
     )}
 
-    {activeView === "assets" && (
-      <div className="space-y-4 p-5">
-        <h1 className="text-3xl font-black italic uppercase">Assets</h1>
-        {/* asset content here */}
-      </div>
-    )}
+{activeView === "assets" && (
+  <MobileAssets
+    project={project}
+    addAssets={addAssets}
+    setSelectedAssetId={setSelectedAssetId}
+  />
+)}
 
     {activeView === "review" && (
       <div className="space-y-6 p-5">
