@@ -86,10 +86,11 @@ export function MobileMarkup({
           })}
           {selectedCallout && (
   <div
-    className="absolute z-50 w-64 -translate-x-1/2 rounded-2xl border border-white/10 bg-[#141212] p-4 shadow-2xl"
+    onClick={(e) => e.stopPropagation()}
+    className="absolute z-[999] w-64 rounded-2xl border border-white/10 bg-[#141212] p-4 shadow-2xl"
     style={{
-      left: `${selectedCallout.x}%`,
-      top: `${Math.min(selectedCallout.y + 8, 75)}%`,
+      left: `${Math.min(selectedCallout.x + 5, 55)}%`,
+      top: `${Math.min(selectedCallout.y + 5, 55)}%`,
     }}
   >
     <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-400">
