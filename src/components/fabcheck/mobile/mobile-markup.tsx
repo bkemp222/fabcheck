@@ -115,6 +115,16 @@ export function MobileMarkup({
     >
       Save Note
     </button>
+    <button
+  type="button"
+  onClick={() => {
+    deleteCallout(asset.id, selectedCallout.id);
+    setSelectedCalloutId(null);
+  }}
+  className="mt-4 w-full text-center text-sm font-bold text-red-400 transition hover:text-red-300"
+>
+  Delete Callout
+</button>
   </div>
 )}
         </div>
