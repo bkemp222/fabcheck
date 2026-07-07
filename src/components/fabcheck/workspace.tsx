@@ -91,6 +91,8 @@ setIsPrintMode,
 setSelectedAssetId={setSelectedAssetId}
 isMobileAssetDetailOpen={isMobileAssetDetailOpen}
 setIsMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
+selectedAssetId={selectedAssetId}
+setIsMarkupMode={setIsMarkupMode}
 />
 <div className="hidden md:block">
       {activeView === "overview" && (

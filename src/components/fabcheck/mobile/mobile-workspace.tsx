@@ -1,22 +1,24 @@
 "use client";
 
-import { Project } from "@/types/project";
+import type { ActiveView, Project } from "@/types/project";
 import { MobileOverview } from "./mobile-overview";
 import { MobileAssets } from "./mobile-assets";
+import { MobileAssetDetail } from "./mobile-asset-detail";
 
 type MobileWorkspaceProps = {
   project: Project;
-  activeView: "overview" | "assets" | "review";
+  activeView: ActiveView;
   updateProject: <K extends keyof Project>(
-  key: K,
-  value: Project[K]
-) => void;
-goToAssets: () => void;
-addAssets: (files: File[]) => void;
-setSelectedAssetId: (id: string) => void;
-isMobileAssetDetailOpen: boolean;
-setIsMobileAssetDetailOpen: (value: boolean) => void;
-  
+    key: K,
+    value: Project[K]
+  ) => void;
+  goToAssets: () => void;
+  addAssets: (files: File[]) => void;
+  selectedAssetId: string | null;
+  setSelectedAssetId: (id: string) => void;
+  isMobileAssetDetailOpen: boolean;
+  setIsMobileAssetDetailOpen: (value: boolean) => void;
+  setIsMarkupMode: (value: boolean) => void;
 };
 
 export function MobileWorkspace({
@@ -25,55 +27,85 @@ export function MobileWorkspace({
   updateProject,
   goToAssets,
   addAssets,
-setSelectedAssetId,
-isMobileAssetDetailOpen,
-setIsMobileAssetDetailOpen,
+  selectedAssetId,
+  setSelectedAssetId,
+  isMobileAssetDetailOpen,
+  setIsMobileAssetDetailOpen,
+  setIsMarkupMode,
 }: MobileWorkspaceProps) {
-return (
-  <div className="md:hidden">
-    {activeView === "overview" && (
-      <MobileOverview
-        project={project}
-        updateProject={updateProject}
-        goToAssets={goToAssets}
-      />
-    )}
+  const selectedAsset = project.assets.find(
+    (asset) => asset.id === selectedAssetId
+  );
 
-{activeView === "assets" && (
-  <MobileAssets
-    project={project}
-    addAssets={addAssets}
-    setSelectedAssetId={setSelectedAssetId}
-    setMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
-  />
-)}
-
-    {activeView === "review" && (
-      <div className="space-y-6 p-5">
-        <h1 className="text-3xl font-black italic uppercase">Review</h1>
-        {/* review content here */}
+  if (activeView === "assets" && isMobileAssetDetailOpen && selectedAsset) {
+    return (
+      <div className="md:hidden">
+        <MobileAssetDetail
+          asset={selectedAsset}
+          goBack={() => setIsMobileAssetDetailOpen(false)}
+          editMarkup={() => setIsMarkupMode(true)}
+        />
       </div>
-    )}
-  </div>
-);
-}
+    );
+  }
 
-function Info({
-  label,
-  value,
-}: {
-  label: string;
-  value?: string | number;
-}) {
   return (
-    <div>
-      <p className="text-xs font-black uppercase tracking-[0.25em] text-zinc-400">
-        {label}
-      </p>
+    <div className="md:hidden">
+      {activeView === "overview" && (
+        <MobileOverview
+          project={project}
+          updateProject={updateProject}
+          goToAssets={goToAssets}
+        />
+      )}
 
-      <p className="mt-1 text-xl font-bold">
-        {value || "—"}
-      </p>
+      {activeView === "assets" && (
+        <MobileAssets
+          project={project}
+          addAssets={addAssets}
+          setSelectedAssetId={setSelectedAssetId}
+          setMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
+        />
+      )}
+
+      {activeView === "review" && (
+        <div className="space-y-6 p-5">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-orange-500">
+              FabCheck
+            </p>
+            <h1 className="mt-1 text-4xl font-black italic uppercase">
+              Review
+            </h1>
+          </div>
+
+          <div className="rounded-3xl bg-white p-5 shadow-sm">
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-zinc-400">
+              Assets
+            </p>
+            <p className="mt-2 text-3xl font-black">
+              {project.assets.length}
+            </p>
+          </div>
+
+          <div className="rounded-3xl bg-white p-5 shadow-sm">
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-zinc-400">
+              Project
+            </p>
+            <p className="mt-2 text-xl font-black">
+              {project.name || "Untitled Package"}
+            </p>
+            <p className="mt-1 text-zinc-500">
+              {project.company || "No company added"}
+            </p>
+          </div>
+
+          <p className="text-sm text-zinc-500">
+            Mobile review actions are next. Desktop review and PDF generation
+            still work normally.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
