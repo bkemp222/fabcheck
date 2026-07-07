@@ -93,7 +93,7 @@ onClick={() => {
         <button
           type="button"
           onClick={goToProjectInfo}
-          className="mt-6 w-full rounded-full bg-orange-400 py-4 text-lg font-black uppercase italic text-black transition hover:scale-[1.02]"
+          className="mt-6 w-full rounded-full bg-[#faa431] py-4 text-lg font-black uppercase italic text-black transition hover:scale-[1.02]"
         >
           CONTINUE →
         </button>
