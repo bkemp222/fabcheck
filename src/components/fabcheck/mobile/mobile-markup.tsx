@@ -55,11 +55,11 @@ export function MobileMarkup({
       <div className="flex flex-1 flex-col overflow-auto p-4">
         <div className="mb-4 text-center">
   <p className="text-sm font-bold text-white">
-    Tap anywhere on the concept to add a callout.
+    Tap anywhere on your image to add a note.
   </p>
 
   <p className="mt-1 text-xs text-white/60">
-    Additional instructions here.
+    Specify materials, request revisions, callout details, etc.
   </p>
 </div>
         <div className="relative inline-block" onClick={handleImageClick}>
