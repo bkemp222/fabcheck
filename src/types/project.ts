@@ -5,12 +5,27 @@ export type AssetCallout = {
   note: string;
 };
 
+export type AssetAiReview = {
+  projectType: string;
+  estimatedSize: string;
+  confidence: number;
+  summary: string;
+  fabricationInventory: {
+    elements: string[];
+    branding: string[];
+    lighting: string[];
+    finishes: string[];
+    scaleClues: string[];
+    unknowns: string[];
+  };
+};
 export type ProjectAsset = {
   id: string;
   name: string;
   type: string;
   url: string;
   isHero: boolean;
+  aiReview?: AssetAiReview;
   callouts: AssetCallout[];
 };
 export type Project = {

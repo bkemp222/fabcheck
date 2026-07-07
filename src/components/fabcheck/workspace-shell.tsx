@@ -19,6 +19,7 @@ export function WorkspaceShell() {
     selectedAssetId,
     setSelectedAssetId,
     isMarkupMode,
+    isAiReviewing,
     setIsMarkupMode,
     selectedCalloutId,
     setSelectedCalloutId,
@@ -67,6 +68,7 @@ className={
           selectedAssetId={selectedAssetId}
           setSelectedAssetId={setSelectedAssetId}
           isMarkupMode={isMarkupMode}
+          isAiReviewing={isAiReviewing}
           setIsMarkupMode={setIsMarkupMode}
           selectedCalloutId={selectedCalloutId}
           setSelectedCalloutId={setSelectedCalloutId}

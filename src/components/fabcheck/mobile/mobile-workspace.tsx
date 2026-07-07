@@ -22,6 +22,7 @@ setActiveView: (view: ActiveView) => void;
   isMobileAssetDetailOpen: boolean;
   setIsMobileAssetDetailOpen: (value: boolean) => void;
   setIsMarkupMode: (value: boolean) => void;
+  isAiReviewing: boolean;
   addCallout: (assetId: string, x: number, y: number) => string;
 selectedCalloutId: string | null;
 setSelectedCalloutId: React.Dispatch<React.SetStateAction<string | null>>;
@@ -50,6 +51,7 @@ export function MobileWorkspace({
   isMobileAssetDetailOpen,
   setIsMobileAssetDetailOpen,
   setIsMarkupMode,
+  isAiReviewing,
   addCallout,
 selectedCalloutId,
 setSelectedCalloutId,
@@ -72,6 +74,22 @@ isMarkupMode,
       goDone={() => setIsMarkupMode(false)}
       deleteCallout={deleteCallout}
     />
+  );
+}
+
+if (isAiReviewing) {
+  return (
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0b0b0b] px-8 text-center text-white md:hidden">
+      <div className="h-20 w-20 animate-spin rounded-full border-8 border-white/10 border-t-orange-400" />
+
+      <p className="mt-8 text-3xl font-black italic uppercase">
+        FabChecking...
+      </p>
+
+      <p className="mt-3 max-w-xs text-sm leading-6 text-white/60">
+        Analyzing your design, identifying key elements, and generating starter notes.
+      </p>
+    </div>
   );
 }
 

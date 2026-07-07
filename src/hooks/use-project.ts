@@ -10,6 +10,7 @@ export function useProject() {
   const [activeView, setActiveView] = useState<ActiveView>("assets");
   const [selectedAssetId, setSelectedAssetId] = useState<string | null>(null);
   const [isMarkupMode, setIsMarkupMode] = useState(false);
+  const [isAiReviewing, setIsAiReviewing] = useState(false);
   const [selectedCalloutId, setSelectedCalloutId] = useState<string | null>(null);
   const [isPrintMode, setIsPrintMode] = useState(false);
   const [isMobileAssetDetailOpen, setIsMobileAssetDetailOpen] =
@@ -36,15 +37,68 @@ async function addAssets(files: File[]) {
   : file;
           const reader = new FileReader();
 
-          reader.onload = () => {
-            resolve({
-              id: crypto.randomUUID(),
-              name: file.name,
-              type: file.type,
-              url: reader.result as string,
-              isHero: project.assets.length === 0 && index === 0,
-              callouts: [],
-            });
+          reader.onload = async () => {
+const assetId = crypto.randomUUID();
+const assetUrl = reader.result as string;
+
+let aiCallouts = [];
+let aiReview = undefined;
+
+try {
+  setIsAiReviewing(true);
+
+  const response = await fetch("/api/ai-asset-review", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: file.name,
+      type: file.type,
+      url: assetUrl,
+    }),
+  });
+
+  const data = await response.json();
+
+if (response.ok && data.ok && data.review) {
+  aiReview = {
+    projectType: data.review.projectType || "Unknown",
+    estimatedSize: data.review.estimatedSize || "Unknown",
+    confidence: data.review.confidence || 0,
+    summary: data.review.summary || "",
+    fabricationInventory: {
+      elements: data.review.fabricationInventory?.elements || [],
+      branding: data.review.fabricationInventory?.branding || [],
+      lighting: data.review.fabricationInventory?.lighting || [],
+      finishes: data.review.fabricationInventory?.finishes || [],
+      scaleClues: data.review.fabricationInventory?.scaleClues || [],
+      unknowns: data.review.fabricationInventory?.unknowns || [],
+    },
+  };
+
+  aiCallouts = (data.review.suggestedCallouts || []).map((callout: any) => ({
+    id: crypto.randomUUID(),
+    x: callout.x,
+    y: callout.y,
+    note: callout.note,
+  }));
+}
+} catch (error) {
+  console.error("AI asset review failed:", error);
+} finally {
+  setIsAiReviewing(false);
+}
+
+resolve({
+  id: assetId,
+  name: file.name,
+  type: file.type,
+  url: assetUrl,
+  isHero: project.assets.length === 0 && index === 0,
+  aiReview,
+  callouts: aiCallouts,
+});
           };
 
          reader.readAsDataURL(processedFile);
@@ -173,6 +227,8 @@ const progress =
 setIsMobileAssetDetailOpen,
     isMarkupMode,
     setIsMarkupMode,
+    isAiReviewing,
+setIsAiReviewing,
     addCallout,
     selectedCalloutId,
 setSelectedCalloutId,

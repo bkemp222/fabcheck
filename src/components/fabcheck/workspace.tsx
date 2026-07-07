@@ -19,6 +19,7 @@ deleteAsset: (assetId: string) => void;
   selectedAssetId: string | null;
   setSelectedAssetId: (id: string) => void;
   isMarkupMode: boolean;
+  isAiReviewing: boolean;
   setIsMarkupMode: (value: boolean) => void;
   selectedCalloutId: string | null;
   setSelectedCalloutId: React.Dispatch<React.SetStateAction<string | null>>;
@@ -42,6 +43,7 @@ export function Workspace({
   selectedAssetId,
   setSelectedAssetId,
   isMarkupMode,
+  isAiReviewing,
   setIsMarkupMode,
   selectedCalloutId,
   setSelectedCalloutId,
@@ -82,6 +84,7 @@ if (isMarkupMode) {
           isMobileAssetDetailOpen={isMobileAssetDetailOpen}
           setIsMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
           setIsMarkupMode={setIsMarkupMode}
+          isAiReviewing={isAiReviewing}
           addCallout={addCallout}
           selectedCalloutId={selectedCalloutId}
           setSelectedCalloutId={setSelectedCalloutId}
@@ -125,6 +128,7 @@ selectedCalloutId={selectedCalloutId}
 setSelectedCalloutId={setSelectedCalloutId}
 updateCallout={updateCallout}
 isMarkupMode={isMarkupMode}
+isAiReviewing={isAiReviewing}
 deleteCallout={deleteCallout}
 />
 <div className="hidden md:block">
