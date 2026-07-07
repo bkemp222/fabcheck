@@ -28,9 +28,9 @@ export function MobileAssetDetail({
           Asset
         </p>
 
-        <h1 className="mt-1 text-3xl font-black">
-          {asset.name}
-        </h1>
+<h1 className="mt-1 break-words text-3xl font-black leading-tight">
+  {asset.name}
+</h1>
       </div>
 
 {asset.type.startsWith("image/") && (
