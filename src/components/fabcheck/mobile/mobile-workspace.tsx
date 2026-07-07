@@ -14,6 +14,7 @@ type MobileWorkspaceProps = {
     key: K,
     value: Project[K]
   ) => void;
+setActiveView: (view: ActiveView) => void;
   goToAssets: () => void;
   addAssets: (files: File[]) => string[];
   selectedAssetId: string | null;
@@ -41,6 +42,7 @@ export function MobileWorkspace({
   project,
   activeView,
   updateProject,
+  setActiveView,
   goToAssets,
   addAssets,
   selectedAssetId,
@@ -108,6 +110,7 @@ if (activeView === "assets" && isMobileAssetDetailOpen && selectedAsset) {
   setSelectedAssetId={setSelectedAssetId}
   setMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
   setIsMarkupMode={setIsMarkupMode}
+  goToProjectInfo={() => setActiveView("overview")}
 />
       )}
 
