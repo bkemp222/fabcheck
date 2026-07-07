@@ -86,6 +86,7 @@ if (isMarkupMode) {
           setSelectedCalloutId={setSelectedCalloutId}
           updateCallout={updateCallout}
           isMarkupMode={isMarkupMode}
+          deleteCallout={deleteCallout}
         />
       </div>
 
@@ -122,6 +123,7 @@ selectedCalloutId={selectedCalloutId}
 setSelectedCalloutId={setSelectedCalloutId}
 updateCallout={updateCallout}
 isMarkupMode={isMarkupMode}
+deleteCallout={deleteCallout}
 />
 <div className="hidden md:block">
       {activeView === "overview" && (

@@ -29,6 +29,11 @@ updateCallout: (
   note: string
 ) => void;
 isMarkupMode: boolean;
+deleteCallout: (
+  assetId: string,
+  calloutId: string
+) => void;
+
 };
 
 export function MobileWorkspace({
@@ -46,6 +51,7 @@ export function MobileWorkspace({
 selectedCalloutId,
 setSelectedCalloutId,
 updateCallout,
+deleteCallout,
 isMarkupMode,
 }: MobileWorkspaceProps) {
   const selectedAsset = project.assets.find(
@@ -61,6 +67,7 @@ isMarkupMode,
       setSelectedCalloutId={setSelectedCalloutId}
       updateCallout={updateCallout}
       goDone={() => setIsMarkupMode(false)}
+      deleteCallout={deleteCallout}
     />
   );
 }

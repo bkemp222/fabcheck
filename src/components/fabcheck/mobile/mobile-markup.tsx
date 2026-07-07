@@ -13,6 +13,7 @@ type MobileMarkupProps = {
     note: string
   ) => void;
   goDone: () => void;
+  deleteCallout: (assetId: string, calloutId: string) => void;
 };
 
 export function MobileMarkup({
@@ -22,6 +23,7 @@ export function MobileMarkup({
   setSelectedCalloutId,
   updateCallout,
   goDone,
+  deleteCallout,
 }: MobileMarkupProps) {
   const selectedCallout = asset.callouts.find(
     (callout) => callout.id === selectedCalloutId
