@@ -9,6 +9,7 @@ type MobileAssetsProps = {
   setSelectedAssetId: (id: string) => void;
   setMobileAssetDetailOpen: (value: boolean) => void;
   setIsMarkupMode: (value: boolean) => void;
+  goToProjectInfo: () => void;
 };
 
 export function MobileAssets({
@@ -17,6 +18,7 @@ export function MobileAssets({
   setSelectedAssetId,
   setMobileAssetDetailOpen,
   setIsMarkupMode,
+  goToProjectInfo,
 }: MobileAssetsProps) {
   function handleFiles(fileList: FileList | null) {
     if (!fileList) return;
@@ -37,7 +39,6 @@ if (newAssetIds.length > 0) {
         <p className="mt-2 text-sm text-zinc-500">
           Renderings, AI concepts, logos, floorplans, and references.
         </p>
-
         <input
           type="file"
           multiple
@@ -84,8 +85,20 @@ onClick={() => {
 
               <span className="text-2xl text-zinc-300">›</span>
             </button>
+            
           ))
         )}
+
+              {project.assets.length > 0 && (
+        <button
+          type="button"
+          onClick={goToProjectInfo}
+          className="mt-6 w-full rounded-full bg-orange-400 py-4 text-lg font-black uppercase italic text-black transition hover:scale-[1.02]"
+        >
+          CONTINUE →
+        </button>
+      )}
+
       </div>
     </div>
   );

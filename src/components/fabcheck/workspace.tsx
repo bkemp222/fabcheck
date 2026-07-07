@@ -74,6 +74,7 @@ if (isMarkupMode) {
           project={project}
           activeView={activeView}
           updateProject={updateProject}
+          setActiveView={setActiveView}
           goToAssets={() => setActiveView("assets")}
           addAssets={addAssets}
           selectedAssetId={selectedAssetId}
@@ -111,6 +112,7 @@ if (isMarkupMode) {
   project={project}
   activeView={activeView}
   updateProject={updateProject}
+  setActiveView={setActiveView}
   goToAssets={() => setActiveView("assets")}
   addAssets={addAssets}
 setSelectedAssetId={setSelectedAssetId}
