@@ -21,27 +21,40 @@ export function useProject() {
     }));
   }
 
-  function addAssets(files: File[]) {
-    const newAssets: ProjectAsset[] = files.map((file, index) => ({
-      id: crypto.randomUUID(),
-      name: file.name,
-      type: file.type,
-      url: URL.createObjectURL(file),
-      isHero: project.assets.length === 0 && index === 0,
-      callouts: [],
-    }));
+async function addAssets(files: File[]) {
+  const newAssets: ProjectAsset[] = await Promise.all(
+    files.map(
+      (file, index) =>
+        new Promise<ProjectAsset>((resolve) => {
+          const reader = new FileReader();
 
-    setProject((currentProject) => ({
-      ...currentProject,
-      assets: [...currentProject.assets, ...newAssets],
-    }));
+          reader.onload = () => {
+            resolve({
+              id: crypto.randomUUID(),
+              name: file.name,
+              type: file.type,
+              url: reader.result as string,
+              isHero: project.assets.length === 0 && index === 0,
+              callouts: [],
+            });
+          };
 
-if (!selectedAssetId && newAssets.length > 0) {
-  setSelectedAssetId(newAssets[0].id);
-}
+          reader.readAsDataURL(file);
+        })
+    )
+  );
 
-return newAssets.map((asset) => asset.id);
+  setProject((current) => ({
+    ...current,
+    assets: [...current.assets, ...newAssets],
+  }));
+
+  if (!selectedAssetId && newAssets.length > 0) {
+    setSelectedAssetId(newAssets[0].id);
   }
+
+  return newAssets.map((asset) => asset.id);
+}
 
   function deleteAsset(assetId: string) {
   setProject((currentProject) => {

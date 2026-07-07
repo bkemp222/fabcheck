@@ -11,7 +11,7 @@ import { MobileWorkspace } from "./mobile/mobile-workspace";
 type WorkspaceProps = {
   project: Project;
   updateProject: <K extends keyof Project>(key: K, value: Project[K]) => void;
-  addAssets: (files: File[]) => string[];
+ addAssets: (files: File[]) => Promise<string[]>;
 deleteAsset: (assetId: string) => void;
   addCallout: (assetId: string, x: number, y: number) => string;
   activeView: ActiveView;

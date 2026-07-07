@@ -16,7 +16,7 @@ type MobileWorkspaceProps = {
   ) => void;
 setActiveView: (view: ActiveView) => void;
   goToAssets: () => void;
-  addAssets: (files: File[]) => string[];
+  addAssets: (files: File[]) => Promise<string[]>;
   selectedAssetId: string | null;
   setSelectedAssetId: (id: string) => void;
   isMobileAssetDetailOpen: boolean;
