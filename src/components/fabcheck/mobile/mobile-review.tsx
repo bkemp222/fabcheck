@@ -33,25 +33,25 @@ export function MobileReview({ project }: MobileReviewProps) {
         <Stat label="Callouts" value={totalCallouts} />
       </div>
 
-      <button
-        type="button"
-        onClick={() => {
-          localStorage.setItem(
-            "fabcheck-print-project",
-            JSON.stringify({ project, progress: 100 })
-          );
-          window.open("/launch/print", "_blank");
-        }}
-        className="w-full rounded-full bg-[#faa431] py-4 text-lg font-black uppercase italic text-black"
-      >
-        PRINT PDF
-      </button>
+<button
+  type="button"
+  onClick={() => {
+    localStorage.setItem(
+      "fabcheck-print-project",
+      JSON.stringify({ project, progress: 100 })
+    );
+    window.open("/launch/print", "_blank");
+  }}
+  className="w-full rounded-full bg-orange-400 py-4 text-lg font-black uppercase italic text-black"
+>
+  Print / Save PDF
+</button>
 
       <button
         type="button"
         className="w-full rounded-full bg-black py-4 text-lg font-black uppercase italic text-white"
       >
-        SUBMIT FABCHECK
+        Submit FabCheck
       </button>
     </div>
   );
