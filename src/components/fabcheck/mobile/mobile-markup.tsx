@@ -50,10 +50,12 @@ export function MobileMarkup({
           ← Done
         </button>
 
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50">
+      </div>
+<div>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50">
           Tap image to add pin
         </p>
-      </div>
+        </div>
 
       <div className="flex flex-1 items-center justify-center overflow-auto p-4">
         <div className="relative inline-block" onClick={handleImageClick}>
