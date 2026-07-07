@@ -1,6 +1,7 @@
 "use client";
 
 import type { Project } from "@/types/project";
+import { MobileHeader } from "./mobile-header";
 
 type MobileAssetsProps = {
   project: Project;
@@ -22,12 +23,7 @@ export function MobileAssets({
 
   return (
     <div className="space-y-5 p-5">
-      <div>
-        <p className="text-xs font-black uppercase tracking-[0.25em] text-orange-500">
-          FabCheck
-        </p>
-        <h1 className="mt-1 text-4xl font-black italic uppercase">Assets</h1>
-      </div>
+<MobileHeader title="Assets" subtitle="FabCheck" />
 
       <label className="flex min-h-44 cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-zinc-300 bg-white p-6 text-center shadow-sm">
         <p className="text-2xl font-black italic uppercase">Upload Assets</p>
