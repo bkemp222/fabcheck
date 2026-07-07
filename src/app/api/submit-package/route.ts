@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     const resend = new Resend(resendApiKey);
 
     await resend.emails.send({
-      from: "FabCheck <onboarding@resend.dev>",
+      from: "FabCheck <noreply@getupcreative.com>",
       to: adminEmail,
       subject: `New FabCheck Package: ${project.name || "Untitled Package"}`,
       html: `
