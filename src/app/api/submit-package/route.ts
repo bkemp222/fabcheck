@@ -3,8 +3,13 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const resendApiKey = process.env.RESEND_API_KEY;
-    const adminEmail = process.env.ADMIN_EMAIL;
+const resendApiKey = process.env.RESEND_API_KEY;
+const adminEmail = process.env.ADMIN_EMAIL;
+
+console.log({
+  hasResendKey: !!resendApiKey,
+  hasAdminEmail: !!adminEmail,
+});
 
     if (!resendApiKey) {
       return NextResponse.json(
