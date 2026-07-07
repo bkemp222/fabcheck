@@ -21,7 +21,7 @@ export function MobileHeader({
             </p>
           )}
 
-          <h1 className="mt-1 text-4xl font-black italic uppercase">
+          <h1 className="mt-1 text-1xl font-black italic uppercase">
             {title}
           </h1>
         </div>
