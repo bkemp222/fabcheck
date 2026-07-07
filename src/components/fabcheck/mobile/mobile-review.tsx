@@ -44,14 +44,14 @@ export function MobileReview({ project }: MobileReviewProps) {
         }}
         className="w-full rounded-full bg-[#faa431] py-4 text-lg font-black uppercase italic text-black"
       >
-        Create Package
+        PRINT PDF
       </button>
 
       <button
         type="button"
         className="w-full rounded-full bg-black py-4 text-lg font-black uppercase italic text-white"
       >
-        Submit Package
+        SUBMIT FABCHECK
       </button>
     </div>
   );
