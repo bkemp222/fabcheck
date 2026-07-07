@@ -42,7 +42,7 @@ export function MobileReview({ project }: MobileReviewProps) {
     );
     window.open("/launch/print", "_blank");
   }}
-  className="w-full rounded-full bg-orange-400 py-4 text-lg font-black uppercase italic text-black"
+  className="w-full rounded-full bg-[#f9a331] py-4 text-lg font-black uppercase italic text-black"
 >
   Print / Save PDF
 </button>
