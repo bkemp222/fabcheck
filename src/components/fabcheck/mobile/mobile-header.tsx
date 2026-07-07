@@ -12,7 +12,7 @@ export function MobileHeader({
   action,
 }: MobileHeaderProps) {
   return (
-    <div className="sticky top-0 z-30 border-b border-black/5 bg-[#F5F2EC]/90 px-5 py-4 backdrop-blur">
+    <div className="sticky top-0 z-10 border-b border-black/5 bg-[#F5F2EC]/90 px-5 py-4 backdrop-blur">
       <div className="flex items-center justify-between">
         <div>
           {subtitle && (
