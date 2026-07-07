@@ -62,7 +62,11 @@ export function MobileMarkup({
     Specify materials, request revisions, callout details, etc.
   </p>
 </div>
-        <div className="relative inline-block" onClick={handleImageClick}>
+        <div className="flex flex-1 items-center justify-center">
+  <div
+    className="relative inline-block"
+    onClick={handleImageClick}
+  >
           <img
             src={asset.url}
             alt={asset.name}
@@ -95,11 +99,15 @@ export function MobileMarkup({
           {selectedCallout && (
   <div
     onClick={(e) => e.stopPropagation()}
-    className="absolute z-[999] w-64 rounded-2xl border border-white/10 bg-[#141212] p-4 shadow-2xl"
-    style={{
-      left: `${Math.min(selectedCallout.x + 5, 55)}%`,
-      top: `${Math.min(selectedCallout.y + 5, 55)}%`,
-    }}
+    className="absolute z-[999] w-[min(16rem,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-[#141212] p-4 shadow-2xl"
+style={{
+  left:
+    selectedCallout.x > 65
+      ? "auto"
+      : `${Math.max(selectedCallout.x + 5, 5)}%`,
+  right: selectedCallout.x > 65 ? "0.75rem" : "auto",
+  top: `${Math.min(selectedCallout.y + 6, 58)}%`,
+}}
   >
     <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-400">
       Callout #{asset.callouts.indexOf(selectedCallout) + 1}
@@ -137,6 +145,7 @@ export function MobileMarkup({
       </div>
 
 
+    </div>
     </div>
   );
 }
