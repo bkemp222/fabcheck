@@ -52,7 +52,7 @@ export function MobileMarkup({
 
       </div>
 
-      <div className="flex flex-1 items-center justify-center overflow-auto p-4">
+      <div className="flex flex-1 flex-col overflow-auto p-4">
         <div className="mb-4 text-center">
   <p className="text-sm font-bold text-white">
     Tap anywhere on the concept to add a callout.
