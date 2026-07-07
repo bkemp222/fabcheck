@@ -99,7 +99,7 @@ if (activeView === "assets" && isMobileAssetDetailOpen && selectedAsset) {
         <MobileOverview
           project={project}
           updateProject={updateProject}
-          goToAssets={goToAssets}
+          goToReview={() => setActiveView("review")}
         />
       )}
 

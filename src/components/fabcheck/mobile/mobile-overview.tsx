@@ -9,13 +9,13 @@ type MobileOverviewProps = {
   key: K,
   value: Project[K]
 ) => void;
-  goToAssets: () => void;
+goToReview: () => void;
 };
 
 export function MobileOverview({
   project,
   updateProject,
-  goToAssets,
+  goToReview,
 }: MobileOverviewProps) {
   return (
     <div className="space-y-6 p-5">
@@ -77,7 +77,7 @@ export function MobileOverview({
       </div>
 
       <button
-        onClick={goToAssets}
+        onClick={goToReview}
         className="w-full rounded-full bg-[#faa431] py-4 text-md font-black uppercase tracking-wide text-black"
       >
         Continue →
