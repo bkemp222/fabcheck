@@ -4,6 +4,7 @@ import type { ActiveView, Project } from "@/types/project";
 import { MobileOverview } from "./mobile-overview";
 import { MobileAssets } from "./mobile-assets";
 import { MobileAssetDetail } from "./mobile-asset-detail";
+import { MobileMarkup } from "./mobile-markup";
 
 type MobileWorkspaceProps = {
   project: Project;
@@ -19,6 +20,15 @@ type MobileWorkspaceProps = {
   isMobileAssetDetailOpen: boolean;
   setIsMobileAssetDetailOpen: (value: boolean) => void;
   setIsMarkupMode: (value: boolean) => void;
+  addCallout: (assetId: string, x: number, y: number) => string;
+selectedCalloutId: string | null;
+setSelectedCalloutId: React.Dispatch<React.SetStateAction<string | null>>;
+updateCallout: (
+  assetId: string,
+  calloutId: string,
+  note: string
+) => void;
+isMarkupMode: boolean;
 };
 
 export function MobileWorkspace({
@@ -32,6 +42,11 @@ export function MobileWorkspace({
   isMobileAssetDetailOpen,
   setIsMobileAssetDetailOpen,
   setIsMarkupMode,
+  addCallout,
+selectedCalloutId,
+setSelectedCalloutId,
+updateCallout,
+isMarkupMode,
 }: MobileWorkspaceProps) {
   const selectedAsset = project.assets.find(
     (asset) => asset.id === selectedAssetId
@@ -51,6 +66,19 @@ export function MobileWorkspace({
       </div>
     );
   }
+  
+  if (activeView === "assets" && isMarkupMode && selectedAsset) {
+  return (
+    <MobileMarkup
+      asset={selectedAsset}
+      addCallout={addCallout}
+      selectedCalloutId={selectedCalloutId}
+      setSelectedCalloutId={setSelectedCalloutId}
+      updateCallout={updateCallout}
+      goDone={() => setIsMarkupMode(false)}
+    />
+  );
+}
 
   return (
     <div className="md:hidden">
