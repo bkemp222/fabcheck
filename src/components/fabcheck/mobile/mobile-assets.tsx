@@ -32,7 +32,7 @@ if (newAssetIds.length > 0) {
   return (
     <div className="space-y-5 p-5">
 
-      <label className="flex min-h-44 cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-[f9a331] bg-white/10 p-6 text-center shadow-sm">
+      <label className="flex min-h-44 cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-[#f9a331] bg-white/10 p-6 text-center shadow-sm">
         <p className="text-2xl font-black italic uppercase">Upload Assets</p>
         <p className="mt-2 text-sm text-zinc-500">
           Renderings, AI concepts, logos, floorplans, and references.
