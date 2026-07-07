@@ -6,6 +6,7 @@ import { AssetDetail } from "@/components/fabcheck/asset-detail";
 import { MarkupMode } from "@/components/fabcheck/markup-mode";
 import { ReviewPackage } from "@/components/fabcheck/review-package";
 import { PrintPackage } from "@/components/fabcheck/print-package";
+import { MobileWorkspace } from "./mobile/mobile-workspace";
 
 type WorkspaceProps = {
   project: Project;
@@ -76,7 +77,12 @@ setIsPrintMode,
   }
 
   return (
-    <section className="min-h-screen bg-[#F5F2EC] p-10 text-black">
+    <section className="min-h-screen bg-[#F5F2EC] p-4 md:p-10 text-black">
+      <MobileWorkspace
+  project={project}
+  activeView={activeView}
+/>
+<div className="hidden md:block">
       {activeView === "overview" && (
         <ProjectForm
   project={project}
@@ -116,6 +122,7 @@ setIsPrintMode,
   setIsPrintMode={setIsPrintMode}
 />
 )}
+</div>
     </section>
   );
 }
