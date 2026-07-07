@@ -4,7 +4,7 @@ import { PackagePreview } from "@/components/fabcheck/package-preview";
 import { Sidebar } from "@/components/fabcheck/sidebar";
 import { Workspace } from "@/components/fabcheck/workspace";
 import { useProject } from "@/hooks/use-project";
-import { MobileNav } from "@/components/fabcheck/mobile/mobile-nav";
+
 
 export function WorkspaceShell() {
   const {
@@ -86,11 +86,7 @@ setIsMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
           </div>
         )}
       </div>
-<MobileNav
-  activeView={activeView}
-  setActiveView={setActiveView}
-  setIsMarkupMode={setIsMarkupMode}
-/>
+
     </main>
   );
 }
