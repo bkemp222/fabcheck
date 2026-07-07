@@ -142,6 +142,43 @@ async function generatePdf(project: any) {
 
     y -= 10;
 
+    if (asset.url && asset.type?.startsWith("image/")) {
+  try {
+    const imageBytes = await fetch(asset.url).then((res) => res.arrayBuffer());
+
+    const image =
+      asset.type === "image/png"
+        ? await pdfDoc.embedPng(imageBytes)
+        : await pdfDoc.embedJpg(imageBytes);
+
+    const maxImageWidth = 300;
+    const maxImageHeight = 360;
+
+    const scaled = image.scaleToFit(maxImageWidth, maxImageHeight);
+
+    page.drawImage(image, {
+      x: margin,
+      y: y - scaled.height,
+      width: scaled.width,
+      height: scaled.height,
+    });
+
+    y -= scaled.height + 24;
+  } catch (error) {
+    console.error("Image embed failed:", error);
+
+    page.drawText("Image could not be embedded.", {
+      x: margin,
+      y,
+      size: 11,
+      font: regular,
+      color: rgb(0.6, 0.1, 0.1),
+    });
+
+    y -= 20;
+  }
+}
+
     if (asset.callouts.length === 0) {
       page.drawText("No callouts added.", {
         x: margin,
