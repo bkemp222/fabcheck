@@ -8,6 +8,7 @@ type MobileAssetsProps = {
   addAssets: (files: File[]) => string[];
   setSelectedAssetId: (id: string) => void;
   setMobileAssetDetailOpen: (value: boolean) => void;
+  setIsMarkupMode: (value: boolean) => void;
 };
 
 export function MobileAssets({
@@ -15,6 +16,7 @@ export function MobileAssets({
   addAssets,
   setSelectedAssetId,
   setMobileAssetDetailOpen,
+  setIsMarkupMode,
 }: MobileAssetsProps) {
   function handleFiles(fileList: FileList | null) {
     if (!fileList) return;
@@ -22,7 +24,8 @@ export function MobileAssets({
 
 if (newAssetIds.length > 0) {
   setSelectedAssetId(newAssetIds[0]);
-  setMobileAssetDetailOpen(true);
+  setMobileAssetDetailOpen(false);
+  setIsMarkupMode(true);
 }
   }
 
