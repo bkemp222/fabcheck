@@ -66,19 +66,43 @@ setIsPrintMode,
   );
 }
 
-  if (isMarkupMode) {
-    return (
-<MarkupMode
-  asset={selectedAsset}
-  setIsMarkupMode={setIsMarkupMode}
-  addCallout={addCallout}
-  selectedCalloutId={selectedCalloutId}
-  setSelectedCalloutId={setSelectedCalloutId}
-  updateCallout={updateCallout}
-  deleteCallout={deleteCallout}
-/>
-    );
-  }
+if (isMarkupMode) {
+  return (
+    <>
+      <div className="md:hidden">
+        <MobileWorkspace
+          project={project}
+          activeView={activeView}
+          updateProject={updateProject}
+          goToAssets={() => setActiveView("assets")}
+          addAssets={addAssets}
+          selectedAssetId={selectedAssetId}
+          setSelectedAssetId={setSelectedAssetId}
+          isMobileAssetDetailOpen={isMobileAssetDetailOpen}
+          setIsMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
+          setIsMarkupMode={setIsMarkupMode}
+          addCallout={addCallout}
+          selectedCalloutId={selectedCalloutId}
+          setSelectedCalloutId={setSelectedCalloutId}
+          updateCallout={updateCallout}
+          isMarkupMode={isMarkupMode}
+        />
+      </div>
+
+      <div className="hidden md:block">
+        <MarkupMode
+          asset={selectedAsset}
+          setIsMarkupMode={setIsMarkupMode}
+          addCallout={addCallout}
+          selectedCalloutId={selectedCalloutId}
+          setSelectedCalloutId={setSelectedCalloutId}
+          updateCallout={updateCallout}
+          deleteCallout={deleteCallout}
+        />
+      </div>
+    </>
+  );
+}
 
   return (
     <section className="min-h-screen bg-[#F5F2EC] p-4 md:p-10 text-black">
