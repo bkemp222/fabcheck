@@ -5,7 +5,7 @@ import { MobileHeader } from "./mobile-header";
 
 type MobileAssetsProps = {
   project: Project;
-  addAssets: (files: File[]) => void;
+  addAssets: (files: File[]) => string[];
   setSelectedAssetId: (id: string) => void;
   setMobileAssetDetailOpen: (value: boolean) => void;
 };
@@ -18,7 +18,12 @@ export function MobileAssets({
 }: MobileAssetsProps) {
   function handleFiles(fileList: FileList | null) {
     if (!fileList) return;
-    addAssets(Array.from(fileList));
+    const newAssetIds = addAssets(Array.from(fileList));
+
+if (newAssetIds.length > 0) {
+  setSelectedAssetId(newAssetIds[0]);
+  setMobileAssetDetailOpen(true);
+}
   }
 
   return (

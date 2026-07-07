@@ -36,9 +36,11 @@ export function useProject() {
       assets: [...currentProject.assets, ...newAssets],
     }));
 
-    if (!selectedAssetId && newAssets.length > 0) {
-      setSelectedAssetId(newAssets[0].id);
-    }
+if (!selectedAssetId && newAssets.length > 0) {
+  setSelectedAssetId(newAssets[0].id);
+}
+
+return newAssets.map((asset) => asset.id);
   }
 
   function deleteAsset(assetId: string) {
