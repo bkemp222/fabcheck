@@ -52,22 +52,7 @@ isMarkupMode,
     (asset) => asset.id === selectedAssetId
   );
 
-  if (activeView === "assets" && isMobileAssetDetailOpen && selectedAsset) {
-    return (
-      <div className="md:hidden">
-        <MobileAssetDetail
-          asset={selectedAsset}
-          goBack={() => setIsMobileAssetDetailOpen(false)}
-          editMarkup={() => {
-  setSelectedAssetId(selectedAsset.id);
-  setIsMarkupMode(true);
-}}
-        />
-      </div>
-    );
-  }
-  
-  if (activeView === "assets" && isMarkupMode && selectedAsset) {
+    if (activeView === "assets" && isMarkupMode && selectedAsset) {
   return (
     <MobileMarkup
       asset={selectedAsset}
@@ -79,6 +64,24 @@ isMarkupMode,
     />
   );
 }
+
+if (activeView === "assets" && isMobileAssetDetailOpen && selectedAsset) {
+  return (
+    <div className="md:hidden">
+      <MobileAssetDetail
+        asset={selectedAsset}
+        goBack={() => setIsMobileAssetDetailOpen(false)}
+        editMarkup={() => {
+          setSelectedAssetId(selectedAsset.id);
+          setIsMobileAssetDetailOpen(false);
+          setIsMarkupMode(true);
+        }}
+      />
+    </div>
+  );
+}
+  
+
 
   return (
     <div className="md:hidden">
