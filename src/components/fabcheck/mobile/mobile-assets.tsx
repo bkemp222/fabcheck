@@ -31,7 +31,6 @@ if (newAssetIds.length > 0) {
 
   return (
     <div className="space-y-5 p-5">
-<MobileHeader title="Assets" subtitle="FabCheck" />
 
       <label className="flex min-h-44 cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-zinc-300 bg-white p-6 text-center shadow-sm">
         <p className="text-2xl font-black italic uppercase">Upload Assets</p>

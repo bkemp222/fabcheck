@@ -15,7 +15,6 @@ export function MobileReview({ project }: MobileReviewProps) {
 
   return (
     <div className="space-y-6 p-5 pb-28">
-<MobileHeader title="Review" subtitle="FabCheck" />
 
       <div className="rounded-3xl bg-white p-5 shadow-sm">
         <p className="text-xs font-black uppercase tracking-[0.25em] text-zinc-400">

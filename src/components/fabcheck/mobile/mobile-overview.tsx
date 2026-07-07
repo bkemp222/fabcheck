@@ -20,8 +20,6 @@ export function MobileOverview({
   return (
     <div className="space-y-6 p-5">
 
-<MobileHeader title="Project Info" subtitle="FabCheck" />
-
       <div className="rounded-3xl bg-white p-5 shadow-sm space-y-5">
 
         <Input
