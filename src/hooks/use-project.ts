@@ -6,7 +6,7 @@ import type { ActiveView, Project, ProjectAsset } from "@/types/project";
 
 export function useProject() {
   const [project, setProject] = useState<Project>(mockProject);
-  const [activeView, setActiveView] = useState<ActiveView>("overview");
+  const [activeView, setActiveView] = useState<ActiveView>("assets");
   const [selectedAssetId, setSelectedAssetId] = useState<string | null>(null);
   const [isMarkupMode, setIsMarkupMode] = useState(false);
   const [selectedCalloutId, setSelectedCalloutId] = useState<string | null>(null);
