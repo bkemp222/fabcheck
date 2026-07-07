@@ -22,7 +22,7 @@ export function MobileAssets({
   }
 
   return (
-    <div className="space-y-5 p-5">
+    <div className="space-y-0 p-5">
 <MobileHeader title="Assets" subtitle="FabCheck" />
 
       <label className="flex min-h-44 cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-zinc-300 bg-white p-6 text-center shadow-sm">
