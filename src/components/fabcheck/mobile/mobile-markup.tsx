@@ -99,14 +99,14 @@ export function MobileMarkup({
           {selectedCallout && (
   <div
     onClick={(e) => e.stopPropagation()}
-    className="absolute z-[999] w-[min(16rem,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-[#141212] p-4 shadow-2xl"
+    className={`absolute z-[999] w-[min(16rem,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-[#141212] p-4 shadow-2xl ${
+  selectedCallout.x > 55
+    ? "-translate-x-full"
+    : "translate-x-4"
+}`}
 style={{
-  left:
-    selectedCallout.x > 65
-      ? "auto"
-      : `${Math.max(selectedCallout.x + 5, 5)}%`,
-  right: selectedCallout.x > 65 ? "0.75rem" : "auto",
-  top: `${Math.min(selectedCallout.y + 6, 58)}%`,
+  left: `${selectedCallout.x}%`,
+  top: `${Math.min(selectedCallout.y + 4, 60)}%`,
 }}
   >
     <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-400">
