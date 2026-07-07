@@ -14,6 +14,8 @@ type MobileWorkspaceProps = {
 goToAssets: () => void;
 addAssets: (files: File[]) => void;
 setSelectedAssetId: (id: string) => void;
+isMobileAssetDetailOpen: boolean;
+setIsMobileAssetDetailOpen: (value: boolean) => void;
   
 };
 
@@ -24,6 +26,8 @@ export function MobileWorkspace({
   goToAssets,
   addAssets,
 setSelectedAssetId,
+isMobileAssetDetailOpen,
+setIsMobileAssetDetailOpen,
 }: MobileWorkspaceProps) {
 return (
   <div className="md:hidden">
@@ -40,6 +44,7 @@ return (
     project={project}
     addAssets={addAssets}
     setSelectedAssetId={setSelectedAssetId}
+    setMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
   />
 )}
 

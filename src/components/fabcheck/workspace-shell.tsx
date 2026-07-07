@@ -26,6 +26,8 @@ export function WorkspaceShell() {
     deleteCallout,
     isPrintMode,
     setIsPrintMode,
+    isMobileAssetDetailOpen,
+setIsMobileAssetDetailOpen,
   } = useProject();
 
   return (
@@ -77,6 +79,9 @@ className={
           progress={progress}
           isPrintMode={isPrintMode}
           setIsPrintMode={setIsPrintMode}
+          isMobileAssetDetailOpen={isMobileAssetDetailOpen}
+setIsMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
+          
         />
 
         {!isMarkupMode && !isPrintMode && (

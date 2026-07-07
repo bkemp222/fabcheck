@@ -6,12 +6,14 @@ type MobileAssetsProps = {
   project: Project;
   addAssets: (files: File[]) => void;
   setSelectedAssetId: (id: string) => void;
+  setMobileAssetDetailOpen: (value: boolean) => void;
 };
 
 export function MobileAssets({
   project,
   addAssets,
   setSelectedAssetId,
+  setMobileAssetDetailOpen,
 }: MobileAssetsProps) {
   function handleFiles(fileList: FileList | null) {
     if (!fileList) return;
@@ -51,7 +53,10 @@ export function MobileAssets({
             <button
               key={asset.id}
               type="button"
-              onClick={() => setSelectedAssetId(asset.id)}
+onClick={() => {
+  setSelectedAssetId(asset.id);
+  setMobileAssetDetailOpen(true);
+}}
               className="flex w-full items-center gap-4 rounded-3xl bg-white p-4 text-left shadow-sm"
             >
               {asset.type.startsWith("image/") ? (

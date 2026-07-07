@@ -27,6 +27,8 @@ deleteAsset: (assetId: string) => void;
   progress: number;
   isPrintMode: boolean;
 setIsPrintMode: (value: boolean) => void;
+isMobileAssetDetailOpen: boolean;
+setIsMobileAssetDetailOpen: (value: boolean) => void;
 };
 
 export function Workspace({
@@ -45,6 +47,8 @@ export function Workspace({
   setSelectedCalloutId,
   updateCallout,
   deleteCallout,
+  isMobileAssetDetailOpen,
+setIsMobileAssetDetailOpen,
 progress,
 isPrintMode,
 setIsPrintMode,
@@ -85,6 +89,8 @@ setIsPrintMode,
   goToAssets={() => setActiveView("assets")}
   addAssets={addAssets}
 setSelectedAssetId={setSelectedAssetId}
+isMobileAssetDetailOpen={isMobileAssetDetailOpen}
+setIsMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
 />
 <div className="hidden md:block">
       {activeView === "overview" && (

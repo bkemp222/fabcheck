@@ -11,6 +11,8 @@ export function useProject() {
   const [isMarkupMode, setIsMarkupMode] = useState(false);
   const [selectedCalloutId, setSelectedCalloutId] = useState<string | null>(null);
   const [isPrintMode, setIsPrintMode] = useState(false);
+  const [isMobileAssetDetailOpen, setIsMobileAssetDetailOpen] =
+  useState(false);
 
   function updateProject<K extends keyof Project>(key: K, value: Project[K]) {
     setProject((currentProject) => ({
@@ -144,6 +146,8 @@ const progress =
     setActiveView,
     selectedAssetId,
     setSelectedAssetId,
+    isMobileAssetDetailOpen,
+setIsMobileAssetDetailOpen,
     isMarkupMode,
     setIsMarkupMode,
     addCallout,
