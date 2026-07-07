@@ -48,7 +48,7 @@ export function MarkupMode({
             Review Canvas
           </p>
 
-          <h1 className="mt-2 text-3xl font-black italic uppercase">
+          <h1 className="mt-2 text-lg font-black italic uppercase">
             Click anywhere to add a callout
           </h1>
         </div>
