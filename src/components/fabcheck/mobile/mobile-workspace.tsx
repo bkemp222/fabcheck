@@ -94,7 +94,7 @@ if (isAiReviewing) {
       </p>
 
       <p className="mt-2 max-w-xs text-xs leading-5 text-white/55">
-        Analyzing your design, identifying key elements, and generating starter notes.
+        This may take a few moments depending on your design.
       </p>
     </div>
   );
