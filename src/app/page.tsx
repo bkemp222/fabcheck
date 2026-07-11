@@ -18,11 +18,6 @@ export default function Home() {
       className="mx-auto mb-10 h-auto w-full max-w-[800px] animate-[fadeIn_.6s_ease]"
     />
 
-    <p className="mt-6 text-md font-bold uppercase tracking-[0.18em] text-white md:text-2xl">
-      From <span className="text-[#ffa431]">Imagination</span> to{" "}
-      <span className="text-[#ffa431]">Fabrication</span>
-    </p>
-
     <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-white/80 md:text-md">
       Upload a complete concept rendering of your tradeshow booth, brand activation, 
       or custom environment. FabCheck analyzes your design and provides a realistic 
