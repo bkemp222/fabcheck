@@ -50,7 +50,7 @@ export function MobileMarkup({
           onClick={goDone}
           className="rounded-lg px-2 py-1 text-xs font-black uppercase tracking-[0.18em] text-orange-400 transition hover:bg-white/5 active:scale-95"
         >
-          ← Done
+          Done
         </button>
 
         <div className="text-right">
@@ -76,12 +76,14 @@ export function MobileMarkup({
                 : asset.aiReviewError}
             </p>
           </div>
+
         ) : asset.aiReview ? (
+          <>
           <div className="mb-3 rounded-xl border border-orange-400/25 bg-orange-400/10 p-3">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-400">
-                  FabCheck first pass
+                  FabCheck Summary
                 </p>
                 <p className="mt-1 text-sm font-black text-white">
                   {asset.aiReview.projectType}
@@ -97,6 +99,13 @@ export function MobileMarkup({
                 "Review the starter pins, edit anything that is off, or tap the image to add your own notes."}
             </p>
           </div>
+          
+          <p className="mb-3 text-sm leading-6 text-white/70">
+  Review the suggested pins and edit anything that needs clarification. Tap
+  anywhere on the image to add your own note.
+</p>
+</>
+
         ) : (
           <div className="mb-3 rounded-xl border border-white/10 bg-white/5 p-3">
             <p className="text-sm font-bold text-white">
