@@ -48,7 +48,7 @@ export function MobileMarkup({
         <button
           type="button"
           onClick={goDone}
-          className="rounded-lg px-2 py-1 text-xs font-black uppercase tracking-[0.18em] text-orange-400 transition hover:bg-white/5 active:scale-95"
+          className="rounded-lg bg-[#ffa431] px-2 py-1 text-xs font-black uppercase tracking-[0.18em] text-black transition"
         >
           Done
         </button>
