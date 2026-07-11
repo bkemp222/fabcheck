@@ -6,6 +6,7 @@ export const mockProject: Project = {
   contactName: "",
 contactEmail: "",
 contactPhone: "",
+message: "Tell us anything else we should know about your project to provide you with the most accurate proposal.",
   eventType: "",
   footprint: "",
   venue: "",

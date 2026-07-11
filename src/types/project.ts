@@ -102,6 +102,7 @@ export type Project = {
   contactName: string;
 contactEmail: string;
 contactPhone: string;
+message: string;
   eventType: string;
   footprint: EstimateFootprint | "";
   venue: string;

@@ -485,6 +485,7 @@ export async function POST(request: Request) {
               <p><strong>Estimated fabrication budget:</strong> ${fabricationEstimate.label}</p>
               <p><strong>Confidence:</strong> ${fabricationEstimate.confidence}%</p>
               <p><strong>Complexity:</strong> ${fabricationEstimate.complexity}</p>
+              <p><strong>Client Message:</strong> ${project.message || "Not added"}</p>
             `
             : ""
         }

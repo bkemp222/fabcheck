@@ -107,8 +107,15 @@ export function MobileReview({ project, updateProject }: MobileReviewProps) {
 
       <section className="rounded-xl border border-black/5 bg-white p-4 shadow-sm">
         <p className="text-xl font-black italic uppercase">
-          Ready to make it real?
+          Let's Build It
         </p>
+        
+          <p className="mt-2 text-sm text-gray-600">
+    If you'd like to move forward, submit your contact information and we'll
+    review your concept, confirm the project details, and prepare a formal
+    fabrication proposal.
+  </p>
+
         <div className="mt-4 space-y-3">
           <Input
             label="Name *"
@@ -131,6 +138,11 @@ export function MobileReview({ project, updateProject }: MobileReviewProps) {
             onChange={(value) => updateProject("contactEmail", value)}
             type="email"
           />
+          <Input
+            label="Message"
+            value={project.message}
+            onChange={(value) => updateProject("message", value)}
+          />
         </div>
       </section>
 
@@ -140,7 +152,7 @@ export function MobileReview({ project, updateProject }: MobileReviewProps) {
         disabled={!canSubmit || !conceptImage}
         className="w-full rounded-xl bg-[#f9a331] py-3.5 text-base font-black uppercase italic text-black shadow-sm transition duration-150 hover:bg-[#ffb14c] active:scale-[0.99] disabled:cursor-not-allowed disabled:bg-zinc-300 disabled:text-zinc-500 disabled:shadow-none"
       >
-        Get Formal Estimate
+        Submit
       </button>
     </div>
   );
