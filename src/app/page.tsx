@@ -23,18 +23,18 @@ export default function Home() {
       FabCheck will analyze your design and provide a realistic fabrication estimate in minutes.
     </p>
 
-        <p className="mx-auto mt-4 max-w-2xl text-xs leading-4 text-white/80 md:text-md">
+    <a
+      href="/launch"
+      className="mt-10 mb-4 inline-flex rounded-full bg-[#ffa431] px-10 py-4 text-lg font-black uppercase italic tracking-wide text-black transition hover:scale-105"
+    >
+      Launch FabCheck
+    </a>
+
+            <p className="mx-auto mt-4 max-w-2xl text-xs leading-4 text-white/80 md:text-md">
       FabCheck is intended to provide an early-stage fabrication budget estimate to help 
       with planning. A formal quote will be based on a detailed review of your project's 
       final scope and requirements.
     </p>
-
-    <a
-      href="/launch"
-      className="mt-10 inline-flex rounded-full bg-[#ffa431] px-10 py-4 text-lg font-black uppercase italic tracking-wide text-black transition hover:scale-105"
-    >
-      Launch FabCheck
-    </a>
 
   </div>
 
