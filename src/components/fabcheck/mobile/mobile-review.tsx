@@ -90,19 +90,12 @@ export function MobileReview({ project, updateProject }: MobileReviewProps) {
           Exclusions
         </p>
         <p className="mt-2 text-xs leading-5 text-zinc-600">
-          This range is for custom fabrication, materials, shop labor, and
-          standard assembly only. The following are estimated separately:
+          FabCheck provides a fabrication budget estimate based on the concept you've submitted. 
+          This estimate includes materials and labor required to build the project, but excludes 
+          services such as installation, freight, AV, furniture rentals, staffing, and other 
+          non-fabrication costs, which can be quoted separately as needed.
         </p>
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {exclusions.map((exclusion) => (
-            <span
-              key={exclusion}
-              className="rounded-md bg-zinc-100 px-2.5 py-1.5 text-[11px] font-black text-zinc-600"
-            >
-              {exclusion}
-            </span>
-          ))}
-        </div>
+
       </section>
 
       <section className="rounded-xl border border-black/5 bg-white p-4 shadow-sm">
