@@ -15,7 +15,7 @@ export default function Home() {
       width={420}
       height={180}
       priority
-      className="mx-auto mb-10 h-auto w-400 max-w-[400px] animate-[fadeIn_.6s_ease]"
+      className="mx-auto mb-8 h-auto w-auto max-w-[250px] animate-[fadeIn_.6s_ease]"
     />
 
     <p className="mx-auto mt-4 max-w-2xl text-lg leading-6 text-white/80 md:text-md">
