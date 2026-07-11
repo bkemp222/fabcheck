@@ -96,8 +96,7 @@ export function MobileAssets({
           {selectedAsset ? "Replace Concept" : "Upload Concept"}
         </p>
         <p className="mt-2 max-w-[18rem] text-xs leading-5 text-zinc-500">
-          Upload one main concept image. Replacing it will keep your contact
-          info and refresh the estimate.
+          Upload one main concept image. Replacing it will refresh the estimate.
         </p>
         <input
           type="file"
