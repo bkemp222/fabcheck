@@ -18,13 +18,13 @@ export default function Home() {
       className="mx-auto mb-10 h-auto w-full max-w-[800px] animate-[fadeIn_.6s_ease]"
     />
 
-    <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-white/80 md:text-md">
+    <p className="mx-auto mt-4 max-w-2xl text-lg leading-4 text-white/80 md:text-md">
       Upload a complete concept rendering of your tradeshow booth, brand activation, 
       or custom environment. FabCheck analyzes your design and provides a realistic 
       fabrication budget estimate in minutes.
     </p>
 
-        <p className="mx-auto mt-8 max-w-2xl text-sm leading-8 text-white/80 md:text-md">
+        <p className="mx-auto mt-4 max-w-2xl text-sm leading-4 text-white/80 md:text-md">
       FabCheck is intended to provide an early-stage fabrication budget estimate to help 
       with planning. A formal quote will be based on a detailed review of your project's 
       final scope and requirements.
