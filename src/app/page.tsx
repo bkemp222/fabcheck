@@ -15,10 +15,10 @@ export default function Home() {
       width={420}
       height={180}
       priority
-      className="mx-auto mb-10 h-auto w-full max-w-[800px] animate-[fadeIn_.6s_ease]"
+      className="mx-auto mb-10 h-auto w-full max-w-[400px] animate-[fadeIn_.6s_ease]"
     />
 
-    <p className="mx-auto mt-4 max-w-2xl text-lg leading-4 text-white/80 md:text-md">
+    <p className="mx-auto mt-4 max-w-2xl text-lg leading-6 text-white/80 md:text-md">
       Upload a complete concept rendering of your tradeshow booth, brand activation, 
       or custom environment. FabCheck analyzes your design and provides a realistic 
       fabrication budget estimate in minutes.
