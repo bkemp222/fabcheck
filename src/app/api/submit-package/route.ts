@@ -1,6 +1,32 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
+import type { PDFFont, PDFPage } from "pdf-lib";
+import { estimateFabricationBudget } from "@/data/fabrication-knowledge";
+import type { AssetCallout, Project } from "@/types/project";
+
+type DrawWrappedTextArgs = {
+  page: PDFPage;
+  text: string;
+  x: number;
+  y: number;
+  size: number;
+  font: PDFFont;
+  color?: ReturnType<typeof rgb>;
+  maxWidth: number;
+  lineHeight: number;
+};
+
+type DrawPdfListArgs = {
+  page: PDFPage;
+  title: string;
+  items: string[];
+  x: number;
+  y: number;
+  font: PDFFont;
+  bold: PDFFont;
+  maxWidth: number;
+};
 
 function cleanFileName(value: string) {
   return value.replace(/[^a-z0-9-_]/gi, "-").replace(/-+/g, "-");
@@ -16,7 +42,7 @@ function drawWrappedText({
   color = rgb(0, 0, 0),
   maxWidth,
   lineHeight,
-}: any) {
+}: DrawWrappedTextArgs) {
   const words = String(text || "").split(" ");
   let line = "";
   let currentY = y;
@@ -41,10 +67,64 @@ function drawWrappedText({
   return currentY - lineHeight;
 }
 
-async function generatePdf(project: any) {
+function drawPdfList({
+  page,
+  title,
+  items,
+  x,
+  y,
+  font,
+  bold,
+  maxWidth,
+}: DrawPdfListArgs) {
+  let currentY = y - 18;
+
+  page.drawText(title.toUpperCase(), {
+    x,
+    y: currentY,
+    size: 11,
+    font: bold,
+    color: rgb(0, 0, 0),
+  });
+
+  currentY -= 18;
+
+  if (!items.length) {
+    return drawWrappedText({
+      page,
+      text: "None identified.",
+      x,
+      y: currentY,
+      size: 10,
+      font,
+      maxWidth,
+      lineHeight: 14,
+      color: rgb(0.35, 0.35, 0.35),
+    });
+  }
+
+  for (const item of items.slice(0, 8)) {
+    currentY = drawWrappedText({
+      page,
+      text: `- ${item}`,
+      x,
+      y: currentY,
+      size: 10,
+      font,
+      maxWidth,
+      lineHeight: 14,
+      color: rgb(0.25, 0.25, 0.25),
+    });
+  }
+
+  return currentY - 8;
+}
+
+async function generatePdf(project: Project) {
   const pdfDoc = await PDFDocument.create();
   const bold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
   const regular = await pdfDoc.embedFont(StandardFonts.Helvetica);
+  const fabricationEstimate = estimateFabricationBudget(project);
 
   const pageWidth = 612;
   const pageHeight = 792;
@@ -116,6 +196,119 @@ async function generatePdf(project: any) {
     lineHeight: 15,
   });
 
+  if (fabricationEstimate) {
+    y -= 16;
+
+    page.drawText("FABRICATION ESTIMATE", {
+      x: margin,
+      y,
+      size: 13,
+      font: bold,
+    });
+
+    y -= 24;
+
+    page.drawText(fabricationEstimate.label, {
+      x: margin,
+      y,
+      size: 22,
+      font: bold,
+      color: rgb(0, 0, 0),
+    });
+
+    y -= 28;
+
+    const estimateSummary = [
+      ["Confidence", `${fabricationEstimate.confidence}%`],
+      ["Complexity", fabricationEstimate.complexity],
+      ["Footprint", fabricationEstimate.footprintLabel],
+    ];
+
+    estimateSummary.forEach(([label, value]) => {
+      page.drawText(`${label}: ${value}`, {
+        x: margin,
+        y,
+        size: 11,
+        font: regular,
+        color: rgb(0.25, 0.25, 0.25),
+      });
+      y -= 16;
+    });
+
+    y = drawPdfList({
+      page,
+      title: "Detected Fabrication Scope",
+      items: fabricationEstimate.includedScope,
+      x: margin,
+      y: y - 10,
+      font: regular,
+      bold,
+      maxWidth: pageWidth - margin * 2,
+    });
+
+    y = drawPdfList({
+      page,
+      title: "Major Cost Drivers",
+      items: fabricationEstimate.majorCostDrivers.map(
+        (driver) => `${driver.label}: ${driver.detail}`
+      ),
+      x: margin,
+      y,
+      font: regular,
+      bold,
+      maxWidth: pageWidth - margin * 2,
+    });
+
+    y = drawPdfList({
+      page,
+      title: "Scope-Only Items",
+      items: fabricationEstimate.scopeOnlyItems,
+      x: margin,
+      y,
+      font: regular,
+      bold,
+      maxWidth: pageWidth - margin * 2,
+    });
+
+    if (y < 170) {
+      page = pdfDoc.addPage([pageWidth, pageHeight]);
+      y = pageHeight - margin;
+    }
+
+    y = drawPdfList({
+      page,
+      title: "Notes / Assumptions",
+      items: fabricationEstimate.notesAndAssumptions,
+      x: margin,
+      y,
+      font: regular,
+      bold,
+      maxWidth: pageWidth - margin * 2,
+    });
+
+    y = drawPdfList({
+      page,
+      title: "Cost-Saving Suggestions",
+      items: fabricationEstimate.costSavingSuggestions,
+      x: margin,
+      y,
+      font: regular,
+      bold,
+      maxWidth: pageWidth - margin * 2,
+    });
+
+    y = drawPdfList({
+      page,
+      title: "Estimated Separately",
+      items: fabricationEstimate.exclusions,
+      x: margin,
+      y,
+      font: regular,
+      bold,
+      maxWidth: pageWidth - margin * 2,
+    });
+  }
+
   for (const [assetIndex, asset] of project.assets.entries()) {
     page = pdfDoc.addPage([pageWidth, pageHeight]);
     y = pageHeight - margin;
@@ -164,7 +357,7 @@ async function generatePdf(project: any) {
       height: scaled.height,
     });
 
-    asset.callouts.forEach((callout: any, index: number) => {
+    asset.callouts.forEach((callout: AssetCallout, index: number) => {
   const pinX = margin + (callout.x / 100) * scaled.width;
   const pinY = y - scaled.height + scaled.height - (callout.y / 100) * scaled.height;
 
@@ -264,11 +457,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const project = await request.json();
+    const project = (await request.json()) as Project;
     console.log(project.assets[0]?.url?.substring(0, 40));
+    const fabricationEstimate = estimateFabricationBudget(project);
 
     const totalCallouts = project.assets.reduce(
-      (total: number, asset: any) => total + asset.callouts.length,
+      (total, asset) => total + asset.callouts.length,
       0
     );
 
@@ -285,6 +479,15 @@ export async function POST(request: Request) {
         <p><strong>Company:</strong> ${project.company || "Not added"}</p>
         <p><strong>Assets:</strong> ${project.assets.length}</p>
         <p><strong>Callouts:</strong> ${totalCallouts}</p>
+        ${
+          fabricationEstimate
+            ? `
+              <p><strong>Estimated fabrication budget:</strong> ${fabricationEstimate.label}</p>
+              <p><strong>Confidence:</strong> ${fabricationEstimate.confidence}%</p>
+              <p><strong>Complexity:</strong> ${fabricationEstimate.complexity}</p>
+            `
+            : ""
+        }
         <p>PDF package attached.</p>
       `,
       attachments: [
@@ -298,11 +501,14 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ ok: true });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Submit package error:", error);
 
+    const message =
+      error instanceof Error ? error.message : "Failed to submit package";
+
     return NextResponse.json(
-      { ok: false, error: error?.message || "Failed to submit package" },
+      { ok: false, error: message },
       { status: 500 }
     );
   }

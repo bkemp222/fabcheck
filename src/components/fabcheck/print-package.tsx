@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Project } from "@/types/project";
+import { estimateFabricationBudget } from "@/data/fabrication-knowledge";
 
 type PrintPackageProps = {
   project: Project;
@@ -11,6 +12,8 @@ export function PrintPackage({
   project,
   setIsPrintMode,
 }: PrintPackageProps) {
+  const fabricationEstimate = estimateFabricationBudget(project);
+
   return (
     <main className="print-package mx-auto hidden max-w-6xl bg-white p-10 text-black md:block">
       <div className="no-print mb-8 flex items-center justify-between rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
@@ -70,6 +73,89 @@ export function PrintPackage({
     {project.contactPhone || "Phone #"}
   </p>
 </section>
+
+      <section className="mb-8 break-inside-avoid border-4 border-black p-6">
+        <p className="text-xs font-black uppercase tracking-[0.25em] text-zinc-500">
+          Estimated Fabrication Budget
+        </p>
+        <p className="mt-2 text-4xl font-black italic">
+          {fabricationEstimate?.label || "Pending"}
+        </p>
+
+        {fabricationEstimate && (
+          <>
+            <div className="mt-5 grid grid-cols-4 gap-3">
+              <PrintEstimateMeta
+                label="Footprint"
+                value={fabricationEstimate.footprintLabel}
+              />
+              <PrintEstimateMeta
+                label="Complexity"
+                value={fabricationEstimate.complexity}
+              />
+              <PrintEstimateMeta
+                label="Confidence"
+                value={`${fabricationEstimate.confidence}%`}
+              />
+              <PrintEstimateMeta
+                label="Drivers"
+                value={`${fabricationEstimate.majorCostDrivers.length}`}
+              />
+            </div>
+
+            <div className="mt-5 grid gap-6 md:grid-cols-2">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-zinc-500">
+                  Major Cost Drivers
+                </p>
+                <ul className="mt-2 space-y-1 text-sm font-bold">
+                  {fabricationEstimate.majorCostDrivers.length === 0 ? (
+                    <li>No major custom drivers identified.</li>
+                  ) : (
+                    fabricationEstimate.majorCostDrivers.map((driver) => (
+                      <li key={`${driver.label}-${driver.assetName || "scope"}`}>
+                        {driver.label}
+                      </li>
+                    ))
+                  )}
+                </ul>
+              </div>
+
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-zinc-500">
+                  Estimated Separately
+                </p>
+                <p className="mt-2 text-sm font-bold leading-6">
+                  {fabricationEstimate.exclusions.join(", ")}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 grid gap-6 md:grid-cols-2">
+              <PrintList
+                title="Detected Fabrication Scope"
+                items={fabricationEstimate.includedScope}
+                empty="No fabrication scope detected."
+              />
+              <PrintList
+                title="Scope-Only Items"
+                items={fabricationEstimate.scopeOnlyItems}
+                empty="No scope-only items detected."
+              />
+              <PrintList
+                title="Notes / Assumptions"
+                items={fabricationEstimate.notesAndAssumptions}
+                empty="No assumptions added."
+              />
+              <PrintList
+                title="Cost-Saving Suggestions"
+                items={fabricationEstimate.costSavingSuggestions}
+                empty="No cost-saving suggestions identified."
+              />
+            </div>
+          </>
+        )}
+      </section>
 
       <section>
         <h2 className="mb-2 text-xs font-black uppercase tracking-[0.25em] text-zinc-500">
@@ -153,5 +239,41 @@ export function PrintPackage({
       </section>
     </main>
     
+  );
+}
+
+function PrintEstimateMeta({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="border border-zinc-300 p-3">
+      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-zinc-500">
+        {label}
+      </p>
+      <p className="mt-1 text-sm font-black capitalize">{value}</p>
+    </div>
+  );
+}
+
+function PrintList({
+  title,
+  items,
+  empty,
+}: {
+  title: string;
+  items: string[];
+  empty: string;
+}) {
+  return (
+    <div>
+      <p className="text-xs font-black uppercase tracking-[0.2em] text-zinc-500">
+        {title}
+      </p>
+      <ul className="mt-2 space-y-1 text-sm font-bold leading-6">
+        {items.length === 0 ? (
+          <li>{empty}</li>
+        ) : (
+          items.map((item) => <li key={item}>{item}</li>)
+        )}
+      </ul>
+    </div>
   );
 }

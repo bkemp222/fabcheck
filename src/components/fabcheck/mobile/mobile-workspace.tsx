@@ -15,7 +15,6 @@ type MobileWorkspaceProps = {
     value: Project[K]
   ) => void;
 setActiveView: (view: ActiveView) => void;
-  goToAssets: () => void;
   addAssets: (files: File[]) => Promise<string[]>;
   selectedAssetId: string | null;
   setSelectedAssetId: (id: string) => void;
@@ -44,7 +43,6 @@ export function MobileWorkspace({
   activeView,
   updateProject,
   setActiveView,
-  goToAssets,
   addAssets,
   selectedAssetId,
   setSelectedAssetId,
@@ -71,7 +69,10 @@ isMarkupMode,
       selectedCalloutId={selectedCalloutId}
       setSelectedCalloutId={setSelectedCalloutId}
       updateCallout={updateCallout}
-      goDone={() => setIsMarkupMode(false)}
+      goDone={() => {
+        setIsMarkupMode(false);
+        setActiveView("review");
+      }}
       deleteCallout={deleteCallout}
     />
   );
@@ -79,14 +80,20 @@ isMarkupMode,
 
 if (isAiReviewing) {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0b0b0b] px-8 text-center text-white md:hidden">
-      <div className="h-20 w-20 animate-spin rounded-full border-8 border-white/10 border-t-orange-400" />
+    <div className="premium-fade-in fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0b0b0b] px-8 text-center text-white md:hidden">
+      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-2xl shadow-black/30">
+        <img
+          src="/images/branding/magic-hammer.svg"
+          alt=""
+          className="hammer-swing h-20 w-20"
+        />
+      </div>
 
-      <p className="mt-8 text-3xl font-black italic uppercase">
+      <p className="mt-7 text-2xl font-black italic uppercase tracking-tight">
         FabChecking...
       </p>
 
-      <p className="mt-3 max-w-xs text-sm leading-6 text-white/60">
+      <p className="mt-2 max-w-xs text-xs leading-5 text-white/55">
         Analyzing your design, identifying key elements, and generating starter notes.
       </p>
     </div>
@@ -124,15 +131,20 @@ if (activeView === "assets" && isMobileAssetDetailOpen && selectedAsset) {
       {activeView === "assets" && (
 <MobileAssets
   project={project}
+  updateProject={updateProject}
   addAssets={addAssets}
   setSelectedAssetId={setSelectedAssetId}
   setMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
   setIsMarkupMode={setIsMarkupMode}
-  goToProjectInfo={() => setActiveView("overview")}
 />
       )}
 
-      {activeView === "review" && <MobileReview project={project} />}
+      {activeView === "review" && (
+        <MobileReview
+          project={project}
+          updateProject={updateProject}
+        />
+      )}
     </div>
   );
 }

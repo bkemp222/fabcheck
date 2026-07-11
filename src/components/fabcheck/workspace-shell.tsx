@@ -4,6 +4,7 @@ import { PackagePreview } from "@/components/fabcheck/package-preview";
 import { Sidebar } from "@/components/fabcheck/sidebar";
 import { Workspace } from "@/components/fabcheck/workspace";
 import { useProject } from "@/hooks/use-project";
+import { MobileNav } from "./mobile/mobile-nav";
 
 
 export function WorkspaceShell() {
@@ -33,11 +34,11 @@ setIsMobileAssetDetailOpen,
 
   return (
     <main className="min-h-screen bg-[#141212] pb-20 text-white md:pb-0">
-      <div className="flex justify-center border-b border-white/10 bg-[#0d0d0d] px-4 py-4 md:hidden">
+      <div className="flex justify-center border-b border-white/10 bg-[#0d0d0d] px-4 py-3 md:hidden">
   <img
     src="/images/branding/fabcheck-logo.svg"
     alt="FabCheck"
-    className="h-auto w-36"
+    className="h-auto w-32"
   />
 </div>
       <div
@@ -88,6 +89,14 @@ setIsMobileAssetDetailOpen={setIsMobileAssetDetailOpen}
           </div>
         )}
       </div>
+
+      {!isMarkupMode && !isPrintMode && (
+        <MobileNav
+          activeView={activeView}
+          setActiveView={setActiveView}
+          setIsMarkupMode={setIsMarkupMode}
+        />
+      )}
 
     </main>
   );

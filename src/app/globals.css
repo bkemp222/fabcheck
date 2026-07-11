@@ -98,3 +98,55 @@ body {
     transform: translateY(0);
   }
 }
+
+@keyframes mobilePageIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes premiumFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hammerSwing {
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+
+  45% {
+    transform: rotate(18deg);
+  }
+
+  65% {
+    transform: rotate(8deg);
+  }
+}
+
+.hammer-swing {
+  animation: hammerSwing 0.9s ease-in-out infinite;
+  transform-origin: 28% 82%;
+}
+
+.mobile-page-enter {
+  animation: mobilePageIn 180ms ease-out both;
+}
+
+.premium-fade-in {
+  animation: premiumFadeIn 220ms ease-out both;
+}

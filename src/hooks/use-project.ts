@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { mockProject } from "@/data/mock-project";
-import type { ActiveView, Project, ProjectAsset } from "@/types/project";
+import { createFabricationAssumptions } from "@/data/fabrication-knowledge";
+import type {
+  ActiveView,
+  AssetAiReview,
+  AssetCallout,
+  Project,
+  ProjectAsset,
+} from "@/types/project";
 import imageCompression from "browser-image-compression";
 
 type FabCheckStatus =
@@ -12,6 +19,27 @@ type FabCheckStatus =
   | "fabchecking"
   | "complete"
   | "error";
+
+type AiSuggestedCallout = {
+  x?: number | string;
+  y?: number | string;
+  note?: string;
+  category?: AssetCallout["category"];
+};
+
+type AiAssetReviewResponse = {
+  ok?: boolean;
+  error?: string;
+  review?: Partial<AssetAiReview> & {
+    suggestedCallouts?: AiSuggestedCallout[];
+  };
+};
+
+type AiAssetReviewResult = {
+  aiReview?: AssetAiReview;
+  aiCallouts: AssetCallout[];
+  aiError?: string;
+};
 
 export function useProject() {
   const [project, setProject] = useState<Project>(mockProject);
@@ -42,7 +70,7 @@ export function useProject() {
     name: string;
     type: string;
     url: string;
-  }) {
+  }): Promise<AiAssetReviewResult> {
     if (!asset.type.startsWith("image/")) {
       return {
         aiReview: undefined,
@@ -62,7 +90,7 @@ export function useProject() {
         body: JSON.stringify(asset),
       });
 
-      const data = await response.json();
+      const data = (await response.json()) as AiAssetReviewResponse;
 
       console.log("AI ASSET REVIEW RESPONSE:", data);
       console.log("AI RESPONSE OK?", response.ok);
@@ -71,7 +99,7 @@ export function useProject() {
         throw new Error(data.error || "AI review failed.");
       }
 
-      const aiReview = {
+      const aiReview: AssetAiReview = {
         projectType: data.review.projectType || "Unknown",
         estimatedSize: data.review.estimatedSize || "Unknown",
         confidence: data.review.confidence || 0,
@@ -86,12 +114,15 @@ export function useProject() {
         },
       };
 
-      const aiCallouts = (data.review.suggestedCallouts || []).map(
-        (callout: any) => ({
+      const aiCallouts: AssetCallout[] = (
+        data.review.suggestedCallouts || []
+      ).map((callout) => ({
           id: crypto.randomUUID(),
           x: Number(callout.x) || 50,
           y: Number(callout.y) || 50,
           note: callout.note || "",
+          category: callout.category || "element",
+          source: "ai",
         })
       );
 
@@ -102,14 +133,18 @@ export function useProject() {
     } catch (error) {
       console.error("AI asset review failed:", error);
 
+      const aiError =
+        error instanceof Error
+          ? error.message
+          : "AI review failed. Your asset was still uploaded.";
+
       setFabCheckStatus("error");
-      setFabCheckMessage(
-        "AI review failed, but your asset was still uploaded."
-      );
+      setFabCheckMessage(aiError);
 
       return {
         aiReview: undefined,
         aiCallouts: [],
+        aiError,
       };
     }
   }
@@ -117,7 +152,7 @@ export function useProject() {
   async function addAssets(files: File[]) {
     const newAssets: ProjectAsset[] = [];
 
-    for (const [index, file] of files.entries()) {
+    for (const file of files.slice(0, 1)) {
       setFabCheckStatus("compressing");
       setFabCheckMessage("Preparing your image...");
 
@@ -148,7 +183,7 @@ export function useProject() {
 
       const assetId = crypto.randomUUID();
 
-      const { aiReview, aiCallouts } = await reviewAssetWithAi({
+      const { aiReview, aiCallouts, aiError } = await reviewAssetWithAi({
         name: file.name,
         type: file.type,
         url: assetUrl,
@@ -159,8 +194,10 @@ export function useProject() {
         name: file.name,
         type: file.type,
         url: assetUrl,
-        isHero: project.assets.length === 0 && index === 0,
+        isHero: true,
         aiReview,
+        aiReviewError: aiError,
+        fabricationAssumptions: createFabricationAssumptions(aiReview),
         callouts: aiCallouts,
       };
 
@@ -169,15 +206,26 @@ export function useProject() {
 
     setProject((current) => ({
       ...current,
-      assets: [...current.assets, ...newAssets],
+      assets: newAssets,
     }));
 
-    if (!selectedAssetId && newAssets.length > 0) {
+    if (newAssets.length > 0) {
       setSelectedAssetId(newAssets[0].id);
+      setIsMobileAssetDetailOpen(false);
     }
 
-    setFabCheckStatus("complete");
-    setFabCheckMessage("FabCheck complete.");
+    if (newAssets.length > 0) {
+      setSelectedCalloutId(null);
+    }
+
+    const hasAiError = newAssets.some((asset) => asset.aiReviewError);
+
+    setFabCheckStatus(hasAiError ? "error" : "complete");
+    setFabCheckMessage(
+      hasAiError
+        ? "Uploaded, but AI notes need setup."
+        : "FabCheck complete."
+    );
 
     setTimeout(() => {
       setFabCheckStatus("idle");
@@ -220,6 +268,7 @@ export function useProject() {
                   x,
                   y,
                   note: "",
+                  source: "user",
                 },
               ],
             }
@@ -272,6 +321,33 @@ export function useProject() {
     }
   }
 
+  function updateFabricationAssumption(
+    assetId: string,
+    assumptionId: string,
+    value: string
+  ) {
+    setProject((currentProject) => ({
+      ...currentProject,
+      assets: currentProject.assets.map((asset) =>
+        asset.id === assetId
+          ? {
+              ...asset,
+              fabricationAssumptions: (
+                asset.fabricationAssumptions || []
+              ).map((assumption) =>
+                assumption.id === assumptionId
+                  ? {
+                      ...assumption,
+                      value,
+                    }
+                  : assumption
+              ),
+            }
+          : asset
+      ),
+    }));
+  }
+
   const progress =
     (project.contactName ? 10 : 0) +
     (project.contactEmail ? 10 : 0) +
@@ -311,6 +387,7 @@ export function useProject() {
     setSelectedCalloutId,
     updateCallout,
     deleteCallout,
+    updateFabricationAssumption,
 
     isPrintMode,
     setIsPrintMode,

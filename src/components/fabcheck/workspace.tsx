@@ -77,7 +77,6 @@ if (isMarkupMode) {
           activeView={activeView}
           updateProject={updateProject}
           setActiveView={setActiveView}
-          goToAssets={() => setActiveView("assets")}
           addAssets={addAssets}
           selectedAssetId={selectedAssetId}
           setSelectedAssetId={setSelectedAssetId}
@@ -116,7 +115,6 @@ if (isMarkupMode) {
   activeView={activeView}
   updateProject={updateProject}
   setActiveView={setActiveView}
-  goToAssets={() => setActiveView("assets")}
   addAssets={addAssets}
 setSelectedAssetId={setSelectedAssetId}
 isMobileAssetDetailOpen={isMobileAssetDetailOpen}
@@ -168,7 +166,6 @@ deleteCallout={deleteCallout}
 <ReviewPackage
   project={project}
   progress={progress}
-  setIsPrintMode={setIsPrintMode}
 />
 )}
 </div>

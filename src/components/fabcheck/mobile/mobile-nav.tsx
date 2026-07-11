@@ -17,15 +17,9 @@ export function MobileNav({
   }
 
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 border-t border-white/10 bg-[#0d0d0d] md:hidden">
+    <nav className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 border-t border-white/10 bg-[#0d0d0d]/95 backdrop-blur md:hidden">
       <MobileNavButton
-        label="Overview"
-        active={activeView === "overview"}
-        onClick={() => go("overview")}
-      />
-
-      <MobileNavButton
-        label="Assets"
+        label="Concept"
         active={activeView === "assets"}
         onClick={() => go("assets")}
       />
@@ -52,7 +46,7 @@ function MobileNavButton({
     <button
       type="button"
       onClick={onClick}
-      className={`py-4 text-xs font-black uppercase tracking-[0.15em] ${
+      className={`py-3.5 text-[11px] font-black uppercase tracking-[0.16em] transition duration-150 active:scale-95 ${
         active ? "text-orange-400" : "text-white/45"
       }`}
     >

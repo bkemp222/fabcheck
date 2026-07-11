@@ -1,105 +1,177 @@
 "use client";
 
-import type { Project } from "@/types/project";
-import { MobileHeader } from "./mobile-header";
+import type { EstimateFootprint, Project } from "@/types/project";
 
 type MobileAssetsProps = {
   project: Project;
- addAssets: (files: File[]) => Promise<string[]>;
+  updateProject: <K extends keyof Project>(
+    key: K,
+    value: Project[K]
+  ) => void;
+  addAssets: (files: File[]) => Promise<string[]>;
   setSelectedAssetId: (id: string) => void;
   setMobileAssetDetailOpen: (value: boolean) => void;
   setIsMarkupMode: (value: boolean) => void;
-  goToProjectInfo: () => void;
 };
+
+const projectTypeOptions = [
+  "Brand Activation",
+  "Trade Show Booth",
+  "Product Launch",
+  "Photo Moment",
+  "Specialty Build",
+];
+
+const footprintOptions: Array<{ label: string; value: EstimateFootprint }> = [
+  { label: "Photo Moment / 8x8", value: "8x8" },
+  { label: "10x10", value: "10x10" },
+  { label: "10x20", value: "10x20" },
+  { label: "20x20", value: "20x20" },
+  { label: "20x30", value: "20x30" },
+  { label: "30x30", value: "30x30" },
+  { label: "Not sure yet", value: "unknown" },
+];
 
 export function MobileAssets({
   project,
+  updateProject,
   addAssets,
   setSelectedAssetId,
   setMobileAssetDetailOpen,
   setIsMarkupMode,
-  goToProjectInfo,
 }: MobileAssetsProps) {
- async function handleFiles(fileList: FileList | null) {
-    if (!fileList) return;
-    const newAssetIds = await addAssets(Array.from(fileList));
+  const selectedAsset = project.assets[0];
+  const canUpload = Boolean(project.eventType && project.footprint);
 
-if (newAssetIds.length > 0) {
-  setSelectedAssetId(newAssetIds[0]);
-  setMobileAssetDetailOpen(false);
-  setIsMarkupMode(true);
-}
+  async function handleFiles(fileList: FileList | null) {
+    if (!fileList || !canUpload) return;
+    const newAssetIds = await addAssets(Array.from(fileList).slice(0, 1));
+
+    if (newAssetIds.length > 0) {
+      setSelectedAssetId(newAssetIds[0]);
+      setMobileAssetDetailOpen(false);
+      setIsMarkupMode(true);
+    }
   }
 
   return (
-    <div className="space-y-5 p-5">
+    <div className="mobile-page-enter space-y-4 p-4">
+      <section className="rounded-xl border border-black/5 bg-white p-4 shadow-sm">
+        <p className="text-xs font-black uppercase tracking-[0.25em] text-zinc-400">
+          Concept Setup
+        </p>
 
-      <label className="flex min-h-44 cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-[#f9a331] bg-white/60 p-6 text-center shadow-sm">
-        <p className="text-2xl font-black italic uppercase">Upload Assets</p>
-        <p className="mt-2 text-sm text-zinc-500">
-          Renderings, AI concepts, logos, floorplans, and references.
+        <div className="mt-4 space-y-3">
+          <Select
+            label="Project Type"
+            value={project.eventType}
+            onChange={(value) => updateProject("eventType", value)}
+            placeholder="Select project type"
+            options={projectTypeOptions.map((option) => ({
+              label: option,
+              value: option,
+            }))}
+          />
+
+          <Select
+            label="Footprint"
+            value={project.footprint}
+            onChange={(value) =>
+              updateProject("footprint", value as EstimateFootprint | "")
+            }
+            placeholder="Select footprint"
+            options={footprintOptions}
+          />
+        </div>
+      </section>
+
+      <label
+        className={`flex min-h-36 flex-col items-center justify-center rounded-xl border border-dashed p-5 text-center shadow-sm transition duration-150 active:scale-[0.99] ${
+          canUpload
+            ? "cursor-pointer border-[#f9a331] bg-white/70 hover:bg-white"
+            : "cursor-not-allowed border-zinc-300 bg-white/40 opacity-60"
+        }`}
+      >
+        <p className="text-xl font-black italic uppercase">
+          {selectedAsset ? "Replace Concept" : "Upload Concept"}
+        </p>
+        <p className="mt-2 max-w-[18rem] text-xs leading-5 text-zinc-500">
+          Upload one main concept image. Replacing it will keep your contact
+          info and refresh the estimate.
         </p>
         <input
           type="file"
-          multiple
+          accept="image/*"
+          disabled={!canUpload}
           className="hidden"
-          onChange={(e) => handleFiles(e.target.files)}
+          onChange={(event) => handleFiles(event.target.files)}
         />
       </label>
 
-      <div className="space-y-3">
-        {project.assets.length === 0 ? (
-          <div className="rounded-3xl bg-white p-5 text-zinc-500 shadow-sm">
-            No assets uploaded yet.
-          </div>
-        ) : (
-          project.assets.map((asset) => (
-            <button
-              key={asset.id}
-              type="button"
-onClick={() => {
-  setSelectedAssetId(asset.id);
-  setMobileAssetDetailOpen(true);
-}}
-              className="flex w-full items-center gap-4 rounded-3xl bg-white p-4 text-left shadow-sm"
-            >
-              {asset.type.startsWith("image/") ? (
-                <img
-                  src={asset.url}
-                  alt={asset.name}
-                  className="h-20 w-20 rounded-2xl object-cover"
-                />
-              ) : (
-                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-zinc-100 text-xs font-bold text-zinc-400">
-                  FILE
-                </div>
-              )}
-
-              <div className="min-w-0 flex-1">
-                <p className="truncate font-black">{asset.name}</p>
-                <p className="mt-1 text-sm text-zinc-500">
-                  {asset.callouts.length} callout
-                  {asset.callouts.length === 1 ? "" : "s"}
-                </p>
-              </div>
-
-              <span className="text-2xl text-zinc-300">›</span>
-            </button>
-            
-          ))
-        )}
-
-              {project.assets.length > 0 && (
+      {selectedAsset ? (
         <button
           type="button"
-          onClick={goToProjectInfo}
-          className="mt-6 w-full rounded-full bg-[#faa431] py-4 text-lg font-black uppercase italic text-black transition hover:scale-[1.02]"
+          onClick={() => {
+            setSelectedAssetId(selectedAsset.id);
+            setMobileAssetDetailOpen(true);
+          }}
+          className="flex w-full items-center gap-3 rounded-xl border border-black/5 bg-white p-3 text-left shadow-sm transition duration-150 hover:border-black/10 hover:bg-zinc-50 active:scale-[0.99]"
         >
-          CONTINUE →
-        </button>
-      )}
+          <img
+            src={selectedAsset.url}
+            alt={selectedAsset.name}
+            className="h-16 w-16 rounded-lg object-cover"
+          />
 
-      </div>
+          <div className="min-w-0 flex-1">
+            <p className="truncate font-black">{selectedAsset.name}</p>
+            <p className="mt-0.5 text-xs text-zinc-500">
+              {selectedAsset.callouts.length} starter note
+              {selectedAsset.callouts.length === 1 ? "" : "s"}
+            </p>
+          </div>
+
+          <span className="text-2xl text-zinc-300">›</span>
+        </button>
+      ) : (
+        <div className="rounded-xl border border-black/5 bg-white p-4 text-sm text-zinc-500 shadow-sm">
+          Choose a project type and footprint, then upload a concept image.
+        </div>
+      )}
     </div>
+  );
+}
+
+function Select({
+  label,
+  value,
+  onChange,
+  placeholder,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+  options: Array<{ label: string; value: string }>;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1.5 block text-[11px] font-black uppercase tracking-[0.22em] text-zinc-400">
+        {label}
+      </span>
+      <select
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className="h-12 w-full rounded-lg border border-zinc-200 bg-zinc-50 px-3 text-base font-semibold outline-none transition duration-150 focus:border-[#faa431] focus:bg-white focus:ring-2 focus:ring-[#faa431]/15"
+      >
+        <option value="">{placeholder}</option>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }
