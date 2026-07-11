@@ -8,7 +8,7 @@ export default function Home() {
 
   <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(245,158,11,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(245,158,11,0.25)_1px,transparent_1px)] [background-size:48px_48px]" />
 
-  <div className="relative z-4 text-center">
+  <div className="relative z-0 text-center">
     <Image
       src="/images/branding/fabcheck-logo.svg"
       alt="FabCheck"
