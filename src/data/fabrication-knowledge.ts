@@ -856,7 +856,7 @@ export function estimateFabricationBudget(project: Project): FabricationEstimate
     MAX_IMPACT_MULTIPLIER
   );
   const target = Math.min(baseRange.rare * 1.15, baseRange.anchor * impactMultiplier);
-  const width = footprint === "unknown" ? 0.24 : 0.2;
+  const width = footprint === "unknown" ? 0.24 : 0.12;
   const low = floorToFiveThousand(
     Math.max(baseRange.anchor * 0.85, target * (1 - width))
   );
