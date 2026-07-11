@@ -29,7 +29,6 @@ const footprintOptions: Array<{ label: string; value: EstimateFootprint }> = [
   { label: "20x20", value: "20x20" },
   { label: "20x30", value: "20x30" },
   { label: "30x30", value: "30x30" },
-  { label: "Not sure yet", value: "unknown" },
 ];
 
 export function MobileAssets({
