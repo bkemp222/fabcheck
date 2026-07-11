@@ -55,7 +55,7 @@ export function MobileMarkup({
 
         <div className="text-right">
           <p className="text-xs font-black uppercase tracking-[0.18em] text-white/40">
-            Markup
+            File Name
           </p>
           <p className="max-w-36 truncate text-sm font-black">{asset.name}</p>
         </div>

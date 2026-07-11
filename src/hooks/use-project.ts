@@ -153,6 +153,7 @@ export function useProject() {
     const newAssets: ProjectAsset[] = [];
 
     for (const file of files.slice(0, 1)) {
+      const originalFileName = file.name;
       setFabCheckStatus("compressing");
       setFabCheckMessage("Preparing your image...");
 
@@ -184,14 +185,14 @@ export function useProject() {
       const assetId = crypto.randomUUID();
 
       const { aiReview, aiCallouts, aiError } = await reviewAssetWithAi({
-        name: file.name,
+        name: originalFileName,
         type: file.type,
         url: assetUrl,
       });
 
       const newAsset: ProjectAsset = {
         id: assetId,
-        name: file.name,
+        name: originalFileName,
         type: file.type,
         url: assetUrl,
         isHero: true,
