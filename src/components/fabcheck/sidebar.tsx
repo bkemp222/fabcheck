@@ -1,4 +1,5 @@
 import type { ActiveView } from "@/types/project";
+import Link from "next/link";
 
 type SidebarProps = {
   progress: number;
@@ -16,14 +17,13 @@ export function Sidebar({
   setIsMarkupMode,
 }: SidebarProps) {
 const steps: { label: string; view: ActiveView }[] = [
-  { label: "Overview", view: "overview" },
-  { label: assetCount ? `Assets (${assetCount})` : "Assets", view: "assets" },
-  { label: "Review Package", view: "review" },
+  { label: assetCount ? `Concept (${assetCount})` : "Concept", view: "assets" },
+  { label: "Review", view: "review" },
 ];
 
   return (
     <aside className="border-r border-white/10 bg-black/30 p-6">
-      <a
+      <Link
         href="/"
         className="flex items-center justify-center rounded-2xl p-2 transition hover:bg-white/5"
       >
@@ -32,7 +32,7 @@ const steps: { label: string; view: ActiveView }[] = [
           alt="FabCheck"
           className="h-auto w-full"
         />
-      </a>
+      </Link>
 
       <nav className="mt-16 space-y-3">
         {steps.map((step, index) => {
@@ -46,11 +46,11 @@ const steps: { label: string; view: ActiveView }[] = [
   setIsMarkupMode(false);
   setActiveView(step.view);
 }}
-              className={`flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-bold transition ${
+              className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left text-sm font-black uppercase tracking-[0.12em] transition ${
                 isActive ? "bg-orange-400 text-black" : "text-white/50 hover:bg-white/5"
               }`}
             >
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-black/30 text-xs">
+              <span className="flex h-6 w-6 items-center justify-center rounded-md bg-black/30 text-xs">
                 {isActive ? index + 1 : "○"}
               </span>
               {step.label}
@@ -59,7 +59,7 @@ const steps: { label: string; view: ActiveView }[] = [
         })}
       </nav>
 
-      <div className="mt-12 rounded-3xl border border-white/10 bg-white/5 p-5">
+      <div className="mt-12 rounded-xl border border-white/10 bg-white/5 p-5">
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-white/40">
           Review Readiness
         </p>

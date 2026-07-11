@@ -1,8 +1,6 @@
 import type { ActiveView, Project } from "@/types/project";
 import { ProjectForm } from "@/components/fabcheck/project-form";
-import { AssetDropzone } from "@/components/fabcheck/asset-dropzone";
-import { AssetGallery } from "@/components/fabcheck/asset-gallery";
-import { AssetDetail } from "@/components/fabcheck/asset-detail";
+import { DesktopAssets } from "@/components/fabcheck/desktop-assets";
 import { MarkupMode } from "@/components/fabcheck/markup-mode";
 import { ReviewPackage } from "@/components/fabcheck/review-package";
 import { PrintPackage } from "@/components/fabcheck/print-package";
@@ -37,7 +35,6 @@ export function Workspace({
   updateProject,
   addAssets,
   addCallout,
-  deleteAsset,
   activeView,
   setActiveView,
   selectedAssetId,
@@ -96,7 +93,10 @@ if (isMarkupMode) {
       <div className="hidden md:block">
         <MarkupMode
           asset={selectedAsset}
-          setIsMarkupMode={setIsMarkupMode}
+          goDone={() => {
+            setIsMarkupMode(false);
+            setActiveView("review");
+          }}
           addCallout={addCallout}
           selectedCalloutId={selectedCalloutId}
           setSelectedCalloutId={setSelectedCalloutId}
@@ -129,6 +129,25 @@ isMarkupMode={isMarkupMode}
 isAiReviewing={isAiReviewing}
 deleteCallout={deleteCallout}
 />
+{isAiReviewing && (
+  <div className="premium-fade-in fixed inset-0 z-50 hidden flex-col items-center justify-center bg-[#0b0b0b] px-8 text-center text-white md:flex">
+    <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5 shadow-2xl shadow-black/30">
+      <img
+        src="/images/branding/magic-hammer.svg"
+        alt=""
+        className="hammer-swing h-20 w-20"
+      />
+    </div>
+
+    <p className="mt-7 text-3xl font-black italic uppercase tracking-tight">
+      FabChecking...
+    </p>
+
+    <p className="mt-2 max-w-sm text-sm leading-6 text-white/55">
+      Analyzing your design, identifying key elements, and generating starter notes.
+    </p>
+  </div>
+)}
 <div className="hidden md:block">
       {activeView === "overview" && (
         <ProjectForm
@@ -139,33 +158,20 @@ deleteCallout={deleteCallout}
       )}
 
       {activeView === "assets" && (
-        <>
-          {project.assets.length === 0 ? (
-            <AssetDropzone addAssets={addAssets} />
-          ) : (
-            <>
-              <AssetDropzone addAssets={addAssets} compact />
-
-              <AssetGallery
-                assets={project.assets}
-                selectedAssetId={selectedAssetId}
-                setSelectedAssetId={setSelectedAssetId}
-              />
-
-<AssetDetail
-  asset={selectedAsset}
-  setIsMarkupMode={setIsMarkupMode}
-  deleteAsset={deleteAsset}
-/>
-            </>
-          )}
-        </>
+        <DesktopAssets
+          project={project}
+          updateProject={updateProject}
+          addAssets={addAssets}
+          setSelectedAssetId={setSelectedAssetId}
+          setIsMarkupMode={setIsMarkupMode}
+        />
       )}
 
 {activeView === "review" && (
 <ReviewPackage
   project={project}
   progress={progress}
+  updateProject={updateProject}
 />
 )}
 </div>
