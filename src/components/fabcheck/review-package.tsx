@@ -100,17 +100,6 @@ export function ReviewPackage({ project, updateProject }: ReviewPackageProps) {
             installation, freight, AV, furniture rentals, staffing, and other
             non-fabrication costs, which can be quoted separately as needed.
           </p>
-
-          <div className="mt-4 flex flex-wrap gap-2">
-            {exclusions.map((exclusion) => (
-              <span
-                key={exclusion}
-                className="rounded-md bg-zinc-100 px-2.5 py-1.5 text-[11px] font-black text-zinc-600"
-              >
-                {exclusion}
-              </span>
-            ))}
-          </div>
         </section>
       </div>
 
