@@ -81,7 +81,7 @@ isMarkupMode,
 if (isAiReviewing) {
   return (
     <div className="premium-fade-in fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0b0b0b] px-8 text-center text-white md:hidden">
-      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-2xl shadow-black/30">
+      <div>
         <img
           src="/images/branding/magic-hammer.svg"
           alt=""
