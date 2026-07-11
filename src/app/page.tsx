@@ -19,9 +19,8 @@ export default function Home() {
     />
 
     <p className="mx-auto mt-4 max-w-2xl text-lg leading-6 text-white/80 md:text-md">
-      Upload a complete concept rendering of your tradeshow booth, brand activation, 
-      or custom environment. FabCheck analyzes your design and provides a realistic 
-      fabrication budget estimate in minutes.
+      Upload your AI-generated concept render for a tradeshow booth or brand activation. 
+      FabCheck will analyze your design and provide a realistic fabrication estimate in minutes.
     </p>
 
         <p className="mx-auto mt-4 max-w-2xl text-xs leading-4 text-white/80 md:text-md">
