@@ -739,7 +739,7 @@ function getComplexity(
 
   if (impactScore >= 17) return "premium";
   if (impactScore >= 12) return "complex";
-  if (impactScore >= 8 || uniqueDetections >= 8) {
+  if (impactScore >= 8 || uniqueDetections >= 12) {
     return "complex";
   }
   if (impactScore >= 4 || uniqueDetections >= 4) return "moderate";
