@@ -57,9 +57,6 @@ export function MobileAssets({
   return (
     <div className="mobile-page-enter space-y-4 p-4">
       <section className="rounded-xl border border-black/5 bg-white p-4 shadow-sm">
-        <p className="text-xs font-black uppercase tracking-[0.25em] text-zinc-400">
-          Concept Setup
-        </p>
 
         <div className="mt-4 space-y-3">
           <Select
