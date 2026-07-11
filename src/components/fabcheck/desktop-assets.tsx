@@ -55,7 +55,7 @@ export function DesktopAssets({
     <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.9fr_1.1fr]">
       <section className="self-start rounded-xl border border-black/5 bg-white p-5 shadow-sm">
 
-        <div className="mt-5 grid gap-4">
+        <div className="grid gap-4">
           <Select
             label="Project Type"
             value={project.eventType}
