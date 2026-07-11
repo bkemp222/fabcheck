@@ -58,7 +58,7 @@ export function MobileAssets({
     <div className="mobile-page-enter space-y-4 p-4">
       <section className="rounded-xl border border-black/5 bg-white p-4 shadow-sm">
 
-        <div className="mt-4 space-y-3">
+        <div className="mt-0 space-y-3">
           <Select
             label="Project Type"
             value={project.eventType}
