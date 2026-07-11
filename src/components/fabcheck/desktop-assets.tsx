@@ -54,16 +54,6 @@ export function DesktopAssets({
   return (
     <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.9fr_1.1fr]">
       <section className="rounded-xl border border-black/5 bg-white p-5 shadow-sm">
-        <p className="text-[11px] font-black uppercase tracking-[0.24em] text-zinc-400">
-          Concept Setup
-        </p>
-        <h1 className="mt-2 text-3xl font-black italic uppercase tracking-tight">
-          Start with one concept
-        </h1>
-        <p className="mt-2 text-sm leading-6 text-zinc-500">
-          Select the project type and footprint first so FabCheck can establish
-          the base budget range before reviewing the image.
-        </p>
 
         <div className="mt-5 grid gap-4">
           <Select
@@ -101,8 +91,7 @@ export function DesktopAssets({
             {selectedAsset ? "Replace Concept" : "Upload Concept"}
           </p>
           <p className="mt-2 max-w-md text-sm leading-6 text-zinc-500">
-            Upload one main concept image. Replacing it will refresh the AI
-            starter notes and the budget range for this session.
+            Upload your AI-generated concept image. Replacing it will refresh the session.
           </p>
           <span
             className={`mt-5 rounded-lg px-5 py-3 text-sm font-black uppercase italic transition ${
