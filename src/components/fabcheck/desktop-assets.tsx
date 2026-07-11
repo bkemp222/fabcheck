@@ -53,7 +53,7 @@ export function DesktopAssets({
 
   return (
     <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-      <section className="rounded-xl border border-black/5 bg-white p-5 shadow-sm">
+      <section className="self-start rounded-xl border border-black/5 bg-white p-5 shadow-sm">
 
         <div className="mt-5 grid gap-4">
           <Select
