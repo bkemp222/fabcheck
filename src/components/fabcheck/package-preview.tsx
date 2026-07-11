@@ -46,23 +46,7 @@ export function PackagePreview({ project }: PackagePreviewProps) {
               label="Footprint"
               value={project.footprint || "Not selected"}
             />
-            <PackageCard
-              label="Concept"
-              value={
-                project.assets.length
-                  ? "Uploaded"
-                  : "No image uploaded"
-              }
-            />
-            <PackageCard
-              label="Starter Notes"
-              value={
-                totalCallouts
-                  ? `${totalCallouts} added`
-                  : "No notes added"
-              }
-            />
-            <PackageCard label="Contact" value={project.contactEmail || "Not added"} />
+            <PackageCard label="Contact" value={project.contactName || "Not added"} />
           </div>
         </div>
       </div>

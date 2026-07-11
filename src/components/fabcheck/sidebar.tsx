@@ -58,21 +58,6 @@ const steps: { label: string; view: ActiveView }[] = [
           );
         })}
       </nav>
-
-      <div className="mt-12 rounded-xl border border-white/10 bg-white/5 p-5">
-        <p className="text-xs font-bold uppercase tracking-[0.25em] text-white/40">
-          Review Readiness
-        </p>
-
-        <div className="mt-4 h-3 overflow-hidden rounded-full bg-white/10">
-          <div
-            className="h-full rounded-full bg-orange-400 transition-all"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-
-        <p className="mt-3 text-sm text-white/60">{progress}% ready</p>
-      </div>
     </aside>
   );
 }
