@@ -8,7 +8,7 @@ export default function Home() {
 
   <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(245,158,11,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(245,158,11,0.25)_1px,transparent_1px)] [background-size:48px_48px]" />
 
-  <div className="relative z-10 text-center">
+  <div className="relative z-4 text-center">
     <Image
       src="/images/branding/fabcheck-logo.svg"
       alt="FabCheck"
@@ -18,15 +18,21 @@ export default function Home() {
       className="mx-auto mb-10 h-auto w-full max-w-[800px] animate-[fadeIn_.6s_ease]"
     />
 
-    <p className="mt-6 text-xl font-bold uppercase tracking-[0.18em] text-white md:text-2xl">
-      From <span className="text-orange-400">Imagination</span> to{" "}
-      <span className="text-orange-400">Fabrication</span>
+    <p className="mt-6 text-md font-bold uppercase tracking-[0.18em] text-white md:text-2xl">
+      From <span className="text-[#ffa431]">Imagination</span> to{" "}
+      <span className="text-[#ffa431]">Fabrication</span>
     </p>
 
     <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-white/80 md:text-md">
-      Upload your renderings, AI concepts, brand assets, or design files.
-      FabCheck turns your vision into a fabrication-ready project built,
-      delivered, and installed by Get Up Creative.
+      Upload a complete concept rendering of your tradeshow booth, brand activation, 
+      or custom environment. FabCheck analyzes your design and provides a realistic 
+      fabrication budget estimate in minutes.
+    </p>
+
+        <p className="mx-auto mt-8 max-w-2xl text-sm leading-8 text-white/80 md:text-md">
+      FabCheck is intended to provide an early-stage fabrication budget estimate to help 
+      with planning. A formal quote will be based on a detailed review of your project's 
+      final scope and requirements.
     </p>
 
     <a
