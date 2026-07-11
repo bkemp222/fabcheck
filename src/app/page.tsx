@@ -25,7 +25,7 @@ export default function Home() {
 
     <a
       href="/launch"
-      className="mt-8 mb-4 inline-flex rounded-full bg-[#ffa431] px-8 py-4 text-lg font-black uppercase italic tracking-wide text-black transition hover:scale-105"
+      className="mt-8 mb-4 inline-flex rounded-full bg-[#ffa431] px-8 py-4 text-md font-black uppercase italic tracking-wide text-black transition hover:scale-105"
     >
       Launch FabCheck
     </a>
