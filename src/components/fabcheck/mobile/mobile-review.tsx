@@ -2,6 +2,7 @@
 
 import { estimateFabricationBudget } from "@/data/fabrication-knowledge";
 import type { Project } from "@/types/project";
+import { FabricationCategoryBars } from "@/components/fabcheck/fabrication-category-bars";
 
 type MobileReviewProps = {
   project: Project;
@@ -11,25 +12,11 @@ type MobileReviewProps = {
   ) => void;
 };
 
-const fallbackExclusions = [
-  "AV equipment",
-  "Furniture",
-  "Freight",
-  "Installation",
-  "Travel",
-  "Rigging labor",
-  "Venue services",
-  "Union labor",
-  "Electrical service",
-  "Engineering",
-];
-
 export function MobileReview({ project, updateProject }: MobileReviewProps) {
   const conceptImage = project.assets.find((asset) =>
     asset.type.startsWith("image/")
   );
   const budgetRange = estimateFabricationBudget(project);
-  const exclusions = budgetRange?.exclusions || fallbackExclusions;
   const canSubmit = Boolean(project.contactName.trim() && project.contactEmail.trim());
 
   async function submitEstimateRequest() {
@@ -85,14 +72,21 @@ export function MobileReview({ project, updateProject }: MobileReviewProps) {
         </p>
       </section>
 
+      {budgetRange ? (
+        <FabricationCategoryBars
+          profile={budgetRange.fabricationProfile}
+          primaryCostDrivers={budgetRange.primaryCostDrivers}
+        />
+      ) : null}
+
       <section className="rounded-xl border border-black/5 bg-white p-4 shadow-sm">
         <p className="text-[11px] font-black uppercase tracking-[0.22em] text-zinc-400">
           Exclusions
         </p>
         <p className="mt-2 text-xs leading-5 text-zinc-600">
-          FabCheck provides a fabrication budget estimate based on the concept you've submitted. 
+          FabCheck provides a fabrication budget estimate based on the concept you&apos;ve submitted. 
           This estimate includes materials and labor required to build the project, but excludes 
-          services such as installation, freight, AV, furniture rentals, staffing, and other 
+          services such as installation, freight, AV, furniture rentals, and other 
           non-fabrication costs, which can be quoted separately as needed.
         </p>
 
@@ -100,11 +94,11 @@ export function MobileReview({ project, updateProject }: MobileReviewProps) {
 
       <section className="rounded-xl border border-black/5 bg-white p-4 shadow-sm">
         <p className="text-xl font-black italic uppercase">
-          Let's Build It
+          Let&apos;s Build It
         </p>
         
           <p className="mt-2 text-sm text-gray-600">
-    If you'd like to move forward, submit your contact information and we'll
+    If you&apos;d like to move forward, submit your contact information and we&apos;ll
     review your concept, confirm the project details, and prepare a formal
     fabrication proposal.
   </p>

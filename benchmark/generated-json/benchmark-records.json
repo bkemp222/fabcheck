@@ -1,0 +1,1612 @@
+[
+  {
+    "id": "10x10-liquidlettuce-b01",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x10",
+    "budgetLow": 8000,
+    "budgetHigh": 10000,
+    "fabricationEffortProfile": {
+      "walls": 4,
+      "flooring": 2,
+      "counters": 2,
+      "millwork": 0,
+      "av": 0,
+      "structure": 0,
+      "lighting": 1,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Graphic scenic back wall",
+      "Standard flooring",
+      "Compact reception counter"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": null,
+    "sourceImage": "benchmark/10x10/10x10-liquidlettuce-b01.png",
+    "benchmarkVersion": "b01",
+    "calculatedBudget": {
+      "low": 6000,
+      "high": 10000
+    }
+  },
+  {
+    "id": "10x10-liquidlettuce-b02",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x10",
+    "budgetLow": 9000,
+    "budgetHigh": 12000,
+    "fabricationEffortProfile": {
+      "walls": 5,
+      "flooring": 2,
+      "counters": 4,
+      "millwork": 0,
+      "av": 0,
+      "structure": 0,
+      "lighting": 2,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Graphic scenic wall returns",
+      "Wrapped reception counter",
+      "Accent lighting"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "10x10-liquidlettuce-b01",
+    "sourceImage": "benchmark/10x10/10x10-liquidlettuce-b02.png",
+    "benchmarkVersion": "b02",
+    "calculatedBudget": {
+      "low": 7000,
+      "high": 10000
+    }
+  },
+  {
+    "id": "10x10-liquidlettuce-b03",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x10",
+    "budgetLow": 11000,
+    "budgetHigh": 14000,
+    "fabricationEffortProfile": {
+      "walls": 5,
+      "flooring": 3,
+      "counters": 5,
+      "millwork": 3,
+      "av": 0,
+      "structure": 0,
+      "lighting": 3,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Graphic scenic walls",
+      "Reception counter",
+      "Product display millwork"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "10x10-liquidlettuce-b02",
+    "sourceImage": "benchmark/10x10/10x10-liquidlettuce-b03.png",
+    "benchmarkVersion": "b03",
+    "calculatedBudget": {
+      "low": 7000,
+      "high": 11000
+    }
+  },
+  {
+    "id": "10x10-liquidlettuce-b04",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x10",
+    "budgetLow": 12000,
+    "budgetHigh": 17000,
+    "fabricationEffortProfile": {
+      "walls": 6,
+      "flooring": 3,
+      "counters": 5,
+      "millwork": 4,
+      "av": 0,
+      "structure": 0,
+      "lighting": 5,
+      "customFabrication": 4
+    },
+    "detectedAssemblies": [
+      "Graphic scenic wall system",
+      "Wrapped counter",
+      "Integrated lighting",
+      "Custom display feature"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "10x10-liquidlettuce-b03",
+    "sourceImage": "benchmark/10x10/10x10-liquidlettuce-b04.png",
+    "benchmarkVersion": "b04",
+    "calculatedBudget": {
+      "low": 8000,
+      "high": 12000
+    }
+  },
+  {
+    "id": "10x20-boner-b01",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x20",
+    "budgetLow": 15000,
+    "budgetHigh": 20000,
+    "fabricationEffortProfile": {
+      "walls": 4,
+      "flooring": 2,
+      "counters": 4,
+      "millwork": 0,
+      "av": 0,
+      "structure": 0,
+      "lighting": 0,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Graphic scenic walls",
+      "Reception counter"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": null,
+    "sourceImage": "benchmark/10x20/10x20-boner-b01.png",
+    "benchmarkVersion": "b01",
+    "calculatedBudget": {
+      "low": 13000,
+      "high": 20000
+    }
+  },
+  {
+    "id": "10x20-boner-b02",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x20",
+    "budgetLow": 16000,
+    "budgetHigh": 22000,
+    "fabricationEffortProfile": {
+      "walls": 5,
+      "flooring": 2,
+      "counters": 5,
+      "millwork": 0,
+      "av": 0,
+      "structure": 0,
+      "lighting": 3,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Graphic scenic wall system",
+      "Custom counter",
+      "Accent lighting"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "10x20-boner-b01",
+    "sourceImage": "benchmark/10x20/10x20-boner-b02.png",
+    "benchmarkVersion": "b02",
+    "calculatedBudget": {
+      "low": 15000,
+      "high": 20000
+    }
+  },
+  {
+    "id": "10x20-boner-b03",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x20",
+    "budgetLow": 19000,
+    "budgetHigh": 25000,
+    "fabricationEffortProfile": {
+      "walls": 5,
+      "flooring": 3,
+      "counters": 6,
+      "millwork": 4,
+      "av": 0,
+      "structure": 0,
+      "lighting": 3,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Scenic walls",
+      "Custom counter",
+      "Display millwork"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "10x20-boner-b02",
+    "sourceImage": "benchmark/10x20/10x20-boner-b03.png",
+    "benchmarkVersion": "b03",
+    "calculatedBudget": {
+      "low": 16000,
+      "high": 25000
+    }
+  },
+  {
+    "id": "10x20-boner-b04",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x20",
+    "budgetLow": 21000,
+    "budgetHigh": 28000,
+    "fabricationEffortProfile": {
+      "walls": 6,
+      "flooring": 3,
+      "counters": 6,
+      "millwork": 5,
+      "av": 0,
+      "structure": 0,
+      "lighting": 5,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Scenic walls",
+      "Counter system",
+      "Integrated lighting"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "10x20-boner-b03",
+    "sourceImage": "benchmark/10x20/10x20-boner-b04.png",
+    "benchmarkVersion": "b04",
+    "calculatedBudget": {
+      "low": 16000,
+      "high": 25000
+    }
+  },
+  {
+    "id": "10x20-boner-b05",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x20",
+    "budgetLow": 24000,
+    "budgetHigh": 32000,
+    "fabricationEffortProfile": {
+      "walls": 7,
+      "flooring": 4,
+      "counters": 6,
+      "millwork": 6,
+      "av": 0,
+      "structure": 0,
+      "lighting": 6,
+      "customFabrication": 4
+    },
+    "detectedAssemblies": [
+      "Expanded scenic wall system",
+      "Counter and display millwork",
+      "Integrated lighting"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "10x20-boner-b04",
+    "sourceImage": "benchmark/10x20/10x20-boner-b05.png",
+    "benchmarkVersion": "b05",
+    "calculatedBudget": {
+      "low": 20000,
+      "high": 30000
+    }
+  },
+  {
+    "id": "10x20-boner-b06",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x20",
+    "budgetLow": 27000,
+    "budgetHigh": 35000,
+    "fabricationEffortProfile": {
+      "walls": 7,
+      "flooring": 4,
+      "counters": 7,
+      "millwork": 6,
+      "av": 0,
+      "structure": 4,
+      "lighting": 7,
+      "customFabrication": 5
+    },
+    "detectedAssemblies": [
+      "Scenic wall system",
+      "Custom counters",
+      "Lighted display feature",
+      "Light structural element"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "10x20-boner-b05",
+    "sourceImage": "benchmark/10x20/10x20-boner-b06.png",
+    "benchmarkVersion": "b06",
+    "calculatedBudget": {
+      "low": 20000,
+      "high": 35000
+    }
+  },
+  {
+    "id": "10x20-gunts-b01",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x20",
+    "budgetLow": 15000,
+    "budgetHigh": 20000,
+    "fabricationEffortProfile": {
+      "walls": 5,
+      "flooring": 2,
+      "counters": 3,
+      "millwork": 0,
+      "av": 0,
+      "structure": 0,
+      "lighting": 0,
+      "customFabrication": 2
+    },
+    "detectedAssemblies": [
+      "Graphic scenic wall",
+      "Counter"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": null,
+    "sourceImage": "benchmark/10x20/10x20-gunts-b01.png",
+    "benchmarkVersion": "b01",
+    "calculatedBudget": {
+      "low": 15000,
+      "high": 20000
+    }
+  },
+  {
+    "id": "10x20-gunts-b02",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x20",
+    "budgetLow": 18000,
+    "budgetHigh": 24000,
+    "fabricationEffortProfile": {
+      "walls": 5,
+      "flooring": 3,
+      "counters": 5,
+      "millwork": 0,
+      "av": 0,
+      "structure": 0,
+      "lighting": 0,
+      "customFabrication": 4
+    },
+    "detectedAssemblies": [
+      "Graphic scenic wall",
+      "Wrapped counter",
+      "Custom brand feature"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "10x20-gunts-b01",
+    "sourceImage": "benchmark/10x20/10x20-gunts-b02.png",
+    "benchmarkVersion": "b02",
+    "calculatedBudget": {
+      "low": 16000,
+      "high": 25000
+    }
+  },
+  {
+    "id": "10x20-gunts-b03",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x20",
+    "budgetLow": 20000,
+    "budgetHigh": 27000,
+    "fabricationEffortProfile": {
+      "walls": 6,
+      "flooring": 3,
+      "counters": 5,
+      "millwork": 5,
+      "av": 0,
+      "structure": 0,
+      "lighting": 0,
+      "customFabrication": 4
+    },
+    "detectedAssemblies": [
+      "Scenic walls",
+      "Custom counter",
+      "Display millwork"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "10x20-gunts-b02",
+    "sourceImage": "benchmark/10x20/10x20-gunts-b03.png",
+    "benchmarkVersion": "b03",
+    "calculatedBudget": {
+      "low": 16000,
+      "high": 25000
+    }
+  },
+  {
+    "id": "10x20-gunts-b04",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x20",
+    "budgetLow": 23000,
+    "budgetHigh": 30000,
+    "fabricationEffortProfile": {
+      "walls": 6,
+      "flooring": 4,
+      "counters": 6,
+      "millwork": 5,
+      "av": 0,
+      "structure": 0,
+      "lighting": 5,
+      "customFabrication": 5
+    },
+    "detectedAssemblies": [
+      "Scenic wall system",
+      "Custom counter",
+      "Integrated lighting"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "10x20-gunts-b03",
+    "sourceImage": "benchmark/10x20/10x20-gunts-b04.png",
+    "benchmarkVersion": "b04",
+    "calculatedBudget": {
+      "low": 19000,
+      "high": 25000
+    }
+  },
+  {
+    "id": "10x20-gunts-b05",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x20",
+    "budgetLow": 25000,
+    "budgetHigh": 34000,
+    "fabricationEffortProfile": {
+      "walls": 7,
+      "flooring": 4,
+      "counters": 6,
+      "millwork": 6,
+      "av": 0,
+      "structure": 0,
+      "lighting": 6,
+      "customFabrication": 6
+    },
+    "detectedAssemblies": [
+      "Expanded scenic walls",
+      "Millwork display",
+      "Integrated lighting",
+      "Custom brand feature"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "10x20-gunts-b04",
+    "sourceImage": "benchmark/10x20/10x20-gunts-b05.png",
+    "benchmarkVersion": "b05",
+    "calculatedBudget": {
+      "low": 20000,
+      "high": 30000
+    }
+  },
+  {
+    "id": "10x20-gunts-b06",
+    "projectType": "Trade Show Booth",
+    "footprint": "10x20",
+    "budgetLow": 28000,
+    "budgetHigh": 36000,
+    "fabricationEffortProfile": {
+      "walls": 7,
+      "flooring": 5,
+      "counters": 7,
+      "millwork": 6,
+      "av": 4,
+      "structure": 0,
+      "lighting": 6,
+      "customFabrication": 7
+    },
+    "detectedAssemblies": [
+      "Scenic wall system",
+      "Custom counters",
+      "Technology integration",
+      "Custom fabricated feature"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "10x20-gunts-b05",
+    "sourceImage": "benchmark/10x20/10x20-gunts-b06.png",
+    "benchmarkVersion": "b06",
+    "calculatedBudget": {
+      "low": 20000,
+      "high": 35000
+    }
+  },
+  {
+    "id": "20x20-shrimp-b01",
+    "projectType": "Trade Show Booth",
+    "footprint": "20x20",
+    "budgetLow": 25000,
+    "budgetHigh": 35000,
+    "fabricationEffortProfile": {
+      "walls": 5,
+      "flooring": 3,
+      "counters": 4,
+      "millwork": 0,
+      "av": 0,
+      "structure": 0,
+      "lighting": 0,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Island scenic wall",
+      "Counter"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": null,
+    "sourceImage": "benchmark/20x20/20x20-shrimp-b01.png",
+    "benchmarkVersion": "b01",
+    "calculatedBudget": {
+      "low": 25000,
+      "high": 35000
+    }
+  },
+  {
+    "id": "20x20-shrimp-b02",
+    "projectType": "Trade Show Booth",
+    "footprint": "20x20",
+    "budgetLow": 28000,
+    "budgetHigh": 38000,
+    "fabricationEffortProfile": {
+      "walls": 6,
+      "flooring": 3,
+      "counters": 5,
+      "millwork": 0,
+      "av": 0,
+      "structure": 0,
+      "lighting": 3,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Scenic walls",
+      "Custom counter",
+      "Accent lighting"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "20x20-shrimp-b01",
+    "sourceImage": "benchmark/20x20/20x20-shrimp-b02.png",
+    "benchmarkVersion": "b02",
+    "calculatedBudget": {
+      "low": 25000,
+      "high": 35000
+    }
+  },
+  {
+    "id": "20x20-shrimp-b03",
+    "projectType": "Trade Show Booth",
+    "footprint": "20x20",
+    "budgetLow": 31000,
+    "budgetHigh": 42000,
+    "fabricationEffortProfile": {
+      "walls": 6,
+      "flooring": 4,
+      "counters": 6,
+      "millwork": 5,
+      "av": 0,
+      "structure": 0,
+      "lighting": 4,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Scenic walls",
+      "Custom counters",
+      "Display millwork"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "20x20-shrimp-b02",
+    "sourceImage": "benchmark/20x20/20x20-shrimp-b03.png",
+    "benchmarkVersion": "b03",
+    "calculatedBudget": {
+      "low": 25000,
+      "high": 40000
+    }
+  },
+  {
+    "id": "20x20-shrimp-b04",
+    "projectType": "Trade Show Booth",
+    "footprint": "20x20",
+    "budgetLow": 36000,
+    "budgetHigh": 48000,
+    "fabricationEffortProfile": {
+      "walls": 7,
+      "flooring": 4,
+      "counters": 6,
+      "millwork": 6,
+      "av": 0,
+      "structure": 5,
+      "lighting": 5,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Island wall system",
+      "Counters",
+      "Overhead structure"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "20x20-shrimp-b03",
+    "sourceImage": "benchmark/20x20/20x20-shrimp-b04.png",
+    "benchmarkVersion": "b04",
+    "calculatedBudget": {
+      "low": 35000,
+      "high": 50000
+    }
+  },
+  {
+    "id": "20x20-shrimp-b05",
+    "projectType": "Trade Show Booth",
+    "footprint": "20x20",
+    "budgetLow": 40000,
+    "budgetHigh": 55000,
+    "fabricationEffortProfile": {
+      "walls": 7,
+      "flooring": 5,
+      "counters": 7,
+      "millwork": 6,
+      "av": 0,
+      "structure": 6,
+      "lighting": 7,
+      "customFabrication": 5
+    },
+    "detectedAssemblies": [
+      "Island scenic system",
+      "Millwork",
+      "Integrated lighting",
+      "Custom feature"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "20x20-shrimp-b04",
+    "sourceImage": "benchmark/20x20/20x20-shrimp-b05.png",
+    "benchmarkVersion": "b05",
+    "calculatedBudget": {
+      "low": 45000,
+      "high": 60000
+    }
+  },
+  {
+    "id": "20x20-shrimp-b06",
+    "projectType": "Trade Show Booth",
+    "footprint": "20x20",
+    "budgetLow": 45000,
+    "budgetHigh": 60000,
+    "fabricationEffortProfile": {
+      "walls": 8,
+      "flooring": 5,
+      "counters": 7,
+      "millwork": 7,
+      "av": 4,
+      "structure": 7,
+      "lighting": 7,
+      "customFabrication": 6
+    },
+    "detectedAssemblies": [
+      "Island scenic system",
+      "Counters and millwork",
+      "Technology integration",
+      "Overhead structure"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "20x20-shrimp-b05",
+    "sourceImage": "benchmark/20x20/20x20-shrimp-b06.png",
+    "benchmarkVersion": "b06",
+    "calculatedBudget": {
+      "low": 45000,
+      "high": 60000
+    }
+  },
+  {
+    "id": "30x30-stepjet-b01",
+    "projectType": "Trade Show Booth",
+    "footprint": "30x30",
+    "budgetLow": 55000,
+    "budgetHigh": 70000,
+    "fabricationEffortProfile": {
+      "walls": 5,
+      "flooring": 3,
+      "counters": 5,
+      "millwork": 4,
+      "av": 0,
+      "structure": 0,
+      "lighting": 0,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Large scenic wall system",
+      "Counters"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": null,
+    "sourceImage": "benchmark/30x30/30x30-stepjet-b01.png",
+    "benchmarkVersion": "b01",
+    "calculatedBudget": {
+      "low": 55000,
+      "high": 75000
+    }
+  },
+  {
+    "id": "30x30-stepjet-b02",
+    "projectType": "Trade Show Booth",
+    "footprint": "30x30",
+    "budgetLow": 60000,
+    "budgetHigh": 80000,
+    "fabricationEffortProfile": {
+      "walls": 6,
+      "flooring": 4,
+      "counters": 5,
+      "millwork": 5,
+      "av": 0,
+      "structure": 0,
+      "lighting": 4,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Large scenic walls",
+      "Counters",
+      "Integrated lighting"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "30x30-stepjet-b01",
+    "sourceImage": "benchmark/30x30/30x30-stepjet-b02.png",
+    "benchmarkVersion": "b02",
+    "calculatedBudget": {
+      "low": 60000,
+      "high": 80000
+    }
+  },
+  {
+    "id": "30x30-stepjet-b03",
+    "projectType": "Trade Show Booth",
+    "footprint": "30x30",
+    "budgetLow": 65000,
+    "budgetHigh": 90000,
+    "fabricationEffortProfile": {
+      "walls": 7,
+      "flooring": 4,
+      "counters": 6,
+      "millwork": 6,
+      "av": 0,
+      "structure": 5,
+      "lighting": 5,
+      "customFabrication": 0
+    },
+    "detectedAssemblies": [
+      "Scenic walls",
+      "Counters",
+      "Millwork",
+      "Structural feature"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "30x30-stepjet-b02",
+    "sourceImage": "benchmark/30x30/30x30-stepjet-b03.png",
+    "benchmarkVersion": "b03",
+    "calculatedBudget": {
+      "low": 75000,
+      "high": 105000
+    }
+  },
+  {
+    "id": "30x30-stepjet-b04",
+    "projectType": "Trade Show Booth",
+    "footprint": "30x30",
+    "budgetLow": 75000,
+    "budgetHigh": 105000,
+    "fabricationEffortProfile": {
+      "walls": 7,
+      "flooring": 5,
+      "counters": 7,
+      "millwork": 7,
+      "av": 0,
+      "structure": 6,
+      "lighting": 6,
+      "customFabrication": 5
+    },
+    "detectedAssemblies": [
+      "Scenic system",
+      "Counters and millwork",
+      "Overhead structure",
+      "Custom feature"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "30x30-stepjet-b03",
+    "sourceImage": "benchmark/30x30/30x30-stepjet-b04.png",
+    "benchmarkVersion": "b04",
+    "calculatedBudget": {
+      "low": 95000,
+      "high": 130000
+    }
+  },
+  {
+    "id": "30x30-stepjet-b05",
+    "projectType": "Trade Show Booth",
+    "footprint": "30x30",
+    "budgetLow": 85000,
+    "budgetHigh": 115000,
+    "fabricationEffortProfile": {
+      "walls": 8,
+      "flooring": 5,
+      "counters": 7,
+      "millwork": 7,
+      "av": 5,
+      "structure": 7,
+      "lighting": 7,
+      "customFabrication": 6
+    },
+    "detectedAssemblies": [
+      "Scenic system",
+      "Technology integration",
+      "Overhead structure",
+      "Integrated lighting"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "30x30-stepjet-b04",
+    "sourceImage": "benchmark/30x30/30x30-stepjet-b05.png",
+    "benchmarkVersion": "b05",
+    "calculatedBudget": {
+      "low": 95000,
+      "high": 130000
+    }
+  },
+  {
+    "id": "30x30-stepjet-b06",
+    "projectType": "Trade Show Booth",
+    "footprint": "30x30",
+    "budgetLow": 95000,
+    "budgetHigh": 130000,
+    "fabricationEffortProfile": {
+      "walls": 8,
+      "flooring": 6,
+      "counters": 8,
+      "millwork": 8,
+      "av": 5,
+      "structure": 8,
+      "lighting": 8,
+      "customFabrication": 7
+    },
+    "detectedAssemblies": [
+      "Premium scenic system",
+      "Counters and millwork",
+      "Technology integration",
+      "Overhead structure",
+      "Custom fabrication"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": "30x30-stepjet-b05",
+    "sourceImage": "benchmark/30x30/30x30-stepjet-b06.png",
+    "benchmarkVersion": "b06",
+    "calculatedBudget": {
+      "low": 95000,
+      "high": 130000
+    }
+  },
+  {
+    "id": "photo-moment-got_worms",
+    "projectType": "Photo Moment",
+    "footprint": "8x8",
+    "budgetLow": 8000,
+    "budgetHigh": 12000,
+    "fabricationEffortProfile": {
+      "walls": 5,
+      "flooring": 1,
+      "counters": 0,
+      "millwork": 0,
+      "av": 0,
+      "structure": 0,
+      "lighting": 4,
+      "customFabrication": 5
+    },
+    "detectedAssemblies": [
+      "Graphic photo wall",
+      "Integrated lighting",
+      "Custom scenic photo feature"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": null,
+    "sourceImage": "benchmark/photo_moments/got_worms.png",
+    "benchmarkVersion": "b01",
+    "calculatedBudget": {
+      "low": 8000,
+      "high": 12000
+    }
+  },
+  {
+    "id": "photo-moment-laquatius",
+    "projectType": "Photo Moment",
+    "footprint": "8x8",
+    "budgetLow": 9000,
+    "budgetHigh": 14000,
+    "fabricationEffortProfile": {
+      "walls": 5,
+      "flooring": 2,
+      "counters": 0,
+      "millwork": 0,
+      "av": 0,
+      "structure": 3,
+      "lighting": 5,
+      "customFabrication": 5
+    },
+    "detectedAssemblies": [
+      "Photo moment wall",
+      "Light structure",
+      "Integrated lighting",
+      "Custom scenic detail"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": null,
+    "sourceImage": "benchmark/photo_moments/laquatius.png",
+    "benchmarkVersion": "b01",
+    "calculatedBudget": {
+      "low": 9000,
+      "high": 12000
+    }
+  },
+  {
+    "id": "photo-moment-mutt_cutts",
+    "projectType": "Photo Moment",
+    "footprint": "8x8",
+    "budgetLow": 12000,
+    "budgetHigh": 18000,
+    "fabricationEffortProfile": {
+      "walls": 6,
+      "flooring": 2,
+      "counters": 0,
+      "millwork": 4,
+      "av": 0,
+      "structure": 0,
+      "lighting": 5,
+      "customFabrication": 6
+    },
+    "detectedAssemblies": [
+      "Photo moment scenic wall",
+      "Display millwork",
+      "Integrated lighting",
+      "Custom fabrication"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": null,
+    "sourceImage": "benchmark/photo_moments/mutt_cutts.png",
+    "benchmarkVersion": "b01",
+    "calculatedBudget": {
+      "low": 10000,
+      "high": 13000
+    }
+  },
+  {
+    "id": "photo-moment-nurd",
+    "projectType": "Photo Moment",
+    "footprint": "8x8",
+    "budgetLow": 8000,
+    "budgetHigh": 13000,
+    "fabricationEffortProfile": {
+      "walls": 4,
+      "flooring": 1,
+      "counters": 0,
+      "millwork": 0,
+      "av": 0,
+      "structure": 3,
+      "lighting": 4,
+      "customFabrication": 5
+    },
+    "detectedAssemblies": [
+      "Compact scenic structure",
+      "Graphic wall",
+      "Integrated lighting",
+      "Custom photo feature"
+    ],
+    "pricingAssumptions": [
+      "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
+      "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
+      "Standard furniture and AV equipment are excluded unless scenic integration is visible."
+    ],
+    "exclusions": [
+      "Freight",
+      "Shipping",
+      "Installation",
+      "Dismantle",
+      "Drayage",
+      "Rigging labor",
+      "Venue labor",
+      "Venue electrical",
+      "Furniture rental",
+      "AV rental",
+      "Taxes",
+      "Permits",
+      "Venue services",
+      "General contractor costs"
+    ],
+    "cumulativeVersionReference": null,
+    "sourceImage": "benchmark/photo_moments/nurd.png",
+    "benchmarkVersion": "b01",
+    "calculatedBudget": {
+      "low": 9000,
+      "high": 12000
+    }
+  }
+]

@@ -15,6 +15,28 @@ export type AssetCallout = {
 
 export type FabricationDetection = string;
 
+export type FabricationCategory =
+  | "walls"
+  | "flooring"
+  | "counters"
+  | "millwork"
+  | "av"
+  | "structure"
+  | "lighting"
+  | "customFabrication";
+
+export type FabricationCategoryProfile = Record<FabricationCategory, number>;
+
+export type FabricatedAssembly = {
+  label: string;
+  category: FabricationCategory;
+  evidence?: string;
+};
+
+export type FabricationCategoryEvidence = Partial<
+  Record<FabricationCategory, string>
+>;
+
 export type FabricationKnowledgeRow = {
   detection: FabricationDetection;
   question: string;
@@ -69,6 +91,8 @@ export type FabricationEstimate = {
   notesAndAssumptions: string[];
   exclusions: string[];
   costSavingSuggestions: string[];
+  fabricationProfile: FabricationCategoryProfile;
+  primaryCostDrivers: string[];
 };
 
 export type AssetAiReview = {
@@ -76,6 +100,9 @@ export type AssetAiReview = {
   estimatedSize: string;
   confidence: number;
   summary: string;
+  fabricationProfile?: FabricationCategoryProfile;
+  fabricationCategoryEvidence?: FabricationCategoryEvidence;
+  fabricatedAssemblies?: FabricatedAssembly[];
   fabricationInventory: {
     elements: string[];
     branding: string[];

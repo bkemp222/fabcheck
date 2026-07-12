@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { mockProject } from "@/data/mock-project";
 import { createFabricationAssumptions } from "@/data/fabrication-knowledge";
+import { normalizeFabricationProfile } from "@/data/fabrication-profile";
 import type {
   ActiveView,
   AssetAiReview,
@@ -104,6 +105,11 @@ export function useProject() {
         estimatedSize: data.review.estimatedSize || "Unknown",
         confidence: data.review.confidence || 0,
         summary: data.review.summary || "",
+        fabricationProfile: normalizeFabricationProfile(
+          data.review.fabricationProfile
+        ),
+        fabricationCategoryEvidence: data.review.fabricationCategoryEvidence || {},
+        fabricatedAssemblies: data.review.fabricatedAssemblies || [],
         fabricationInventory: {
           elements: data.review.fabricationInventory?.elements || [],
           branding: data.review.fabricationInventory?.branding || [],

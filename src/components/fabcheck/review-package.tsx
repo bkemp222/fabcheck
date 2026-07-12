@@ -1,6 +1,7 @@
 "use client";
 
 import { estimateFabricationBudget } from "@/data/fabrication-knowledge";
+import { FabricationCategoryBars } from "@/components/fabcheck/fabrication-category-bars";
 import type { Project } from "@/types/project";
 
 type ReviewPackageProps = {
@@ -12,25 +13,11 @@ type ReviewPackageProps = {
   ) => void;
 };
 
-const fallbackExclusions = [
-  "AV equipment",
-  "Furniture",
-  "Freight",
-  "Installation",
-  "Travel",
-  "Rigging labor",
-  "Venue services",
-  "Union labor",
-  "Electrical service",
-  "Engineering",
-];
-
 export function ReviewPackage({ project, updateProject }: ReviewPackageProps) {
   const conceptImage = project.assets.find((asset) =>
     asset.type.startsWith("image/")
   );
   const budgetRange = estimateFabricationBudget(project);
-  const exclusions = budgetRange?.exclusions || fallbackExclusions;
   const canSubmit = Boolean(
     project.contactName.trim() && project.contactEmail.trim()
   );
@@ -89,6 +76,13 @@ export function ReviewPackage({ project, updateProject }: ReviewPackageProps) {
           </p>
         </section>
 
+        {budgetRange ? (
+          <FabricationCategoryBars
+            profile={budgetRange.fabricationProfile}
+            primaryCostDrivers={budgetRange.primaryCostDrivers}
+          />
+        ) : null}
+
         <section className="rounded-xl border border-black/5 bg-white p-5 shadow-sm">
           <p className="text-[11px] font-black uppercase tracking-[0.22em] text-zinc-400">
             Exclusions
@@ -97,7 +91,7 @@ export function ReviewPackage({ project, updateProject }: ReviewPackageProps) {
             FabCheck provides a fabrication budget estimate based on the concept
             you&apos;ve submitted. This estimate includes materials and labor
             required to build the project, but excludes services such as
-            installation, freight, AV, furniture rentals, staffing, and other
+            installation, freight, AV, furniture rentals, and other
             non-fabrication costs, which can be quoted separately as needed.
           </p>
         </section>

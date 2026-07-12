@@ -1,6 +1,8 @@
 import type {
   AssetAiReview,
   FabricationAssumption,
+  FabricationCategory,
+  FabricationCategoryProfile,
   FabricationCostDriver,
   FabricationDetection,
   FabricationEstimate,
@@ -10,6 +12,15 @@ import type {
   Project,
   ProjectAsset,
 } from "@/types/project";
+import {
+  EMPTY_FABRICATION_PROFILE,
+  FABRICATION_CATEGORIES,
+  calculateFabricationProfileScore,
+  getFabricationProfileMultiplier,
+  getPrimaryCostDriverLabels,
+  hasFabricationProfile,
+  normalizeFabricationProfile,
+} from "@/data/fabrication-profile";
 
 export const FABRICATION_KNOWLEDGE: FabricationKnowledgeRow[] = [
   {
@@ -280,6 +291,94 @@ export function getProjectAssumptions(project: Project) {
   );
 }
 
+function combineFabricationProfiles(
+  profiles: FabricationCategoryProfile[]
+): FabricationCategoryProfile {
+  if (profiles.length === 0) {
+    return { ...EMPTY_FABRICATION_PROFILE };
+  }
+
+  return FABRICATION_CATEGORIES.reduce<FabricationCategoryProfile>(
+    (combined, category) => ({
+      ...combined,
+      [category]: Math.max(...profiles.map((profile) => profile[category])),
+    }),
+    { ...EMPTY_FABRICATION_PROFILE }
+  );
+}
+
+function inferFabricationProfileFromAssumptions(
+  assumptions: ReturnType<typeof getProjectAssumptions>
+): FabricationCategoryProfile {
+  const profile = { ...EMPTY_FABRICATION_PROFILE };
+
+  const setScore = (category: FabricationCategory, score: number) => {
+    profile[category] = Math.max(profile[category], score);
+  };
+
+  for (const { assumption } of assumptions) {
+    if (assumption.detection === "Wall") setScore("walls", 4);
+    if (assumption.detection === "Flooring") setScore("flooring", 2);
+    if (assumption.detection === "Counter") setScore("counters", 5);
+    if (["Shelving", "Door"].includes(assumption.detection)) {
+      setScore("millwork", 4);
+    }
+    if (["TV/Monitor", "Interactive"].includes(assumption.detection)) {
+      setScore("av", 3);
+    }
+    if (["Truss", "Hanging Sign"].includes(assumption.detection)) {
+      setScore("structure", 6);
+    }
+    if (assumption.detection === "Lighting") setScore("lighting", 4);
+    if (["Logo", "Special Finish"].includes(assumption.detection)) {
+      setScore("customFabrication", 3);
+    }
+
+    if (
+      assumption.question === "Lighting" &&
+      !["None", ""].includes(assumption.value)
+    ) {
+      setScore("lighting", 5);
+    }
+
+    if (
+      assumption.question === "Shape" &&
+      ["Single Radius", "Double Radius"].includes(assumption.value)
+    ) {
+      setScore("customFabrication", assumption.value === "Double Radius" ? 7 : 5);
+    }
+
+    if (
+      assumption.question === "Type" &&
+      ["Custom", "Raised Floor"].includes(assumption.value)
+    ) {
+      if (assumption.detection === "Counter") setScore("counters", 6);
+      if (assumption.detection === "Flooring") setScore("flooring", 5);
+    }
+
+    if (
+      assumption.question === "Construction" &&
+      ["Acrylic", "Metal"].includes(assumption.value)
+    ) {
+      setScore("customFabrication", 6);
+    }
+  }
+
+  return normalizeFabricationProfile(profile);
+}
+
+export function getProjectFabricationProfile(project: Project) {
+  const aiProfiles = project.assets
+    .map((asset) => normalizeFabricationProfile(asset.aiReview?.fabricationProfile))
+    .filter(hasFabricationProfile);
+
+  if (aiProfiles.length > 0) {
+    return combineFabricationProfiles(aiProfiles);
+  }
+
+  return inferFabricationProfileFromAssumptions(getProjectAssumptions(project));
+}
+
 const ESTIMATE_EXCLUSIONS = [
   "AV equipment",
   "Furniture",
@@ -308,10 +407,10 @@ const FOOTPRINT_BASE_RANGES: Record<
 > = {
   "8x8": {
     label: "Photo Moment / 8x8 Activation",
-    anchor: 5000,
-    typicalUpper: 8000,
-    premium: 12000,
-    rare: 18000,
+    anchor: 8000,
+    typicalUpper: 12000,
+    premium: 18000,
+    rare: 25000,
     confidence: 84,
   },
   "10x10": {
@@ -332,7 +431,7 @@ const FOOTPRINT_BASE_RANGES: Record<
   },
   "20x20": {
     label: "20x20",
-    anchor: 205000,
+    anchor: 25000,
     typicalUpper: 35000,
     premium: 45000,
     rare: 60000,
@@ -364,7 +463,7 @@ const FOOTPRINT_BASE_RANGES: Record<
   },
 };
 
-const MAX_IMPACT_MULTIPLIER = 1.9;
+const MAX_IMPACT_MULTIPLIER = 2.05;
 
 type ProjectAssumption = ReturnType<typeof getProjectAssumptions>[number];
 
@@ -730,19 +829,23 @@ function getImpactScore(drivers: FabricationCostDriver[]) {
 
 function getComplexity(
   assumptions: ProjectAssumption[],
-  drivers: FabricationCostDriver[]
+  drivers: FabricationCostDriver[],
+  fabricationProfile: FabricationCategoryProfile
 ): EstimateComplexity {
   const impactScore = getImpactScore(drivers);
+  const profileScore = calculateFabricationProfileScore(fabricationProfile);
   const uniqueDetections = new Set(
     assumptions.map(({ assumption }) => assumption.detection)
   ).size;
 
-  if (impactScore >= 17) return "premium";
-  if (impactScore >= 12) return "complex";
-  if (impactScore >= 8 || uniqueDetections >= 12) {
+  if (profileScore >= 50 || impactScore >= 17) return "premium";
+  if (profileScore >= 34 || impactScore >= 12) return "complex";
+  if (profileScore >= 26 || impactScore >= 8 || uniqueDetections >= 12) {
     return "complex";
   }
-  if (impactScore >= 4 || uniqueDetections >= 4) return "moderate";
+  if (profileScore >= 10 || impactScore >= 4 || uniqueDetections >= 4) {
+    return "moderate";
+  }
   return "simple";
 }
 
@@ -841,8 +944,9 @@ function calculateConfidence(
 
 export function estimateFabricationBudget(project: Project): FabricationEstimate | null {
   const assumptions = getProjectAssumptions(project);
+  const fabricationProfile = getProjectFabricationProfile(project);
 
-  if (assumptions.length === 0) {
+  if (assumptions.length === 0 && !hasFabricationProfile(fabricationProfile)) {
     return null;
   }
 
@@ -850,9 +954,15 @@ export function estimateFabricationBudget(project: Project): FabricationEstimate
   const baseRange = FOOTPRINT_BASE_RANGES[footprint];
   const majorCostDrivers = getMajorCostDrivers(assumptions);
   const impactScore = getImpactScore(majorCostDrivers);
-  const complexity = getComplexity(assumptions, majorCostDrivers);
+  const complexity = getComplexity(
+    assumptions,
+    majorCostDrivers,
+    fabricationProfile
+  );
+  const legacyMultiplier = getImpactMultiplier(impactScore);
+  const profileMultiplier = getFabricationProfileMultiplier(fabricationProfile);
   const impactMultiplier = Math.min(
-    getImpactMultiplier(impactScore),
+    Math.max(profileMultiplier, legacyMultiplier),
     MAX_IMPACT_MULTIPLIER
   );
   const target = Math.min(baseRange.rare * 1.15, baseRange.anchor * impactMultiplier);
@@ -883,6 +993,8 @@ export function estimateFabricationBudget(project: Project): FabricationEstimate
     ),
     exclusions: ESTIMATE_EXCLUSIONS,
     costSavingSuggestions: getCostSavingSuggestions(majorCostDrivers),
+    fabricationProfile,
+    primaryCostDrivers: getPrimaryCostDriverLabels(fabricationProfile),
   };
 }
 

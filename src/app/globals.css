@@ -150,3 +150,25 @@ body {
 .premium-fade-in {
   animation: premiumFadeIn 220ms ease-out both;
 }
+
+@keyframes fabricationScoreFill {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.fabrication-score-bar {
+  animation: fabricationScoreFill 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-page-enter,
+  .premium-fade-in,
+  .fabrication-score-bar {
+    animation: none;
+  }
+}

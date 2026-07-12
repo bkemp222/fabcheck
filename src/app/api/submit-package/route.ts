@@ -3,7 +3,15 @@ import { NextResponse } from "next/server";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import type { PDFFont, PDFPage } from "pdf-lib";
 import { estimateFabricationBudget } from "@/data/fabrication-knowledge";
-import type { AssetCallout, Project } from "@/types/project";
+import {
+  FABRICATION_CATEGORIES,
+  FABRICATION_CATEGORY_LABELS,
+} from "@/data/fabrication-profile";
+import type {
+  AssetCallout,
+  FabricationCategoryProfile,
+  Project,
+} from "@/types/project";
 
 type DrawWrappedTextArgs = {
   page: PDFPage;
@@ -30,6 +38,29 @@ type DrawPdfListArgs = {
 
 function cleanFileName(value: string) {
   return value.replace(/[^a-z0-9-_]/gi, "-").replace(/-+/g, "-");
+}
+
+function renderFabricationProfileEmailBars(profile: FabricationCategoryProfile) {
+  return `
+    <div style="margin:20px 0 8px 0;">
+      ${FABRICATION_CATEGORIES.map((category) => {
+        const score = profile[category] || 0;
+        const width = `${score * 10}%`;
+
+        return `
+          <div style="margin-bottom:12px;">
+            <div style="display:flex;justify-content:space-between;gap:12px;margin-bottom:5px;font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#52525b;">
+              <span>${FABRICATION_CATEGORY_LABELS[category]}</span>
+              <span>${score}/10</span>
+            </div>
+            <div style="height:8px;border-radius:999px;background:#f4f4f5;overflow:hidden;">
+              <div style="width:${width};height:8px;border-radius:999px;background:#ffa431;"></div>
+            </div>
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
 }
 
 function drawWrappedText({
@@ -237,10 +268,24 @@ async function generatePdf(project: Project) {
 
     y = drawPdfList({
       page,
+      title: "Fabrication Profile",
+      items: FABRICATION_CATEGORIES.map(
+        (category) =>
+          `${FABRICATION_CATEGORY_LABELS[category]}: ${fabricationEstimate.fabricationProfile[category]}/10`
+      ),
+      x: margin,
+      y: y - 10,
+      font: regular,
+      bold,
+      maxWidth: pageWidth - margin * 2,
+    });
+
+    y = drawPdfList({
+      page,
       title: "Detected Fabrication Scope",
       items: fabricationEstimate.includedScope,
       x: margin,
-      y: y - 10,
+      y,
       font: regular,
       bold,
       maxWidth: pageWidth - margin * 2,
@@ -485,6 +530,12 @@ export async function POST(request: Request) {
               <p><strong>Estimated fabrication budget:</strong> ${fabricationEstimate.label}</p>
               <p><strong>Confidence:</strong> ${fabricationEstimate.confidence}%</p>
               <p><strong>Complexity:</strong> ${fabricationEstimate.complexity}</p>
+              ${renderFabricationProfileEmailBars(fabricationEstimate.fabricationProfile)}
+              <p><strong>Primary Cost Drivers:</strong> ${
+                fabricationEstimate.primaryCostDrivers.length
+                  ? fabricationEstimate.primaryCostDrivers.join(", ")
+                  : "None identified"
+              }</p>
               <p><strong>Client Message:</strong> ${project.message || "Not added"}</p>
             `
             : ""

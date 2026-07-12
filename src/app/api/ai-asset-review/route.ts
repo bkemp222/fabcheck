@@ -1,6 +1,17 @@
 import OpenAI from "openai";
 import { NextResponse } from "next/server";
 import { FABRICATION_DETECTIONS } from "@/data/fabrication-knowledge";
+import {
+  FABRICATION_CATEGORIES,
+  EMPTY_FABRICATION_PROFILE,
+  normalizeFabricationProfile,
+} from "@/data/fabrication-profile";
+import type {
+  FabricatedAssembly,
+  FabricationCategory,
+  FabricationCategoryEvidence,
+  FabricationCategoryProfile,
+} from "@/types/project";
 
 type CalloutCategory =
   | "element"
@@ -35,6 +46,9 @@ type AssetReview = {
   summaryTitle: string;
   summaryText: string;
   summary: string;
+  fabricationProfile: FabricationCategoryProfile;
+  fabricationCategoryEvidence: FabricationCategoryEvidence;
+  fabricatedAssemblies: FabricatedAssembly[];
   fabricationInventory: {
     elements: string[];
     branding: string[];
@@ -69,6 +83,9 @@ const assetReviewSchema = {
     "summaryTitle",
     "summaryText",
     "summary",
+    "fabricationProfile",
+    "fabricationCategoryEvidence",
+    "fabricatedAssemblies",
     "fabricationInventory",
     "suggestedCallouts",
     "pins",
@@ -80,6 +97,41 @@ const assetReviewSchema = {
     summaryTitle: { type: "string" },
     summaryText: { type: "string" },
     summary: { type: "string" },
+    fabricationProfile: {
+      type: "object",
+      additionalProperties: false,
+      required: FABRICATION_CATEGORIES,
+      properties: Object.fromEntries(
+        FABRICATION_CATEGORIES.map((category) => [
+          category,
+          { type: "integer", minimum: 0, maximum: 10 },
+        ])
+      ),
+    },
+    fabricationCategoryEvidence: {
+      type: "object",
+      additionalProperties: false,
+      required: FABRICATION_CATEGORIES,
+      properties: Object.fromEntries(
+        FABRICATION_CATEGORIES.map((category) => [
+          category,
+          { type: "string" },
+        ])
+      ),
+    },
+    fabricatedAssemblies: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["label", "category", "evidence"],
+        properties: {
+          label: { type: "string" },
+          category: { type: "string", enum: FABRICATION_CATEGORIES },
+          evidence: { type: "string" },
+        },
+      },
+    },
     fabricationInventory: {
       type: "object",
       additionalProperties: false,
@@ -139,7 +191,7 @@ Your job is to create a simple first-draft markup that helps the customer explai
 
 Think like a fabricator briefly scanning the image:
 1. What kind of thing is this? Trade show booth, festival activation, photo moment, mobile bar, scenic wall, retail display, custom fabrication, or mixed?
-2. What obvious fabricated/produced elements can be identified?
+2. What visible fabricated assemblies can be identified?
 3. What simple customer-friendly notes would help clarify the important parts?
 
 When naming detected fabrication assets, prefer these knowledge-base labels when they fit:
@@ -147,8 +199,30 @@ ${FABRICATION_DETECTIONS.join(", ")}
 
 Return only valid JSON. Do not include markdown, code fences, commentary, or text outside the JSON object.
 
+Benchmark interpretation principles:
+- Identify fabricated assemblies, not separate visual traits.
+- A graphic scenic wall is one assembly, not separate wall, graphic, branding, and logo items.
+- A wrapped reception counter is one assembly, not separate counter, laminate, vinyl, and branding items.
+- A halo-lit dimensional logo is one assembly with lighting and custom fabrication influence.
+- Flat printed branding is part of the assembly finish.
+- Treat branding as independent only when it is dimensional, illuminated, freestanding, suspended, sculptural, or custom fabricated.
+- Do not try to distinguish SEG fabric from hard scenic with vinyl where the rendering is ambiguous. Use assembly language such as graphic wall.
+- Distinguish visible integrated fabrication lighting from ambient render or venue lighting.
+- Recognize AV presence, but do not include ordinary AV rental cost as fabrication effort. Score only scenic integration or mounting complexity.
+- Scores represent fabrication effort and cost influence, not visual prominence. Scores do not need to add to 10 or 100.
+
+Use exactly these fabricationProfile categories with integer scores from 0 to 10:
+- walls
+- flooring
+- counters
+- millwork
+- av
+- structure
+- lighting
+- customFabrication
+
 Rules:
-- suggestedCallouts and pins should contain the same 3 to 6 starter notes.
+- suggestedCallouts and pins should contain the same 3 to 6 starter notes based on fabricated assemblies.
 - x and y are percentages from 0 to 100, based on where the pin should appear on the image.
 - Notes should be short, plain-English, and customer friendly.
 - Do not overwhelm the customer.
@@ -178,9 +252,10 @@ Inventory rules:
 - unknowns should list the most important missing information, but keep it customer-friendly.
 
 Callout rules:
-- suggestedCallouts should be generated from the fabrication inventory.
-- Each callout should point to an important visible item.
+- suggestedCallouts should be generated from fabricatedAssemblies.
+- Each callout should point to an important visible fabricated assembly.
 - Avoid duplicate callouts.
+- Do not create separate pins for wall, logo, branding, finish, and graphic when those belong to one assembly.
 - Keep notes short and editable.
 - Notes should help the customer confirm or correct the AI's interpretation.
 `;
@@ -204,6 +279,9 @@ function fallbackReview(): AssetReview {
     summaryTitle: "Review setup needed",
     summaryText: fallbackSummary,
     summary: fallbackSummary,
+    fabricationProfile: EMPTY_FABRICATION_PROFILE,
+    fabricationCategoryEvidence: {},
+    fabricatedAssemblies: [],
     fabricationInventory: emptyInventory(),
     suggestedCallouts: [],
     pins: [],
@@ -245,6 +323,62 @@ function normalizeCategory(value: unknown): CalloutCategory {
   return calloutCategories.includes(value as CalloutCategory)
     ? (value as CalloutCategory)
     : "element";
+}
+
+function normalizeFabricationCategory(value: unknown): FabricationCategory {
+  return FABRICATION_CATEGORIES.includes(value as FabricationCategory)
+    ? (value as FabricationCategory)
+    : "customFabrication";
+}
+
+function normalizeCategoryEvidence(
+  value: unknown
+): FabricationCategoryEvidence {
+  const record =
+    value && typeof value === "object" && !Array.isArray(value)
+      ? (value as Record<string, unknown>)
+      : {};
+
+  return FABRICATION_CATEGORIES.reduce<FabricationCategoryEvidence>(
+    (evidence, category) => ({
+      ...evidence,
+      [category]: stringValue(record[category], ""),
+    }),
+    {}
+  );
+}
+
+function normalizeFabricatedAssemblies(value: unknown): FabricatedAssembly[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  const assemblies: FabricatedAssembly[] = [];
+
+  for (const item of value) {
+    const record =
+      item && typeof item === "object" && !Array.isArray(item)
+        ? (item as Record<string, unknown>)
+        : null;
+
+    if (!record) {
+      continue;
+    }
+
+    const label = stringValue(record.label, "");
+
+    if (!label) {
+      continue;
+    }
+
+    assemblies.push({
+      label,
+      category: normalizeFabricationCategory(record.category),
+      evidence: stringValue(record.evidence, ""),
+    });
+  }
+
+  return assemblies.slice(0, 12);
 }
 
 function normalizeCallouts(value: unknown): SuggestedCallout[] {
@@ -335,6 +469,9 @@ function normalizeReview(value: unknown): AssetReview {
   const callouts = normalizeCallouts(
     review.suggestedCallouts || review.pins
   );
+  const fabricationProfile = normalizeFabricationProfile(
+    review.fabricationProfile as Partial<Record<FabricationCategory, unknown>>
+  );
   const summaryText = stringValue(
     review.summaryText || review.summary,
     "FabCheck created starter notes for this concept image."
@@ -347,6 +484,13 @@ function normalizeReview(value: unknown): AssetReview {
     summaryTitle: stringValue(review.summaryTitle, "FabCheck first pass"),
     summaryText,
     summary: summaryText,
+    fabricationProfile,
+    fabricationCategoryEvidence: normalizeCategoryEvidence(
+      review.fabricationCategoryEvidence
+    ),
+    fabricatedAssemblies: normalizeFabricatedAssemblies(
+      review.fabricatedAssemblies
+    ),
     fabricationInventory: {
       elements: stringList(inventory.elements),
       branding: stringList(inventory.branding),
