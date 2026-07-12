@@ -210,6 +210,8 @@ Benchmark interpretation principles:
 - Distinguish visible integrated fabrication lighting from ambient render or venue lighting.
 - Recognize AV presence, but do not include ordinary AV rental cost as fabrication effort. Score only scenic integration or mounting complexity.
 - Scores represent fabrication effort and cost influence, not visual prominence. Scores do not need to add to 10 or 100.
+- Custom Fabrication should reflect density and scale, not mere presence. One large custom hero prop or sculptural assembly should usually score strongly. Multiple independent large custom assemblies, such as product replicas, mascot figures, sculptural scenic elements, custom photo props, fabricated packaging, organic forms, or separate dimensional scenic pieces, should increase the score substantially.
+- Do not count every decorative object. Only increase Custom Fabrication for independent assemblies that could reasonably be fabricated separately.
 
 Use exactly these fabricationProfile categories with integer scores from 0 to 10:
 - walls

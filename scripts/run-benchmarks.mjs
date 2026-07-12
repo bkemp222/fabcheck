@@ -48,8 +48,15 @@ const exclusions = [
   "General contractor costs",
 ];
 
+const majorCustomAssemblyPattern =
+  /\b(oversized|large|hero|replica|mascot|figure|sculpt|sculptural|organic|prop|photo\s*op|photo\s*moment|packaging|package|dimensional|custom fabricated|custom fabrication|curved|form)\b/i;
+
 function profile(values) {
   return Object.fromEntries(categories.map((category) => [category, values[category] || 0]));
+}
+
+function majorCustomAssemblyCount(assemblies) {
+  return assemblies.filter((assembly) => majorCustomAssemblyPattern.test(assembly)).length;
 }
 
 function profileScore(fabricationProfile) {
@@ -79,6 +86,14 @@ function multiplier(fabricationProfile) {
   return 1;
 }
 
+function densityMultiplier(customAssemblyCount) {
+  if (customAssemblyCount >= 4) return 1.42;
+  if (customAssemblyCount >= 3) return 1.32;
+  if (customAssemblyCount >= 2) return 1.18;
+  if (customAssemblyCount === 1) return 1.06;
+  return 1;
+}
+
 function floorBudget(value) {
   if (value < 20000) return Math.floor(value / 1000) * 1000;
   return Math.floor(value / 5000) * 5000;
@@ -89,9 +104,14 @@ function ceilBudget(value) {
   return Math.ceil(value / 5000) * 5000;
 }
 
-function calculateBudget(footprint, fabricationProfile) {
+function calculateBudget(footprint, fabricationProfile, customAssemblyCount) {
   const base = baseRanges[footprint];
-  const target = Math.min(base.rare * 1.15, base.anchor * multiplier(fabricationProfile));
+  const multiplierCap = customAssemblyCount >= 2 ? 2.35 : 2.05;
+  const adjustedMultiplier = Math.min(
+    multiplier(fabricationProfile) * densityMultiplier(customAssemblyCount),
+    multiplierCap
+  );
+  const target = Math.min(base.rare * 1.15, base.anchor * adjustedMultiplier);
 
   return {
     low: floorBudget(Math.max(base.anchor * 0.85, target * 0.88)),
@@ -114,6 +134,8 @@ function makeRecord({
   assemblies,
   predecessor = null,
 }) {
+  const customAssemblyCount = majorCustomAssemblyCount(assemblies);
+
   return {
     id,
     projectType,
@@ -122,6 +144,7 @@ function makeRecord({
     budgetHigh: expectedBudget.high,
     fabricationEffortProfile: fabricationProfile,
     detectedAssemblies: assemblies,
+    majorCustomAssemblyCount: customAssemblyCount,
     pricingAssumptions: [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -131,7 +154,11 @@ function makeRecord({
     cumulativeVersionReference: predecessor,
     sourceImage,
     benchmarkVersion: version,
-    calculatedBudget: calculateBudget(footprint, fabricationProfile),
+    calculatedBudget: calculateBudget(
+      footprint,
+      fabricationProfile,
+      customAssemblyCount
+    ),
   };
 }
 

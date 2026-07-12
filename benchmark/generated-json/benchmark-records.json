@@ -20,6 +20,7 @@
       "Standard flooring",
       "Compact reception counter"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -70,6 +71,7 @@
       "Wrapped reception counter",
       "Accent lighting"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -120,6 +122,7 @@
       "Reception counter",
       "Product display millwork"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -171,6 +174,7 @@
       "Integrated lighting",
       "Custom display feature"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -220,6 +224,7 @@
       "Graphic scenic walls",
       "Reception counter"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -270,6 +275,7 @@
       "Custom counter",
       "Accent lighting"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -320,6 +326,7 @@
       "Custom counter",
       "Display millwork"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -370,6 +377,7 @@
       "Counter system",
       "Integrated lighting"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -420,6 +428,7 @@
       "Counter and display millwork",
       "Integrated lighting"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -471,6 +480,7 @@
       "Lighted display feature",
       "Light structural element"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -520,6 +530,7 @@
       "Graphic scenic wall",
       "Counter"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -570,6 +581,7 @@
       "Wrapped counter",
       "Custom brand feature"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -620,6 +632,7 @@
       "Custom counter",
       "Display millwork"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -670,6 +683,7 @@
       "Custom counter",
       "Integrated lighting"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -721,6 +735,7 @@
       "Integrated lighting",
       "Custom brand feature"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -772,6 +787,7 @@
       "Technology integration",
       "Custom fabricated feature"
     ],
+    "majorCustomAssemblyCount": 1,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -797,7 +813,7 @@
     "sourceImage": "benchmark/10x20/10x20-gunts-b06.png",
     "benchmarkVersion": "b06",
     "calculatedBudget": {
-      "low": 20000,
+      "low": 25000,
       "high": 35000
     }
   },
@@ -821,6 +837,7 @@
       "Island scenic wall",
       "Counter"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -871,6 +888,7 @@
       "Custom counter",
       "Accent lighting"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -921,6 +939,7 @@
       "Custom counters",
       "Display millwork"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -971,6 +990,7 @@
       "Counters",
       "Overhead structure"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -1022,6 +1042,7 @@
       "Integrated lighting",
       "Custom feature"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -1073,6 +1094,7 @@
       "Technology integration",
       "Overhead structure"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -1122,6 +1144,7 @@
       "Large scenic wall system",
       "Counters"
     ],
+    "majorCustomAssemblyCount": 1,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -1172,6 +1195,7 @@
       "Counters",
       "Integrated lighting"
     ],
+    "majorCustomAssemblyCount": 1,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -1197,8 +1221,8 @@
     "sourceImage": "benchmark/30x30/30x30-stepjet-b02.png",
     "benchmarkVersion": "b02",
     "calculatedBudget": {
-      "low": 60000,
-      "high": 80000
+      "low": 65000,
+      "high": 85000
     }
   },
   {
@@ -1223,6 +1247,7 @@
       "Millwork",
       "Structural feature"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -1274,6 +1299,7 @@
       "Overhead structure",
       "Custom feature"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -1325,6 +1351,7 @@
       "Overhead structure",
       "Integrated lighting"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -1377,6 +1404,7 @@
       "Overhead structure",
       "Custom fabrication"
     ],
+    "majorCustomAssemblyCount": 1,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -1427,6 +1455,7 @@
       "Integrated lighting",
       "Custom scenic photo feature"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -1478,6 +1507,7 @@
       "Integrated lighting",
       "Custom scenic detail"
     ],
+    "majorCustomAssemblyCount": 1,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -1504,7 +1534,7 @@
     "benchmarkVersion": "b01",
     "calculatedBudget": {
       "low": 9000,
-      "high": 12000
+      "high": 13000
     }
   },
   {
@@ -1529,6 +1559,7 @@
       "Integrated lighting",
       "Custom fabrication"
     ],
+    "majorCustomAssemblyCount": 2,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",
@@ -1554,8 +1585,8 @@
     "sourceImage": "benchmark/photo_moments/mutt_cutts.png",
     "benchmarkVersion": "b01",
     "calculatedBudget": {
-      "low": 10000,
-      "high": 13000
+      "low": 12000,
+      "high": 16000
     }
   },
   {
@@ -1580,6 +1611,7 @@
       "Integrated lighting",
       "Custom photo feature"
     ],
+    "majorCustomAssemblyCount": 0,
     "pricingAssumptions": [
       "Budget includes fabrication materials, shop labor, standard fabrication finishing, and standard assembly.",
       "Printed graphics are treated as assembly finishes rather than separate fabricated objects.",

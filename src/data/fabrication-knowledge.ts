@@ -307,6 +307,51 @@ function combineFabricationProfiles(
   );
 }
 
+const majorCustomAssemblyPattern =
+  /\b(oversized|large|hero|replica|mascot|figure|sculpt|sculptural|organic|prop|photo\s*op|photo\s*moment|packaging|package|dimensional|custom fabricated|custom fabrication|curved|form)\b/i;
+
+function isMajorCustomAssembly(assembly: NonNullable<AssetAiReview["fabricatedAssemblies"]>[number]) {
+  if (assembly.category !== "customFabrication") {
+    return false;
+  }
+
+  return majorCustomAssemblyPattern.test(
+    `${assembly.label || ""} ${assembly.evidence || ""}`
+  );
+}
+
+function getMajorCustomAssemblyCount(project: Project) {
+  return project.assets.reduce((count, asset) => {
+    const assemblies = asset.aiReview?.fabricatedAssemblies || [];
+
+    return count + assemblies.filter(isMajorCustomAssembly).length;
+  }, 0);
+}
+
+function adjustProfileForCustomFabricationDensity(
+  profile: FabricationCategoryProfile,
+  majorCustomAssemblyCount: number
+): FabricationCategoryProfile {
+  if (majorCustomAssemblyCount === 0) {
+    return profile;
+  }
+
+  let densityScore = 7;
+
+  if (majorCustomAssemblyCount >= 4) {
+    densityScore = 10;
+  } else if (majorCustomAssemblyCount >= 3) {
+    densityScore = 9;
+  } else if (majorCustomAssemblyCount >= 2) {
+    densityScore = 8;
+  }
+
+  return normalizeFabricationProfile({
+    ...profile,
+    customFabrication: Math.max(profile.customFabrication, densityScore),
+  });
+}
+
 function inferFabricationProfileFromAssumptions(
   assumptions: ReturnType<typeof getProjectAssumptions>
 ): FabricationCategoryProfile {
@@ -371,12 +416,19 @@ export function getProjectFabricationProfile(project: Project) {
   const aiProfiles = project.assets
     .map((asset) => normalizeFabricationProfile(asset.aiReview?.fabricationProfile))
     .filter(hasFabricationProfile);
+  const majorCustomAssemblyCount = getMajorCustomAssemblyCount(project);
 
   if (aiProfiles.length > 0) {
-    return combineFabricationProfiles(aiProfiles);
+    return adjustProfileForCustomFabricationDensity(
+      combineFabricationProfiles(aiProfiles),
+      majorCustomAssemblyCount
+    );
   }
 
-  return inferFabricationProfileFromAssumptions(getProjectAssumptions(project));
+  return adjustProfileForCustomFabricationDensity(
+    inferFabricationProfileFromAssumptions(getProjectAssumptions(project)),
+    majorCustomAssemblyCount
+  );
 }
 
 const ESTIMATE_EXCLUSIONS = [
@@ -464,6 +516,7 @@ const FOOTPRINT_BASE_RANGES: Record<
 };
 
 const MAX_IMPACT_MULTIPLIER = 2.05;
+const MAX_DENSE_CUSTOM_MULTIPLIER = 2.35;
 
 type ProjectAssumption = ReturnType<typeof getProjectAssumptions>[number];
 
@@ -857,6 +910,14 @@ function getImpactMultiplier(impactScore: number) {
   return 1;
 }
 
+function getCustomFabricationDensityMultiplier(majorCustomAssemblyCount: number) {
+  if (majorCustomAssemblyCount >= 4) return 1.42;
+  if (majorCustomAssemblyCount >= 3) return 1.32;
+  if (majorCustomAssemblyCount >= 2) return 1.18;
+  if (majorCustomAssemblyCount === 1) return 1.06;
+  return 1;
+}
+
 function getCostSavingSuggestions(drivers: FabricationCostDriver[]) {
   const suggestions = drivers.map((driver) => {
     if (driver.label.includes("hard scenic")) {
@@ -953,6 +1014,7 @@ export function estimateFabricationBudget(project: Project): FabricationEstimate
   const footprint = inferFootprint(project);
   const baseRange = FOOTPRINT_BASE_RANGES[footprint];
   const majorCostDrivers = getMajorCostDrivers(assumptions);
+  const majorCustomAssemblyCount = getMajorCustomAssemblyCount(project);
   const impactScore = getImpactScore(majorCostDrivers);
   const complexity = getComplexity(
     assumptions,
@@ -961,9 +1023,13 @@ export function estimateFabricationBudget(project: Project): FabricationEstimate
   );
   const legacyMultiplier = getImpactMultiplier(impactScore);
   const profileMultiplier = getFabricationProfileMultiplier(fabricationProfile);
+  const densityMultiplier =
+    getCustomFabricationDensityMultiplier(majorCustomAssemblyCount);
   const impactMultiplier = Math.min(
-    Math.max(profileMultiplier, legacyMultiplier),
-    MAX_IMPACT_MULTIPLIER
+    Math.max(profileMultiplier, legacyMultiplier) * densityMultiplier,
+    majorCustomAssemblyCount >= 2
+      ? MAX_DENSE_CUSTOM_MULTIPLIER
+      : MAX_IMPACT_MULTIPLIER
   );
   const target = Math.min(baseRange.rare * 1.15, baseRange.anchor * impactMultiplier);
   const width = footprint === "unknown" ? 0.24 : 0.12;
