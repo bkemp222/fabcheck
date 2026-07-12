@@ -1,8 +1,10 @@
 "use client";
 
+import { useCallback, useRef, useState } from "react";
 import { estimateFabricationBudget } from "@/data/fabrication-knowledge";
 import type { Project } from "@/types/project";
 import { FabricationCategoryBars } from "@/components/fabcheck/fabrication-category-bars";
+import { SubmissionConfirmationModal } from "@/components/fabcheck/submission-confirmation-modal";
 
 type MobileReviewProps = {
   project: Project;
@@ -10,19 +12,34 @@ type MobileReviewProps = {
     key: K,
     value: Project[K]
   ) => void;
+  onReturnHome: () => void;
 };
 
-export function MobileReview({ project, updateProject }: MobileReviewProps) {
+export function MobileReview({
+  project,
+  updateProject,
+  onReturnHome,
+}: MobileReviewProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
   const conceptImage = project.assets.find((asset) =>
     asset.type.startsWith("image/")
   );
   const budgetRange = estimateFabricationBudget(project);
-  const canSubmit = Boolean(project.contactName.trim() && project.contactEmail.trim());
+  const canSubmit = Boolean(
+    project.contactName.trim() && project.contactEmail.trim()
+  );
+
+  const closeConfirmation = useCallback(() => {
+    setIsConfirmationOpen(false);
+  }, []);
 
   async function submitEstimateRequest() {
-    if (!canSubmit) return;
+    if (!canSubmit || !conceptImage || isSubmitting) return;
 
     try {
+      setIsSubmitting(true);
       const response = await fetch("/api/submit-package", {
         method: "POST",
         headers: {
@@ -36,10 +53,12 @@ export function MobileReview({ project, updateProject }: MobileReviewProps) {
         return;
       }
 
-      alert("Estimate request submitted successfully!");
+      setIsConfirmationOpen(true);
     } catch (error) {
       console.error(error);
       alert("Something went wrong submitting the estimate request.");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -134,13 +153,20 @@ export function MobileReview({ project, updateProject }: MobileReviewProps) {
       </section>
 
       <button
+        ref={submitButtonRef}
         type="button"
         onClick={submitEstimateRequest}
-        disabled={!canSubmit || !conceptImage}
+        disabled={!canSubmit || !conceptImage || isSubmitting}
         className="w-full rounded-xl bg-[#f9a331] py-3.5 text-base font-black uppercase italic text-black shadow-sm transition duration-150 hover:bg-[#ffb14c] active:scale-[0.99] disabled:cursor-not-allowed disabled:bg-zinc-300 disabled:text-zinc-500 disabled:shadow-none"
       >
-        Submit
+        {isSubmitting ? "Submitting..." : "Submit"}
       </button>
+
+      <SubmissionConfirmationModal
+        isOpen={isConfirmationOpen}
+        onClose={closeConfirmation}
+        onReturnHome={onReturnHome}
+      />
     </div>
   );
 }

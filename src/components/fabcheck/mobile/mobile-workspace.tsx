@@ -143,6 +143,7 @@ if (activeView === "assets" && isMobileAssetDetailOpen && selectedAsset) {
         <MobileReview
           project={project}
           updateProject={updateProject}
+          onReturnHome={() => setActiveView("assets")}
         />
       )}
     </div>

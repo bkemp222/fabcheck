@@ -151,6 +151,60 @@ body {
   animation: premiumFadeIn 220ms ease-out both;
 }
 
+@keyframes submissionOverlayIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes submissionPanelIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes submissionStrokeDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.submission-modal-overlay {
+  animation: submissionOverlayIn 220ms ease-out both;
+}
+
+.submission-modal-panel {
+  animation: submissionPanelIn 230ms ease-out both;
+}
+
+.submission-checkmark-circle {
+  stroke-dasharray: 214;
+  stroke-dashoffset: 214;
+  animation: submissionStrokeDraw 520ms ease-out 160ms both;
+}
+
+.submission-checkmark-check {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: submissionStrokeDraw 360ms ease-out 560ms both;
+}
+
+@supports not ((backdrop-filter: blur(6px)) or (-webkit-backdrop-filter: blur(6px))) {
+  .submission-modal-overlay {
+    background: rgba(0, 0, 0, 0.76);
+  }
+}
+
 @keyframes fabricationScoreFill {
   from {
     transform: scaleX(0);
@@ -168,7 +222,16 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .mobile-page-enter,
   .premium-fade-in,
+  .submission-modal-overlay,
+  .submission-modal-panel,
+  .submission-checkmark-circle,
+  .submission-checkmark-check,
   .fabrication-score-bar {
     animation: none;
+  }
+
+  .submission-checkmark-circle,
+  .submission-checkmark-check {
+    stroke-dashoffset: 0;
   }
 }

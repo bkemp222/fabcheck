@@ -172,6 +172,7 @@ deleteCallout={deleteCallout}
   project={project}
   progress={progress}
   updateProject={updateProject}
+  onReturnHome={() => setActiveView("assets")}
 />
 )}
 </div>

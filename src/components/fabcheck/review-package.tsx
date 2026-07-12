@@ -1,7 +1,9 @@
 "use client";
 
+import { useCallback, useRef, useState } from "react";
 import { estimateFabricationBudget } from "@/data/fabrication-knowledge";
 import { FabricationCategoryBars } from "@/components/fabcheck/fabrication-category-bars";
+import { SubmissionConfirmationModal } from "@/components/fabcheck/submission-confirmation-modal";
 import type { Project } from "@/types/project";
 
 type ReviewPackageProps = {
@@ -11,9 +13,17 @@ type ReviewPackageProps = {
     key: K,
     value: Project[K]
   ) => void;
+  onReturnHome: () => void;
 };
 
-export function ReviewPackage({ project, updateProject }: ReviewPackageProps) {
+export function ReviewPackage({
+  project,
+  updateProject,
+  onReturnHome,
+}: ReviewPackageProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
   const conceptImage = project.assets.find((asset) =>
     asset.type.startsWith("image/")
   );
@@ -22,10 +32,15 @@ export function ReviewPackage({ project, updateProject }: ReviewPackageProps) {
     project.contactName.trim() && project.contactEmail.trim()
   );
 
+  const closeConfirmation = useCallback(() => {
+    setIsConfirmationOpen(false);
+  }, []);
+
   async function submitEstimateRequest() {
-    if (!canSubmit) return;
+    if (!canSubmit || !conceptImage || isSubmitting) return;
 
     try {
+      setIsSubmitting(true);
       const response = await fetch("/api/submit-package", {
         method: "POST",
         headers: {
@@ -39,10 +54,12 @@ export function ReviewPackage({ project, updateProject }: ReviewPackageProps) {
         return;
       }
 
-      alert("Estimate request submitted successfully!");
+      setIsConfirmationOpen(true);
     } catch (error) {
       console.error(error);
       alert("Something went wrong submitting the estimate request.");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -136,14 +153,21 @@ export function ReviewPackage({ project, updateProject }: ReviewPackageProps) {
         </div>
 
         <button
+          ref={submitButtonRef}
           type="button"
           onClick={submitEstimateRequest}
-          disabled={!canSubmit || !conceptImage}
+          disabled={!canSubmit || !conceptImage || isSubmitting}
           className="mt-5 w-full rounded-xl bg-[#f9a331] py-3.5 text-base font-black uppercase italic text-black shadow-sm transition duration-150 hover:bg-[#ffb14c] active:scale-[0.99] disabled:cursor-not-allowed disabled:bg-zinc-300 disabled:text-zinc-500 disabled:shadow-none"
         >
-          Submit
+          {isSubmitting ? "Submitting..." : "Submit"}
         </button>
       </section>
+
+      <SubmissionConfirmationModal
+        isOpen={isConfirmationOpen}
+        onClose={closeConfirmation}
+        onReturnHome={onReturnHome}
+      />
     </div>
   );
 }
