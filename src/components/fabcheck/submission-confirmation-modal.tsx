@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 
 type SubmissionConfirmationModalProps = {
   isOpen: boolean;
@@ -13,6 +14,7 @@ export function SubmissionConfirmationModal({
   onClose,
   onReturnHome,
 }: SubmissionConfirmationModalProps) {
+  const dialogRef = useRef<HTMLElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
@@ -23,7 +25,10 @@ export function SubmissionConfirmationModal({
     const previousOverflow = document.body.style.overflow;
 
     document.body.style.overflow = "hidden";
-    window.setTimeout(() => buttonRef.current?.focus(), 0);
+    window.setTimeout(() => {
+      dialogRef.current?.focus();
+      buttonRef.current?.focus();
+    }, 0);
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -45,7 +50,7 @@ export function SubmissionConfirmationModal({
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) {
+  if (!isOpen || typeof document === "undefined") {
     return null;
   }
 
@@ -54,7 +59,7 @@ export function SubmissionConfirmationModal({
     onReturnHome();
   }
 
-  return (
+  return createPortal(
     <div
       className="submission-modal-overlay fixed inset-0 z-[100] flex items-center justify-center bg-black/65 px-4 py-6 backdrop-blur-md"
       style={{
@@ -68,10 +73,12 @@ export function SubmissionConfirmationModal({
       }}
     >
       <section
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="submission-confirmation-title"
         aria-describedby="submission-confirmation-description"
+        tabIndex={-1}
         className="submission-modal-panel max-h-full w-full max-w-[520px] overflow-y-auto rounded-[18px] border-2 border-[#FFA431] bg-black px-6 py-7 text-center text-white shadow-2xl outline-none sm:px-10 sm:py-9"
       >
         <img
@@ -137,6 +144,7 @@ export function SubmissionConfirmationModal({
           Return Home
         </button>
       </section>
-    </div>
+    </div>,
+    document.body
   );
 }
